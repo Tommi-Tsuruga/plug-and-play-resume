@@ -1,1 +1,1 @@
-Install requirements.txt with pip install -r requirements.txt
+Install requirements.txt with "pip install -r requirements.txt"
