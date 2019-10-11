@@ -1,3 +1,7 @@
+/**
+ * EditExperiencePage.js
+ * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ */
 import React from 'react';
 import { connect } from 'react-redux';
 import ExperienceForm from './ExperienceForm';
@@ -10,12 +14,12 @@ const EditExperiencePage = (props) => {
         experience={props.experience}
         onSubmit={(experience) => {
           props.dispatch(editExperience(props.experience.id, experience));
-          props.history.push('/');
+          props.history.push('/experience');
         }}
       />)
       <button onClick={() => {
         props.dispatch(removeExperience({ id: props.experience.id }));
-        props.history.push('/');
+        props.history.push('/experience');
       }}>Remove</button>
     </div>
   );

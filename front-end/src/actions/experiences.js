@@ -4,6 +4,7 @@
  */
 
 import uuid from 'uuid';
+import moment from "moment";
 
 // ADD_EXPERIENCE
 export const addExperience = (
@@ -13,7 +14,9 @@ export const addExperience = (
         company = '',
         startDate = 0,
         endDate = 0,
-        createdAt = 0
+        start = 0,
+        end = 0,
+
     } = {}
 ) => ({
     type: 'ADD_EXPERIENCE',
@@ -24,7 +27,7 @@ export const addExperience = (
         company,
         startDate,
         endDate,
-        createdAt
+
     }
 });
 

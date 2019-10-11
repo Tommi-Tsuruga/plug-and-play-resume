@@ -4,8 +4,6 @@
  */
 
 import React from "react";
-import ExperienceList from "./ExperienceList";
-import ExperienceListFilters from './ExperienceListFilters'
 
 const PlugResumePage = () => (
         <div>

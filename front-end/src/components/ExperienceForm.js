@@ -1,8 +1,12 @@
+/**
+ * ExperienceForm.js
+ * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ */
 import React from 'react';
 import moment from 'moment';
-import {SingleDatePicker} from 'react-dates';
-import 'react-dates/initialize';
+import {DateRangePicker} from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import DateRangePickerWrapper from "./DateRangePickerWrapper";
 
 export default class ExperienceForm extends React.Component {
     constructor(props) {
@@ -12,14 +16,13 @@ export default class ExperienceForm extends React.Component {
             title: props.experience ? props.experience.title : '',
             company: props.experience ? props.experience.company : '',
             description: props.experience ? props.experience.description : '',
-            createdAt: props.experience ? moment(props.experience.createdAt) : moment(),
             startDate: props.experience ? moment(props.experience.startDate) : moment(),
-            endDate: props.experience ? moment(props.experience.endDate) : moment(),
-            calendarFocused: false,
+            endDate: props.experience ? moment(props.experience.endDate): moment(),
+            start: moment(),
+            end:  moment(),
             error: ''
         };
     }
-
     onTitleChange = (e) => {
         const title = e.target.value;
         this.setState(() => ({title}));
@@ -29,30 +32,13 @@ export default class ExperienceForm extends React.Component {
         this.setState(() => ({description}))
     };
     onCompanyChange = (e) => {
-         const company = e.target.value;
-         this.setState(()=> ({company}))
+        const company = e.target.value;
+        this.setState(() => ({company}))
     };
-    onDateChange = (createdAt) => {
-        if (createdAt) {
-            this.setState(() => ({createdAt}));
-        }
-    };
-    onStartDateChange = (startDate) =>{
-        if(startDate) {
-            this.setState( () => ({startDate}));
-        }
-    };
-    onEndDateChange = (endDate) =>{
-        if(endDate) {
-            this.setState( () => ({endDate}));
-        }
-    };
-    onFocusChange = ({focused}) => {
-        this.setState(() => ({calendarFocused: focused}));
-    };
+
     onSubmit = (e) => {
         e.preventDefault();
-        if (!this.state.title || !this.state.description) {
+        if (!this.state.title || !this.state.description || !this.state.company) {
             this.setState(() => ({
                 error: 'Please provide the job title and' +
                     ' description'
@@ -63,14 +49,16 @@ export default class ExperienceForm extends React.Component {
                 title: this.state.title,
                 company: this.state.company,
                 description: this.state.description,
-                createdAt: this.state.createdAt.valueOf(),
                 startDate: this.state.startDate.valueOf(),
-                endDate: this.state.endDate.valueOf()
+                endDate: this.state.endDate.valueOf(),
+                start: this.state.start.valueOf(),
+                end:this.state.end.valueOf()
             });
         }
     };
 
     render() {
+        const experience = this.state;
         return (
             <div>
                 {this.state.error && <p>{this.state.error}</p>}
@@ -87,31 +75,16 @@ export default class ExperienceForm extends React.Component {
                         value={this.state.company}
                         onChange={this.onCompanyChange}
                     />
-
                     <input
                         type="text"
                         placeholder="Description"
                         value={this.state.description}
                         onChange={this.onDescriptionChange}
                     />
-
-                    <SingleDatePicker
-                        placeholder="Start Date"
-                        date={this.state.createdAt}
-                        onDateChange={this.onStartDateChange}
-                        focused={this.state.calendarFocused}
-                        onFocusChange={this.onFocusChange}
-                        numberOfMonths={1}
-                        isOutsideRange={() => false}
-                    />
-                    <SingleDatePicker
-                        placeholder="End Date"
-                        date={this.state.createdAt}
-                        onDateChange={this.onEndDateChange}
-                        focused={this.state.calendarFocused}
-                        onFocusChange={this.onFocusChange}
-                        numberOfMonths={1}
-                        isOutsideRange={() => false}
+                    <DateRangePickerWrapper
+                        startDatefieldName="startDate"
+                        endDatefieldName="endDate"
+                        {...experience}
                     />
                     <button>Add Experience</button>
                 </form>

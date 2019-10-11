@@ -3,16 +3,13 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
-// SET_START_DATE
-export const setStartDate = (startDate) => ({
-    type: 'SET_START_DATE',
-    startDate
+
+// SET_TEXT_FILTER
+export const setTextFilter = (text = '') => ({
+    type: 'SET_TEXT_FILTER',
+    text
 });
-// SET_END_DATE
-export const setEndDate = (endDate) => ({
-    type: 'SET_END_DATE',
-    endDate
-});
+
 // SORT_BY_Title
 export const sortByTitle = () => ({
     type: 'SORT_BY_TITLE'
@@ -21,11 +18,24 @@ export const sortByTitle = () => ({
 export const sortByCompany = () => ({
     type: 'SORT_BY_COMPANY'
 });
-// SORT_BY_START_DATE
-export const sortByStartDate = (startDate) => ({
-    type: 'SORT_BY_START_DATE'
+// SET_START_DATE
+export const setStartDate = (start) => ({
+    type: 'SET_START_DATE',
+    start
 });
-// SORT_BY_DATE
-export const sortByEndDate = (endDate) => ({
-    type: 'SORT_BY_END_DATE'
+// SET_END_DATE
+export const setEndDate = (end) => ({
+    type: 'SET_END_DATE',
+    end
 });
+
+
+
+// // SORT_BY_START_DATE
+// export const sortByStartDate = (start) => ({
+//     type: 'SORT_BY_START_DATE'
+// });
+// // SORT_BY_DATE
+// export const sortByEndDate = (end) => ({
+//     type: 'SORT_BY_END_DATE'
+// });

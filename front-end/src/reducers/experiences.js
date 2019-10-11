@@ -1,5 +1,9 @@
-// Experience Reducer
+/**
+ * experiences.js
+ * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ */
 
+// Experience Reducer
 const experienceReducerDefaultState = [];
 
 export default (state = experienceReducerDefaultState, action) => {

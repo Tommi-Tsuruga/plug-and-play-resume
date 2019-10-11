@@ -1,14 +1,20 @@
+/**
+ * ExperiencePage.js
+ * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ */
+
 import React from "react";
 import { connect } from 'react-redux';
 import ExperienceForm from './ExperienceForm';
 import { addExperience } from "../actions/experiences";
-import ExperienceListFilters from "./ExperienceListFilters";
 import ExperienceList from "./ExperienceList";
+import ExperienceListFilters from "./ExperienceListFilters";
+import selectExperiences from "../selectors/experiences";
 
 const ExperiencePage = (props) => (
     <div>
         <h1>Experience</h1>
-        <ExperienceListFilters />
+
         <ExperienceList />
         <ExperienceForm
             onSubmit={(experience) => {
@@ -18,5 +24,7 @@ const ExperiencePage = (props) => (
         />
     </div>
 );
+
+
 
 export default connect()(ExperiencePage);
