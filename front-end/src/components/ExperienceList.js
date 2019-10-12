@@ -19,7 +19,7 @@ const ExperienceList = (props) => (
 
 const mapStateToProps = (state) => {
     return {
-        experience: selectExperiences(state.experience, state.filters)
+        experience: state.experience
     };
 };
 

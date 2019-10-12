@@ -14,8 +14,6 @@ export const addExperience = (
         company = '',
         startDate = 0,
         endDate = 0,
-        start = 0,
-        end = 0,
 
     } = {}
 ) => ({
@@ -29,6 +27,17 @@ export const addExperience = (
         endDate,
 
     }
+});
+
+// SET_START_DATE
+export const setStartDate  = (start) => ({
+    type: 'SET_START_DATE',
+    start
+});
+// SET_END_DATE
+export const setEndDate = (end) => ({
+    type: 'SET_END_DATE',
+    end
 });
 
 // REMOVE_EXPERIENCE

@@ -21,10 +21,10 @@ const store = configureStore();
 
 store.dispatch(addExperience({ title: 'Senior Manager', company: 'JPMorgan',
                                description: 'I hated this job',
-                               startDate: '12/31/1969', endDate: "12/31/2008"}));
+                               startDate: '12/31/1969', endDate: "12/31/2008"} ));
 
 const state = store.getState();
-const visibleExperience = getVisibleExperiences(state.experience, state.filters);
+// const visibleExperience = getVisibleExperiences(state.experience);
 const jsx = (
     <Provider store={store}>
         <AppRouter />

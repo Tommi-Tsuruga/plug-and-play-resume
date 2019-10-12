@@ -5,8 +5,11 @@
 import React from 'react';
 import moment from 'moment';
 import {DateRangePicker} from 'react-dates';
+import 'react-dates/constants'
 import 'react-dates/lib/css/_datepicker.css';
-import DateRangePickerWrapper from "./DateRangePickerWrapper";
+import DateRangeSelector from "./DateRangeSelector";
+import {setEndDate, setStartDate} from "../actions/experiences";
+import {START_DATE} from "react-dates/esm/constants";
 
 export default class ExperienceForm extends React.Component {
     constructor(props) {
@@ -18,11 +21,13 @@ export default class ExperienceForm extends React.Component {
             description: props.experience ? props.experience.description : '',
             startDate: props.experience ? moment(props.experience.startDate) : moment(),
             endDate: props.experience ? moment(props.experience.endDate): moment(),
-            start: moment(),
+            start: moment().subtract(1,"month"),
             end:  moment(),
             error: ''
         };
     }
+
+
     onTitleChange = (e) => {
         const title = e.target.value;
         this.setState(() => ({title}));
@@ -49,10 +54,8 @@ export default class ExperienceForm extends React.Component {
                 title: this.state.title,
                 company: this.state.company,
                 description: this.state.description,
-                startDate: this.state.startDate.valueOf(),
-                endDate: this.state.endDate.valueOf(),
-                start: this.state.start.valueOf(),
-                end:this.state.end.valueOf()
+                startDate: this.state.startDate.format("MM/DD/YYYY"),
+                endDate: this.state.endDate.format("MM/DD/YYYY"),
             });
         }
     };
@@ -81,11 +84,7 @@ export default class ExperienceForm extends React.Component {
                         value={this.state.description}
                         onChange={this.onDescriptionChange}
                     />
-                    <DateRangePickerWrapper
-                        startDatefieldName="startDate"
-                        endDatefieldName="endDate"
-                        {...experience}
-                    />
+                    <DateRangeSelector  />
                     <button>Add Experience</button>
                 </form>
             </div>

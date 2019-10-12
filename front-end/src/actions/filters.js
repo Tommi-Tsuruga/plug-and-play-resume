@@ -18,24 +18,5 @@ export const sortByTitle = () => ({
 export const sortByCompany = () => ({
     type: 'SORT_BY_COMPANY'
 });
-// SET_START_DATE
-export const setStartDate = (start) => ({
-    type: 'SET_START_DATE',
-    start
-});
-// SET_END_DATE
-export const setEndDate = (end) => ({
-    type: 'SET_END_DATE',
-    end
-});
 
 
-
-// // SORT_BY_START_DATE
-// export const sortByStartDate = (start) => ({
-//     type: 'SORT_BY_START_DATE'
-// });
-// // SORT_BY_DATE
-// export const sortByEndDate = (end) => ({
-//     type: 'SORT_BY_END_DATE'
-// });

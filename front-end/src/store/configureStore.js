@@ -9,8 +9,7 @@ import filterReducer from "../reducers/filters";
 export default () => {
   const store = createStore(
     combineReducers({
-      experience: experienceReducer,
-      filters: filterReducer
+      experience: experienceReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );

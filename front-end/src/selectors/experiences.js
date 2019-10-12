@@ -7,7 +7,7 @@ import moment from "moment";
 
 // Get visible experience
 
-export default (experiences, { text}) => {
+export default (experiences) => {
     return experiences.filter((experience) => {
 
     }).sort((a, b) => {

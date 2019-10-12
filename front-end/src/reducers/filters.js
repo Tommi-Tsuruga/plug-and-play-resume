@@ -20,38 +20,9 @@ export default (state = filtersReducerDefaultState, action) => {
         ...state,
         text: action.text
       };
-    case 'SORT_BY_NAME':
-      return {
-        ...state,
-        sortBy: 'title'
-      };
-    case 'SORT_BY_COMPANY':
-      return {
-        ...state,
-        sortBy: 'company'
-      };
-    case 'SET_START_DATE':
-      return {
-        ...state,
-        start: action.start
-      };
-    case 'SET_END_DATE':
-      return {
-        ...state,
-        end: action.end
-      };
     default:
       return state;
   }
 }
-//     case 'SORT_BY_START_DATE':
-//       return {
-//         ...state,
-//         sortBy: 'start'
-//       };
-//     case 'SORT_BY_END_DATE':
-//       return {
-//         ...state,
-//         sortBy: 'end'
-//       };
+
 

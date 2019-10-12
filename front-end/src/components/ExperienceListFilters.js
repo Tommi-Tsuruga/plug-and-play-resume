@@ -41,7 +41,7 @@ const ExperienceListFilters = (props) => (
 
 const mapStateToProps = (state) => {
     return {
-        filters: state.filters
+        experience: state.experience
     };
 };
 
