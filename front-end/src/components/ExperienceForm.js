@@ -4,12 +4,8 @@
  */
 import React from 'react';
 import moment from 'moment';
-import {DateRangePicker} from 'react-dates';
-import 'react-dates/constants'
 import 'react-dates/lib/css/_datepicker.css';
 import DateRangeSelector from "./DateRangeSelector";
-import {setEndDate, setStartDate} from "../actions/experiences";
-import {START_DATE} from "react-dates/esm/constants";
 
 export default class ExperienceForm extends React.Component {
     constructor(props) {
@@ -19,14 +15,11 @@ export default class ExperienceForm extends React.Component {
             title: props.experience ? props.experience.title : '',
             company: props.experience ? props.experience.company : '',
             description: props.experience ? props.experience.description : '',
-            startDate: props.experience ? moment(props.experience.startDate) : moment(),
-            endDate: props.experience ? moment(props.experience.endDate): moment(),
-            start: moment().subtract(1,"month"),
-            end:  moment(),
-            error: ''
+            startDate: props.experience ? props.experience.startDate : moment(),
+            endDate: props.experience ? props.experience.endDate : moment(),
+            error: '',
         };
     }
-
 
     onTitleChange = (e) => {
         const title = e.target.value;
@@ -39,6 +32,9 @@ export default class ExperienceForm extends React.Component {
     onCompanyChange = (e) => {
         const company = e.target.value;
         this.setState(() => ({company}))
+    };
+    onDatesChange = ({startDate, endDate}) => {
+        this.setState(() => ({startDate, endDate}));
     };
 
     onSubmit = (e) => {
@@ -55,13 +51,12 @@ export default class ExperienceForm extends React.Component {
                 company: this.state.company,
                 description: this.state.description,
                 startDate: this.state.startDate.format("MM/DD/YYYY"),
-                endDate: this.state.endDate.format("MM/DD/YYYY"),
+                endDate: this.state.endDate.format("MM/DD/YYYY")
             });
         }
     };
 
     render() {
-        const experience = this.state;
         return (
             <div>
                 {this.state.error && <p>{this.state.error}</p>}
@@ -84,7 +79,12 @@ export default class ExperienceForm extends React.Component {
                         value={this.state.description}
                         onChange={this.onDescriptionChange}
                     />
-                    <DateRangeSelector  />
+                    <DateRangeSelector
+                        onDatesChange={({startDate, endDate}) => {
+                            this.onDatesChange({startDate, endDate})
+                        }}
+                        experience={this.props.experience}
+                    />
                     <button>Add Experience</button>
                 </form>
             </div>

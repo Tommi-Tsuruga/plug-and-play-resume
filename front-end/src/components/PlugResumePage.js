@@ -6,9 +6,9 @@
 import React from "react";
 
 const PlugResumePage = () => (
-        <div>
-                Generate a resume only for this job!
-        </div>
+    <div>
+        Generate a resume only for this job!
+    </div>
 );
 
 export default PlugResumePage;

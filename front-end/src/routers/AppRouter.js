@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import {BrowserRouter, Link, NavLink, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PlugResumePage from "../components/PlugResumePage";
 import LoginPage from "../components/LoginPage";
 import ExperiencePage from "../components/ExperiencePage";
@@ -16,14 +16,14 @@ import Header from "../components/Header";
 const AppRouter = () => (
     <BrowserRouter>
         <div>
-            <Header />
+            <Header/>
             <Switch>
                 <Route path="/" component={PlugResumePage} exact={true}/>
-                <Route path="/login" component={LoginPage} />
-                <Route path="/experience/" component={ExperiencePage} />
-                <Route path="/edit/:id" component={EditExperiencePage} />
-                <Route path="/help" component={HelpPage} />
-                <Route component={NotFoundPage} />
+                <Route path="/login" component={LoginPage}/>
+                <Route path="/experience" component={ExperiencePage}/>
+                <Route path="/edit/:id" component={EditExperiencePage}/>
+                <Route path="/help" component={HelpPage}/>
+                <Route component={NotFoundPage}/>
             </Switch>
         </div>
     </BrowserRouter>

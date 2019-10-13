@@ -4,7 +4,6 @@
  */
 
 import uuid from 'uuid';
-import moment from "moment";
 
 // ADD_EXPERIENCE
 export const addExperience = (
@@ -14,6 +13,7 @@ export const addExperience = (
         company = '',
         startDate = 0,
         endDate = 0,
+        calenderFocused,
 
     } = {}
 ) => ({
@@ -25,23 +25,12 @@ export const addExperience = (
         company,
         startDate,
         endDate,
-
     }
 });
 
-// SET_START_DATE
-export const setStartDate  = (start) => ({
-    type: 'SET_START_DATE',
-    start
-});
-// SET_END_DATE
-export const setEndDate = (end) => ({
-    type: 'SET_END_DATE',
-    end
-});
 
 // REMOVE_EXPERIENCE
-export const removeExperience = ({ id } = {}) => ({
+export const removeExperience = ({id} = {}) => ({
     type: 'REMOVE_EXPERIENCE',
     id
 });

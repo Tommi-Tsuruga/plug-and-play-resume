@@ -4,13 +4,14 @@
  */
 
 import React from "react";
-import {NavLink, Route} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Header = () => (
     <header>
         <h1>PlugAndPlayResume</h1>
         <NavLink to="/" activeClassName="is-active" exact={true}>Home</NavLink>
-        <NavLink to="/experience" activeClassName="is-active">Experience</NavLink>
+        <NavLink to="/experience"
+                 activeClassName="is-active">Experience</NavLink>
         <NavLink to="/login" activeClassName="is-active"> Login</NavLink>
         <NavLink to="/help" activeClassName="is-active"> Help</NavLink>
     </header>

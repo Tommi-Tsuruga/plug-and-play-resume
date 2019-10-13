@@ -3,12 +3,12 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
-const path=require('path');
+const path = require('path');
 const {GenerateSW} = require('workbox-webpack-plugin');
 
-module.exports=(env)=> {
-    const IsProduction = env==='production';
-    return{
+module.exports = (env) => {
+    const IsProduction = env === 'production';
+    return {
         entry: './src/app.js',
         output: {
             path: path.join(__dirname, 'public'),
@@ -28,7 +28,7 @@ module.exports=(env)=> {
                 ]
             }]
         },
-        devtool: IsProduction?'source-map':'cheap-module-eval-source-map',
+        devtool: IsProduction ? 'source-map' : 'cheap-module-eval-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'public'),
             historyApiFallback: true
