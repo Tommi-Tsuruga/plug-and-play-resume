@@ -5,7 +5,7 @@
 import React from "react";
 
 const LoginPage = () => (
-    <div>
+    <div className="container">
         This is from login page
     </div>
 );

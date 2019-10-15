@@ -6,7 +6,7 @@
 import React from "react";
 
 const HelpPage = () => (
-    <div>
+    <div className="container">
         this is from help
     </div>
 );

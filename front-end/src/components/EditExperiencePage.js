@@ -9,19 +9,25 @@ import {editExperience, removeExperience} from '../actions/experiences';
 
 const EditExperiencePage = (props) => {
     return (
-        <div>
+        <div className="container">
+            <h3 className="list-header">Edit Experience</h3>
             <ExperienceForm
                 experience={props.experience}
+                buttonText={"Edit Experience"}
                 onSubmit={(experience) => {
                     props.dispatch(editExperience(props.experience.id, experience));
                     props.history.push('/experience');
                 }}
             />
-            <button onClick={() => {
-                props.dispatch(removeExperience({id: props.experience.id}));
-                props.history.push('/experience');
-            }}>Remove From List</button>
+            <button
+                className="button--remove"
+                onClick={() => {
+                    props.dispatch(removeExperience({id: props.experience.id}));
+                    props.history.push('/experience');
+                }}>Remove From List
+            </button>
         </div>
+
     );
 };
 

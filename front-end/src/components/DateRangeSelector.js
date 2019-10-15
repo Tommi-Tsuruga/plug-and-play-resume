@@ -4,19 +4,18 @@
  */
 
 import React from "react";
-import {connect} from "react-redux"
 import {DateRangePicker} from "react-dates";
 import 'react-dates/lib/css/_datepicker.css';
 import moment from "moment";
 
-class DateRangeSelector extends React.Component {
+export default class DateRangeSelector extends React.Component {
     state = {
         startDate: this.props.experience ? moment(this.props.experience.startDate) : moment(),
         endDate: this.props.experience ? moment(this.props.experience.endDate) : moment(),
         focusedInput: null
     };
 
-    handleDateChange = ({startDate, endDate}) => {
+    onDatesChange = ({startDate, endDate}) => {
         this.setState({startDate, endDate});
         this.props.onDatesChange({startDate, endDate});
     };
@@ -34,9 +33,8 @@ class DateRangeSelector extends React.Component {
             startDateId={"startDate"}
             endDateId={"endDate"}
             isOutsideRange={this.isOutsideRange}
-            onDatesChange={this.handleDateChange}
+            onDatesChange={this.onDatesChange}
+            noBorder={false}
         />
     );
 }
-
-export default connect()(DateRangeSelector);

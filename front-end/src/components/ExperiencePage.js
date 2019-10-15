@@ -12,19 +12,26 @@ import ExperienceList from "./ExperienceList";
 const ExperiencePage = (props) => {
     return (
         <div>
-            <h2>Experience</h2>
-            <h3>Add Experience</h3>
-            <ExperienceForm
-                onSubmit={(experience) => {
-                    props.dispatch(addExperience(experience));
-                    props.history.push('/experience');
-                }}
-            />
-            <ExperienceList/>
+            <div className="container">
+                <h2 className="page-header__title">Experience</h2>
+            </div>
+            <div className="container">
+                <div className="add-experience">
+                    <h3 className="list-header">Add Experience</h3>
+                    <ExperienceForm
+                        buttonText="Add Experience"
+                        onSubmit={(experience) => {
+                            props.dispatch(addExperience(experience));
+                            props.history.push('/experience');
+                        }}
+                    />
+                </div>
+                <ExperienceList/>
+            </div>
         </div>
     )
 };
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
     return {
         experience: state.experience
     };

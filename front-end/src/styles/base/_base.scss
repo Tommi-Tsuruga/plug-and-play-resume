@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+
 //converting pixel to x rem to x*10 pixels
 html {
   font-size: 62.5%;
@@ -6,6 +11,7 @@ html {
 body {
   font-family: Helvetica, Areal, sans-serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {
@@ -17,5 +23,5 @@ button:disabled {
 }
 
 .is-active {
-  font-weight: bold;
+  background: darken($off-white, 10%);
 }

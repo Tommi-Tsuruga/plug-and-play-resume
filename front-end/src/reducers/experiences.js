@@ -13,7 +13,6 @@ export default (state = experienceReducerDefaultState, action) => {
                 ...state,
                 action.experience
             ];
-
         case 'REMOVE_EXPERIENCE':
             return state.filter(({id}) => id !== action.id);
         case 'EDIT_EXPERIENCE':

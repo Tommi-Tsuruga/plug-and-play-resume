@@ -6,7 +6,7 @@
 import React from "react";
 
 const PlugResumePage = () => (
-    <div>
+    <div className="container">
         Generate a resume only for this job!
     </div>
 );

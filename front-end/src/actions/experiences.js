@@ -13,8 +13,6 @@ export const addExperience = (
         company = '',
         startDate = 0,
         endDate = 0,
-        calenderFocused,
-
     } = {}
 ) => ({
     type: 'ADD_EXPERIENCE',
@@ -27,7 +25,6 @@ export const addExperience = (
         endDate,
     }
 });
-
 
 // REMOVE_EXPERIENCE
 export const removeExperience = ({id} = {}) => ({

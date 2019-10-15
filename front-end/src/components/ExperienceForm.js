@@ -18,6 +18,7 @@ export default class ExperienceForm extends React.Component {
             startDate: props.experience ? props.experience.startDate : moment(),
             endDate: props.experience ? props.experience.endDate : moment(),
             error: '',
+            buttonText: this.props.buttonText
         };
     }
 
@@ -41,8 +42,8 @@ export default class ExperienceForm extends React.Component {
         e.preventDefault();
         if (!this.state.title || !this.state.description || !this.state.company) {
             this.setState(() => ({
-                error: 'Please provide the job title and' +
-                    ' description'
+                error: 'Please provide Job Title, Institution and' +
+                    ' Description'
             }));
         } else {
             this.setState(() => ({error: ''}));
@@ -58,34 +59,39 @@ export default class ExperienceForm extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
+            <div className="container">
+                <form className="form" onSubmit={this.onSubmit}>
+                    {this.state.error &&
+                    <p className="form-error">{this.state.error}</p>}
                     <input
+                        className="text-input"
                         type="text"
                         placeholder="Job Title"
                         value={this.state.title}
                         onChange={this.onTitleChange}
                     />
                     <input
+                        className="text-input"
                         type="text"
-                        placeholder="Company"
+                        placeholder="Institution"
                         value={this.state.company}
                         onChange={this.onCompanyChange}
                     />
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        value={this.state.description}
-                        onChange={this.onDescriptionChange}
-                    />
                     <DateRangeSelector
+                        className="input-group__item"
+                        experience={this.props.experience}
                         onDatesChange={({startDate, endDate}) => {
                             this.onDatesChange({startDate, endDate})
                         }}
-                        experience={this.props.experience}
                     />
-                    <button>Add Experience</button>
+                    <textarea
+                        className="textarea"
+                        placeholder="Detailed description"
+                        value={this.state.description}
+                        onChange={this.onDescriptionChange}
+                    />
+                    <button
+                        className="button--full">{this.props.buttonText}</button>
                 </form>
             </div>
         )
