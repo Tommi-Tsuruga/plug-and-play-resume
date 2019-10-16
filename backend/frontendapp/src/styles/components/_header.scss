@@ -1,0 +1,38 @@
+.header {
+
+}
+
+.header__content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding-top: $s-size;
+  @media (min-width: $desktop-breakpoint) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    //padding: $m-size;
+  }
+}
+
+.header__item {
+  flex-grow: 0.25;
+  text-align: center;
+  border: 1px solid darken($off-white, 7%);
+  text-decoration: none;
+
+  h2 {
+    margin: 0 0;
+  }
+
+  transition: background .3s ease;
+
+  &:hover {
+    background: $off-white;
+  }
+}
+
+.header__title {
+  margin: $s-size 0 0;
+
+}

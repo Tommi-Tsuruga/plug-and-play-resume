@@ -5,6 +5,7 @@
 
 const path = require('path');
 const {GenerateSW} = require('workbox-webpack-plugin');
+const BundleTracker  = require('webpack-bundle-tracker');
 
 module.exports = (env) => {
     const IsProduction = env === 'production';
@@ -34,7 +35,8 @@ module.exports = (env) => {
             historyApiFallback: true
         },
         plugins: [
-            new GenerateSW()
+            new GenerateSW(),
+            new BundleTracker({path: __dirname, filename: 'webpack-stats.json'})
         ]
     };
 };

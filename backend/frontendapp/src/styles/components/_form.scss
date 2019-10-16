@@ -1,0 +1,21 @@
+
+.form-error {
+  font-style: italic;
+
+}
+
+.form {
+  > * {
+    margin-bottom: $m-size;
+  }
+}
+
+.form--item {
+  width: 100%
+}
+
+
+
+
+
+
