@@ -1,3 +1,4 @@
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,7 +6,9 @@
         <title>plugandplayresume</title>
     </head>
     <body>
-    <h1>plugandplayresume</h1>
     <div id="react-app"></div>
+    <div>
+        {% render_bundle 'main' %}
+    </div>
     </body>
 </html>
