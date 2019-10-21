@@ -1,0 +1,25 @@
+.text-input {
+  height: 50px;
+  font-weight: 300;
+  padding: $s-size;
+}
+
+.select {
+  @extend .text-input;
+}
+
+.textarea {
+  @extend .text-input;
+  margin: 1px;
+  padding: 1px;
+  height: 150px;
+  width: 100%;
+}
+
+.text-input__item {
+  @extend .text-input;
+  margin-bottom: $s-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 $s-size 0 0;
+  }
+}

@@ -10,6 +10,7 @@ joblib==0.13.2
 murmurhash==1.0.2
 nltk==3.4.5
 numpy==1.17.2
+optional-django==0.1.0
 plac==0.9.6
 preshed==2.0.1
 pytz==2019.3
