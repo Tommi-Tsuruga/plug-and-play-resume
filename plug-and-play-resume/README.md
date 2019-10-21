@@ -11,6 +11,15 @@
     <li>Created a django app</li>
     <li>Connected to frontend</li>
 
+<h2>Todo</h2>
+<h4>Frontend</h4>
+    <li>Add authentication and fix router</li>
+    <li>Fix logic in EditExperience page</li>
+
+<h4>Backend</h4>
+    <li>Create and connect db</li>
+    <li>Language processing logic</li>
+    
 <h2>Development</h2>
     <h4>Frontend</h4>
         <li>Build for development <pre>yarn run build:dev</pre> </li>
@@ -24,7 +33,7 @@
 <h2>Directory Structure</h2>
 <pre>
 .
-├── backend
+├── plug-and-play-resume
 │   └── __pycache__
 ├── backendapp
 │   ├── migrations
