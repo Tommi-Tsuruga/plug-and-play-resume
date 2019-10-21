@@ -1,4 +1,5 @@
+*.env
 env
 venv
-/backend/node_modules/
+node_modules
 .idea
