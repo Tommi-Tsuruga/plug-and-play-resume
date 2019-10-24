@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,9 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'public/bundles/'),
+    os.path.join(BASE_DIR, 'public/'),
 )
 
 # Application definition
@@ -41,19 +42,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backendapp',
+    'backendapp.apps.BackendappConfig',
     'rest_framework',
     'frontendapp',
     'webpack_loader',
+    'knox'
 ]
 
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'frontendapp/webpack-stats.json'),
+        'STATS_FILE': os.path.join(BASE_DIR,
+                                   './frontendapp/webpack-stats.json'),
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
 
 MIDDLEWARE = [
@@ -92,8 +99,12 @@ WSGI_APPLICATION = 'plug-and-play-resume.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME', ''),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASS', ''),
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -132,6 +143,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# https://docs.djangoproject.com/en/2.2/howto/static-fit''s/
 
 STATIC_URL = '/public/'

@@ -3,9 +3,6 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
-const publicPath = 'http://localhost:3000/';
-const publicUrl = 'http://localhost:3000/';
-
 const path = require('path');
 const {GenerateSW} = require('workbox-webpack-plugin');
 const BundleTracker  = require('webpack-bundle-tracker');

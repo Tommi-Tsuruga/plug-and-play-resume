@@ -12,7 +12,11 @@ nltk==3.4.5
 numpy==1.17.2
 optional-django==0.1.0
 plac==0.9.6
+postgres==3.0.0
 preshed==2.0.1
+psycopg2==2.8.4
+psycopg2-binary==2.8.4
+psycopg2-pool==1.1
 pytz==2019.3
 requests==2.22.0
 scikit-learn==0.21.3

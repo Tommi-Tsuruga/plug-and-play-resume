@@ -5,7 +5,8 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plug-and-play-resume.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                          'plug-and-play-resume.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
