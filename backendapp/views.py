@@ -8,8 +8,8 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
 
-from .serializers import UserSerializer, ExperiencesSerializer
-from .models import Experiences
+from .serializers import UserSerializer, ExperienceSerializer
+from .models import Experience
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -20,7 +20,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class ExperiencesViewSet(viewsets.ModelViewSet):
-    queryset = Experiences.objects.all()
+class ExperienceViewSet(viewsets.ModelViewSet):
+    queryset = Experience.objects.all()
     permission_classes = [permissions.AllowAny, ]
-    serializer_class = ExperiencesSerializer
+    serializer_class = ExperienceSerializer

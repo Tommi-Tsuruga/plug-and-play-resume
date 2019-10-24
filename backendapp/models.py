@@ -5,11 +5,10 @@
 # date            : 10/22/19
 # usage           : python models.py
 # ==============================================================================
-
 from django.db import models
 
 
-class Experiences(models.Model):
+class Experience(models.Model):
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=1000)
     company = models.CharField(max_length=25)

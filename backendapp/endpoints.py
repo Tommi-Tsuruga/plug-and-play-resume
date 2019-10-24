@@ -9,10 +9,10 @@ from django.urls import path, re_path
 from django.conf.urls import include
 from rest_framework import routers
 from .api import RegistrationAPI
-from .views import UserViewSet, ExperiencesViewSet
+from .views import UserViewSet, ExperienceViewSet
 
 router = routers.DefaultRouter()
-router.register('experiences', ExperiencesViewSet)
+router.register('experience', ExperienceViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

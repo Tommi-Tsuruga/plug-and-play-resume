@@ -8,7 +8,7 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Experiences
+from .models import Experience
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -30,9 +30,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username',)
 
 
-class ExperiencesSerializer(serializers.ModelSerializer):
+class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Experiences
+        model = Experience
         fields = ('title', 'description', 'company', 'start_date',
                   'end_date',)
 
