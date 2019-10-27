@@ -37,7 +37,6 @@ export default class ExperienceForm extends React.Component {
     onDatesChange = ({startDate, endDate}) => {
         this.setState(() => ({startDate, endDate}));
     };
-
     onSubmit = (e) => {
         e.preventDefault();
         if (!this.state.title || !this.state.description || !this.state.company) {

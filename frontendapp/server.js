@@ -7,7 +7,7 @@ const path = require('path');
 const express = require('express');
 const {redirectToHTTPS} = require("express-http-to-https");
 const app = express();
-const publicPath = path.join(__dirname, 'public');
+const publicPath = path.join(__dirname, 'public/bundles/');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();

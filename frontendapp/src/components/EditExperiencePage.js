@@ -5,7 +5,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExperienceForm from './ExperienceForm';
-import {editExperience, removeExperience} from '../actions/experiences';
+import {
+    editExperience,
+    fetchExperiences,
+    removeExperience
+} from '../actions/experiences';
 
 const EditExperiencePage = (props) => {
     return (
@@ -33,8 +37,9 @@ const EditExperiencePage = (props) => {
 
 const mapStateToProps = (state, props) => {
     return {
-        experience: state.experience.find((experience) => experience.id === props.match.params.id)
+        experience: state.experiences.find((experience) => experience.id === props.match.params.id)
     };
 };
+
 
 export default connect(mapStateToProps)(EditExperiencePage);

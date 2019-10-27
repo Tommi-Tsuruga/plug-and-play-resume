@@ -6,25 +6,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExperienceListItem from './ExperienceListItem';
+import {fetchExperiences} from "../actions/experiences";
 
-const ExperienceList = (props) => (
-    <div className="add-experience">
-        <h3 className="list-header">Your Experiences</h3>
-        <div className="container">
-            <div className="list-body">
-                {props.experience.map((experience) => {
-                    return <ExperienceListItem
-                        key={experience.id} {...experience} />;
-                })}
+export class ExperienceList extends React.Component {
+
+    render = () => (
+        <div className="add-experience">
+            <h3 className="list-header">Your Experiences</h3>
+            <div className="container">
+                <div className="list-body">
+                    {this.props.experiences.map((experience) => {
+                        return <ExperienceListItem
+                            key={experience.id} {...experience} />;
+                    })}
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+}
 
-const mapStateToProps = (state) => {
-    return {
-        experience: state.experience
-    };
-};
-
-export default connect(mapStateToProps)(ExperienceList);
+export default connect((state) => ({
+    experiences: state.experiences
+}))(ExperienceList);

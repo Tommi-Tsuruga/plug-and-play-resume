@@ -26,6 +26,11 @@ export default (state = experienceReducerDefaultState, action) => {
                     return experience;
                 }
             });
+        case 'FETCH_EXPERIENCES':
+            return [
+                ...state,
+                ...action.experiences
+            ];
         default:
             return state;
     }

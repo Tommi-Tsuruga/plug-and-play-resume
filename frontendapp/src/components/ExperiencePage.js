@@ -6,34 +6,33 @@
 import React from "react";
 import {connect} from 'react-redux';
 import ExperienceForm from './ExperienceForm';
-import {addExperience} from "../actions/experiences";
+import {addExperience, fetchExperiences} from "../actions/experiences";
 import ExperienceList from "./ExperienceList";
+import {AddExperiencePage} from "./AddExperiencePage";
 
-const ExperiencePage = (props) => {
-    return (
-        <div>
-            <div className="container">
-                <h2 className="page-header__title">Experience</h2>
-            </div>
-            <div className="container">
-                <div className="add-experience">
-                    <h3 className="list-header">Add Experience</h3>
-                    <ExperienceForm
-                        buttonText="Add Experience"
-                        onSubmit={(experience) => {
-                            props.dispatch(addExperience(experience));
-                            props.history.push('/experience');
-                        }}
-                    />
+export class ExperiencePage extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <div className="container">
+                    <h2 className="page-header__title">Experience</h2>
                 </div>
-                <ExperienceList/>
+                <div className="container">
+                    <AddExperiencePage/>
+                </div>
+                <div className="container">
+                    <ExperienceList/>
+                </div>
             </div>
-        </div>
-    )
-};
-const mapStateToProps = (state) => {
-    return {
-        experience: state.experience
-    };
-};
-export default connect(mapStateToProps)(ExperiencePage);
+        )
+    }
+}
+
+
+export default connect()
+
+(
+    ExperiencePage
+)
+;

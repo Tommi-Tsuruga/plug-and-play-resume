@@ -5,11 +5,10 @@
   "author": "Keisuke Suzuki",
   "license": "MIT",
   "scripts": {
-    "start": "yarn serve",
-    "build:dev": "./node_modules/.bin/webpack --mode development",
-    "build:prod": "./node_modules/.bin/webpack -p --env production",
-    "serve": "./node_modules/.bin/node frontendapp/server.js",
-    "dev-server": "./node_modules/.bin/webpack-dev-server"
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack -p --env production",
+    "serve": "node server.js",
+    "dev-server": "webpack-dev-server"
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",
@@ -37,6 +36,7 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "sass-loader": "^8.0.0",
     "style": "^0.0.3",
     "style-loader": "^1.0.0",

@@ -2,15 +2,18 @@
  * configureStore.js
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
+import thunk from "redux-thunk";
 import experienceReducer from '../reducers/experiences';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE || compose;
+
 export default () => {
-    const store = createStore(
+    return createStore(
         combineReducers({
-            experience: experienceReducer
-        }),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+                experiences: experienceReducer
+            }
+        ),
+        composeEnhancers(applyMiddleware(thunk))
     );
-    return store;
-};
+}

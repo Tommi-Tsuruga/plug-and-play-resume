@@ -5,17 +5,17 @@
 
 const path = require('path');
 const {GenerateSW} = require('workbox-webpack-plugin');
-const BundleTracker  = require('webpack-bundle-tracker');
+const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = (env) => {
     const IsProduction = env === 'production';
     return {
-        entry: [ './src/app.js',
-            require.resolve('webpack-dev-server/client') + '?http://localhost:3000',
+        entry: [
+            './src/app.js',
         ],
         output: {
-            path: path.join(__dirname, '../public/bundles'),
-            filename: "bundle.js"
+            path: path.join(__dirname, '/static/bundles'),
+            filename: "main.js",
         },
         module: {
             rules: [{
@@ -31,14 +31,16 @@ module.exports = (env) => {
                 ]
             }]
         },
+
         devtool: IsProduction ? 'source-map' : 'cheap-module-eval-source-map',
         devServer: {
-            contentBase: path.join(__dirname, '../public/bundles'),
+            contentBase: path.join(__dirname, 'static/'),
             historyApiFallback: true,
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },
-            port: 3000
+            port: 3000,
+            publicPath: 'http://localhost:3000',
         },
         plugins: [
             new GenerateSW(),
