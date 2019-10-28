@@ -1,5 +1,5 @@
 #basic api
-from resume.models import BasicInfo
+from resume.models import BasicInfo, Experience
 from rest_framework import viewsets, permissions
 from .serializers import ResumeSerializer
 
@@ -13,4 +13,13 @@ class ResumeViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = ResumeSerializer
+class ExperienceViewSet(viewsets.ModelViewSet):
+    queryset = Experience.objects.all()
+    
+    #change later to stop people from accessing everything
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = ResumeSerializer
+
 
