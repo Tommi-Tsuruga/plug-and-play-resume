@@ -1,0 +1,29 @@
+{
+  "name": "plug-and-play-resume",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack --mode development ./plugandplayresume/frontend/src/index.js --output ./plugandplayresume/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./plugandplayresume/frontend/src/index.js --output ./plugandplayresume/frontend/static/frontend/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.0-beta.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "proptypes": "^1.1.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}
