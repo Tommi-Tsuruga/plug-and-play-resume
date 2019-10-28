@@ -18,15 +18,14 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
-from backendapp import endpoints as endpoints
+from backendapp import endpoints
 from frontendapp import urls as frontendapp_urls
 
 urlpatterns = [
-    path('', include(frontendapp_urls)),
-    path('admin/', admin.site.urls),
-    path('api/auth/', include('knox.urls')),
-    path('api/', include(endpoints))
-    ]
-
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^api/', include(endpoints)),
+    re_path(r'.*', include(frontendapp_urls)),
+    # path('api/auth/', include('knox.urls')),
+]

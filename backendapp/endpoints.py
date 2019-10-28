@@ -5,17 +5,19 @@
 # date            : 10/22/19
 # usage           : python endpoints.py
 # ==============================================================================
-from django.urls import path, re_path
+from django.conf import settings
 from django.conf.urls import include
+from django.conf.urls.static import static
+from django.urls import path, re_path
 from rest_framework import routers
 from .api import RegistrationAPI
 from .views import UserViewSet, ExperienceViewSet
 
+
 router = routers.DefaultRouter()
-router.register('experience', ExperienceViewSet)
+router.register('experience', ExperienceViewSet, base_name='experience')
 
 urlpatterns = [
-    path('', include(router.urls)),
-    re_path('^auth/register/$', RegistrationAPI.as_view())
-
+    path('', include(router.urls), name='experience'),
+    # re_path(r'^auth/register/$', RegistrationAPI.as_view())
 ]

@@ -4,6 +4,7 @@
  */
 
 const path = require('path');
+const webpack = require('webpack');
 const {GenerateSW} = require('workbox-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
 
@@ -12,10 +13,12 @@ module.exports = (env) => {
     return {
         entry: [
             './src/app.js',
+            'webpack/hot/only-dev-server'
         ],
         output: {
-            path: path.join(__dirname, '/static/bundles'),
+            path: path.join(__dirname, 'static/bundles'),
             filename: "main.js",
+            publicPath: 'http://localhost:3000/'
         },
         module: {
             rules: [{
@@ -32,17 +35,19 @@ module.exports = (env) => {
             }]
         },
 
-        devtool: IsProduction ? 'source-map' : 'cheap-module-eval-source-map',
+        devtool: IsProduction ? 'source-map' : 'cheap-module-source-map',
         devServer: {
-            contentBase: path.join(__dirname, 'static/'),
+            contentBase: path.join(__dirname, 'static'),
+            publicPath: 'http://localhost:3000/',
+            hot: true,
+            inline: true,
             historyApiFallback: true,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            port: 3000,
-            publicPath: 'http://localhost:3000',
+            headers: {'Access-Control-Allow-Origin': '*'},
+            port: 3000
         },
         plugins: [
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoEmitOnErrorsPlugin(), // don't reload if there is an error
             new GenerateSW(),
             new BundleTracker({
                 path: __dirname,

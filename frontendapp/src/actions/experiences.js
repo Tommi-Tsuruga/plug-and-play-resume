@@ -4,11 +4,28 @@
  */
 
 import uuid from 'uuid';
+import "regenerator-runtime/runtime";
 
 // Helper to check if identical experience exists
 const experienceExists = (experiences, experience) => {
-    experiences.some((e) => e.id === experience.id)
+    return experiences.includes(experience);
 };
+
+async function postData(url = '', data = {}) {
+    const response = await fetch(url, {
+        method: 'post',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+        body: JSON.stringify(data)
+    });
+    return await response.json();
+}
 
 
 // REMOVE_EXPERIENCE
@@ -27,25 +44,27 @@ export const editExperience = (id, updates) => ({
 // Async actions
 // Fetch Experiences
 export const fetchExperiences = () => {
-    return dispatch => {
+    return (dispatch, getState) => {
         let headers = {"Content-Type": "application/json"};
         return fetch("/api/experience/", {headers,})
             .then(res => res.json())
-            .then(experiences => {
-                const curExperiences = store.getState().experiences;
-                return dispatch({
+            .then(experiences => dispatch({
                     type: 'FETCH_EXPERIENCES',
                     experiences
-                })
-            })
-    }
-};
+                }))
+            };
+    };
+
 
 // ADD_EXPERIENCE
-export const addExperience = (experienceData = {}) => {
+export const addExperience = (experience) => ({
+    type: 'ADD_EXPERIENCE',
+    experience
+});
+
+export const startAddExperience = (experienceData = {}) => {
     return (dispatch, getState) => {
         const {
-            id = uuid(),
             title = '',
             company = '',
             description = '',
@@ -53,25 +72,26 @@ export const addExperience = (experienceData = {}) => {
             endDate = 0
         } = experienceData;
         const experience = {
-            id,
+            id: uuid(),
             title,
             description,
             company,
-            startDate,
-            endDate
+            start_date: startDate,
+            end_date: endDate
         };
-        if (!experienceExists(getState.experiences, experience)) {
-            let headers = {"Content-Type": "application/json"};
-            let body = JSON.stringify(experience);
-            console.log(experience);
-            return fetch("/api/experience/id", {headers, method: "POST", body})
-                .then(res => res.json())
-                .then(experience => {
-                    return dispatch({
-                        type: 'ADD_EXPERIENCE',
-                        experience
-                    })
-                })
+        if (!experienceExists(getState().experiences, experience)) {
+            console.log(getState().experiences);
+            return postData('/api/experience/', experience).then(experience => {
+                return dispatch(addExperience(
+                    {
+                        id: experience.id,
+                        title,
+                        description,
+                        company,
+                        startDate,
+                        endDate
+                    }));
+            })
         }
     }
 };

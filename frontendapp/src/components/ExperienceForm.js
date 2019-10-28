@@ -50,8 +50,8 @@ export default class ExperienceForm extends React.Component {
                 title: this.state.title,
                 company: this.state.company,
                 description: this.state.description,
-                startDate: this.state.startDate.format("MM/DD/YYYY"),
-                endDate: this.state.endDate.format("MM/DD/YYYY")
+                startDate: this.state.startDate.format("YYYY-MM-DD"),
+                endDate: this.state.endDate.format("YYYY-MM-DD")
             });
         }
     };

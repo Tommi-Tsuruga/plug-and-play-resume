@@ -34,8 +34,7 @@ class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
         fields = ('id', 'title', 'description', 'company',
-                  'start_date',
-                  'end_date',)
+                  'start_date', 'end_date')
 
 
 class LoginUserSerializer(serializers.Serializer):

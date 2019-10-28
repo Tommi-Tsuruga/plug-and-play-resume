@@ -27,10 +27,10 @@ SECRET_KEY = '9q2u^(gott6!(b1g_14fe5ol4b7mp+jj38%h%*zh##1dedw7)t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,24 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backendapp.apps.BackendappConfig',
     'rest_framework',
+    'knox',
     'frontendapp',
     'webpack_loader',
-    'knox'
 ]
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR,
-                                   'frontendapp/webpack-stats.json'),
-        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+                                   'frontendapp/webpack-stats.json')
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,4 +137,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-fit''s/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'frontendapp/static')
