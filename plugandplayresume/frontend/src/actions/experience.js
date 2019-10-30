@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_EXPERIENCE } from "./types";
+import { GET_EXPERIENCE, DELETE_LEAD } from "./types";
 
 //GET EXP
 export const getExperience = () => dispatch => {
@@ -9,6 +9,18 @@ export const getExperience = () => dispatch => {
       dispatch({
         type: GET_EXPERIENCE,
         payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+export const deleteExperience = id => dispatch => {
+  axios
+    .delete(`/api/resume/${id}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_EXPERIENCE,
+        payload: id
       });
     })
     .catch(err => console.log(err));

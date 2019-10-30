@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getExperience } from "../../actions/experience";
+import { getExperience, deleteExperience } from "../../actions/experience";
 
 export class Sections extends Component {
   static propTypes = {
@@ -33,7 +33,16 @@ export class Sections extends Component {
                 <td>{experience.education}</td>
                 <td>{experience.workExperience}</td>
                 <td>
-                  <button className='btn btn-danger btn-sm'>Delete</button>
+                  <button
+                    onClick={this.props.deleteExperience.bind(
+                      this,
+                      experience.id
+                    )}
+                    className='btn btn-danger btn-sm'
+                  >
+                    {" "}
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -50,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getExperience }
+  { getExperience, deleteExperience }
 )(Sections);
