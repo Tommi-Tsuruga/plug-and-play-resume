@@ -1,26 +1,38 @@
-import axios from "axios";
-import { GET_EXPERIENCE, DELETE_EXPERIENCE } from "./types";
+import axios from 'axios';
+import { GET_BASICINFO, DELETE_BASICINFO, ADD_BASICINFO } from './types';
 
 //GET EXP
-export const getExperience = () => dispatch => {
+export const getBasicInfo = () => dispatch => {
   axios
-    .get("/api/resume/")
+    .get('/api/basic/')
     .then(res => {
       dispatch({
-        type: GET_EXPERIENCE,
+        type: GET_BASICINFO,
         payload: res.data
       });
     })
     .catch(err => console.log(err));
 };
 
-export const deleteExperience = id => dispatch => {
+export const deleteBasicInfo = id => dispatch => {
   axios
-    .delete(`/api/resume/${id}`)
+    .delete(`/api/basic/${id}`)
     .then(res => {
       dispatch({
-        type: DELETE_EXPERIENCE,
+        type: DELETE_BASICINFO,
         payload: id
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+export const addBasicInfo = basicInfo => dispatch => {
+  axios
+    .post('/api/basic/', basicInfo)
+    .then(res => {
+      dispatch({
+        type: ADD_BASICINFO,
+        payload: res.data
       });
     })
     .catch(err => console.log(err));

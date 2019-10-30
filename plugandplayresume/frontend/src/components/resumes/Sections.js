@@ -1,16 +1,18 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getExperience, deleteExperience } from "../../actions/experience";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getBasicInfo, deleteBasicInfo } from '../../actions/experience';
 
 export class Sections extends Component {
   static propTypes = {
-    experience: PropTypes.array.isRequired,
-    deleteExperience: PropTypes.func.isRequired
+    basicInfo: PropTypes.array.isRequired,
+    getBasicInfo: PropTypes.func.isRequired,
+    deleteBasicInfo: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-    this.props.getExperience();
+    this.props.getBasicInfo();
+    console.log(this.props.getBasicInfo());
   }
   render() {
     return (
@@ -27,21 +29,22 @@ export class Sections extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.experience.map(experience => (
-              <tr key={experience.id}>
-                <td>{experience.id}</td>
-                <td>{experience.name}</td>
-                <td>{experience.education}</td>
-                <td>{experience.workExperience}</td>
+            {this.props.basicInfo.map(basicInfo => (
+              <tr key={basicInfo.id}>
+                <td>{basicInfo.id}</td>
+                <td>{basicInfo.name}</td>
+                <td>{basicInfo.email}</td>
+                <td>{basicInfo.education}</td>
+                <td>{basicInfo.workHistory}</td>
                 <td>
                   <button
-                    onClick={this.props.deleteExperience.bind(
+                    onClick={this.props.deleteBasicInfo.bind(
                       this,
-                      experience.id
+                      basicInfo.id
                     )}
                     className='btn btn-danger btn-sm'
                   >
-                    {" "}
+                    {' '}
                     Delete
                   </button>
                 </td>
@@ -55,10 +58,10 @@ export class Sections extends Component {
 }
 
 const mapStateToProps = state => ({
-  experience: state.resumeReducer.experience
+  basicInfo: state.resumeReducer.basicInfo
 });
 
 export default connect(
   mapStateToProps,
-  { getExperience, deleteExperience }
+  { getBasicInfo, deleteBasicInfo }
 )(Sections);

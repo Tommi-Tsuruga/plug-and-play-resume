@@ -1,7 +1,7 @@
 # basic api
 from resume.models import BasicInfo, ExperienceInfo
 from rest_framework import viewsets, permissions
-from .serializers import ResumeSerializer, ExperienceSerializer
+from .serializers import BasicInfoSerializer, ExperienceSerializer
 
 # viewest is a crud api, might not work with viewset for special calls
 
@@ -14,7 +14,7 @@ class BasicViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
 
-    serializer_class = ResumeSerializer
+    serializer_class = BasicInfoSerializer
 
 
 # class ExperienceViewSet(viewsets.ModelViewSet):
