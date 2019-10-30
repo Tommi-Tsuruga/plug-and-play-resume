@@ -22,6 +22,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "django": "^1.0.0",
     "proptypes": "^1.1.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"

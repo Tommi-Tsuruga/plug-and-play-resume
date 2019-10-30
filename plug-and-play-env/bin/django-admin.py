@@ -1,4 +1,4 @@
-#!/home/tommi/Documents/capstone/plug-and-play-resume/plug-and-play-env/bin/python
+#!/home/tommi/Documents/capstone/plug-and-play-resume/plug-and-play-env/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
