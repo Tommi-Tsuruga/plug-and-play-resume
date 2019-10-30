@@ -5,7 +5,8 @@ import { getExperience, deleteExperience } from "../../actions/experience";
 
 export class Sections extends Component {
   static propTypes = {
-    experience: PropTypes.array.isRequired
+    experience: PropTypes.array.isRequired,
+    deleteExperience: PropTypes.func.isRequired
   };
 
   componentDidMount() {

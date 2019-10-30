@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_EXPERIENCE, DELETE_LEAD } from "./types";
+import { GET_EXPERIENCE, DELETE_EXPERIENCE } from "./types";
 
 //GET EXP
 export const getExperience = () => dispatch => {
