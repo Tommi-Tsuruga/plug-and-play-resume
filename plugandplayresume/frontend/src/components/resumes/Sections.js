@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getExperience } from "../../actions/experience";
@@ -13,9 +13,33 @@ export class Sections extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Resume Sections</h1>
-      </div>
+      <Fragment>
+        <h2>Resume Sections</h2>
+        <table className='table table-striped'>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Education</th>
+              <th>Experience</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.experience.map(experience => (
+              <tr key={experience.id}>
+                <td>{experience.id}</td>
+                <td>{experience.name}</td>
+                <td>{experience.education}</td>
+                <td>{experience.workExperience}</td>
+                <td>
+                  <button className='btn btn-danger btn-sm'>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Fragment>
     );
   }
 }
