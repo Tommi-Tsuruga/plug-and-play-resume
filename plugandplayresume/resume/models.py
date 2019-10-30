@@ -7,5 +7,10 @@ class BasicInfo(models.Model):
     name = models.CharField(max_length=100)
     education = models.TextField()
     workHistory = models.TextField()
-    workExperience = models.CharField(max_length=400, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class ExperienceInfo(models.Model):
+    user = models.ForeignKey(BasicInfo, on_delete=models.CASCADE)
+    experience = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
