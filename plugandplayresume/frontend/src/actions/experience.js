@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_BASICINFO, DELETE_BASICINFO, ADD_BASICINFO } from './types';
+import {
+  GET_BASICINFO,
+  DELETE_BASICINFO,
+  ADD_BASICINFO,
+  GET_ERRORS
+} from './types';
 
 //GET EXP
 export const getBasicInfo = () => dispatch => {
@@ -35,5 +40,14 @@ export const addBasicInfo = basicInfo => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      const errors = {
+        msg: err.response.data,
+        status: err.response.status
+      };
+      dispatch({
+        type: GET_ERRORS,
+        payload: errors
+      });
+    });
 };

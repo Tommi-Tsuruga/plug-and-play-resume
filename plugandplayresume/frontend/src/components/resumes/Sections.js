@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { getBasicInfo, deleteBasicInfo } from '../../actions/experience';
 
 export class Sections extends Component {
@@ -12,7 +12,6 @@ export class Sections extends Component {
 
   componentDidMount() {
     this.props.getBasicInfo();
-    console.log(this.props.getBasicInfo());
   }
   render() {
     return (
