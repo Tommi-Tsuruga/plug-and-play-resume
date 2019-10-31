@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createMessage } from './messages';
 import {
   GET_BASICINFO,
   DELETE_BASICINFO,
@@ -23,6 +24,7 @@ export const deleteBasicInfo = id => dispatch => {
   axios
     .delete(`/api/basic/${id}`)
     .then(res => {
+      dispatch(createMessage({ infoDeleted: 'Info Deleted' }));
       dispatch({
         type: DELETE_BASICINFO,
         payload: id
@@ -35,6 +37,7 @@ export const addBasicInfo = basicInfo => dispatch => {
   axios
     .post('/api/basic/', basicInfo)
     .then(res => {
+      dispatch(createMessage({ infoAdded: 'Info Added' }));
       dispatch({
         type: ADD_BASICINFO,
         payload: res.data

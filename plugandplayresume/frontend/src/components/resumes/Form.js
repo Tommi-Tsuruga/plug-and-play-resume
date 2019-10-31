@@ -21,7 +21,12 @@ export class Form extends Component {
     const { name, email, education, workHistory } = this.state;
     const basicInfo = { name, email, education, workHistory };
     this.props.addBasicInfo(basicInfo);
-    console.log('submit');
+    this.setState({
+      name: '',
+      email: '',
+      education: '',
+      workHistory: ''
+    });
   };
 
   render() {
