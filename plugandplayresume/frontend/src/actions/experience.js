@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
+import { tokenConfig } from './auth';
 import { GET_BASICINFO, DELETE_BASICINFO, ADD_BASICINFO } from './types';
 
 //GET EXP
-export const getBasicInfo = () => dispatch => {
+export const getBasicInfo = () => (dispatch, getState) => {
   axios
-    .get('/api/basic/')
+    .get('/api/basic/', tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_BASICINFO,
@@ -17,9 +18,9 @@ export const getBasicInfo = () => dispatch => {
     );
 };
 
-export const deleteBasicInfo = id => dispatch => {
+export const deleteBasicInfo = id => (dispatch, getState) => {
   axios
-    .delete(`/api/basic/${id}`)
+    .delete(`/api/basic/${id}`, tokenConfig(getState))
     .then(res => {
       dispatch(createMessage({ infoDeleted: 'Info Deleted' }));
       dispatch({
@@ -30,9 +31,9 @@ export const deleteBasicInfo = id => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const addBasicInfo = basicInfo => dispatch => {
+export const addBasicInfo = basicInfo => (dispatch, getState) => {
   axios
-    .post('/api/basic/', basicInfo)
+    .post('/api/basic/', basicInfo, tokenConfig(getState))
     .then(res => {
       dispatch(createMessage({ infoAdded: 'Info Added' }));
       dispatch({

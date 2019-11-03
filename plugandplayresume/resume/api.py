@@ -16,7 +16,7 @@ class BasicViewSet(viewsets.ModelViewSet):
     ]
 
     def get_queryset(self):
-        return self.requet.user.basicInfo.all()
+        return self.request.user.basicInfo.all()
 
     def perform_create(self, serializer):
         # tells the serlializer what to save, but which is serializer?

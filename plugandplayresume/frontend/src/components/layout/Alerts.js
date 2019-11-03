@@ -17,10 +17,16 @@ export class Alerts extends Component {
         alert.error(`Work History: ${error.msg.workHistory.join()}`);
       if (error.msg.education)
         alert.error(`Education: ${error.msg.education.join()}`);
+      //login errors here
+      if (error.msg.non_field_errors)
+        alert.error(error.msg.non_field_errors.join());
+      if (error.msg.username) alert.error(error.msg.username.join());
     }
     if (message !== prevProps.message) {
       if (message.infoDeleted) alert.success(message.infoDeleted);
       if (message.infoAdded) alert.success(message.infoAdded);
+
+      if (message.passwordNotMatch) alert.error(message.passwordNotMatch);
     }
   }
   render() {
