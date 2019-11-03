@@ -1,11 +1,6 @@
 import axios from 'axios';
-import { createMessage } from './messages';
-import {
-  GET_BASICINFO,
-  DELETE_BASICINFO,
-  ADD_BASICINFO,
-  GET_ERRORS
-} from './types';
+import { createMessage, returnErrors } from './messages';
+import { GET_BASICINFO, DELETE_BASICINFO, ADD_BASICINFO } from './types';
 
 //GET EXP
 export const getBasicInfo = () => dispatch => {
@@ -17,7 +12,9 @@ export const getBasicInfo = () => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 export const deleteBasicInfo = id => dispatch => {
@@ -43,14 +40,7 @@ export const addBasicInfo = basicInfo => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => {
-      const errors = {
-        msg: err.response.data,
-        status: err.response.status
-      };
-      dispatch({
-        type: GET_ERRORS,
-        payload: errors
-      });
-    });
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };

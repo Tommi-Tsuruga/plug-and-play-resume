@@ -7,16 +7,21 @@ from .serializers import BasicInfoSerializer, ExperienceSerializer
 
 
 class BasicViewSet(viewsets.ModelViewSet):
-    queryset = BasicInfo.objects.all()
-
     # change later to stop people from accessing everything
-    permission_classes = [
-        permissions.AllowAny
-    ]
 
     serializer_class = BasicInfoSerializer
 
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
 
+    def get_queryset(self):
+        return self.requet.user.basicInfo.all()
+
+    def perform_create(self, serializer):
+        # tells the serlializer what to save, but which is serializer?
+
+        serializer.save(owner=self.request.user)
 # class ExperienceViewSet(viewsets.ModelViewSet):
 #     queryset = ExperienceInfo.objects.all()
 
