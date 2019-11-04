@@ -14,3 +14,9 @@ exit
 root directory npm run dev
 
 need to enter things separated by commas now
+
+frontend todo:
+on sections page make it so fields are editable or individually deletable
+
+add flexible input fields
+https://redux-form.com/6.0.0-rc.4/examples/fieldarrays/

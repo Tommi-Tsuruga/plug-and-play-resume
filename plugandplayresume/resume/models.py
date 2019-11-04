@@ -20,10 +20,10 @@ class ExperienceInfo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class ExperienceKeywords(models.Model):
+class ParsedExperience(models.Model):
     owner = models.ForeignKey(
         User, related_name="experienceKeywords", on_delete=models.CASCADE, null=True)
-    experience = models.OneToOneField(
+    parsedExp = models.OneToOneField(
         ExperienceInfo, on_delete=models.CASCADE, primary_key=True,)
     keywords = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

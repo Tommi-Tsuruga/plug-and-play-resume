@@ -81,3 +81,15 @@ export const getExperienceInfo = () => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+export const deleteExperience = id => (dispatch, getState) => {
+  axios
+    .delete(`/api/experience/${id}`, tokenConfig(getState))
+    .then(res => {
+      dispatch(createMessage({ expDeleted: 'Exp Deleted' }));
+      dispatch({
+        type: DELETE_EXPERIENCE,
+        payload: id
+      });
+    })
+    .catch(err => console.log(err));
+};

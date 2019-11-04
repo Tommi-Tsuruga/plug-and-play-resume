@@ -35,6 +35,9 @@ export class Form extends Component {
     });
   };
 
+  // Add some type of reactive experience field
+  //(one of the ones that you can click a plus next to to add a new one  something)
+  // each plus will fire off an axios call to experience api to add to db
   render() {
     const { name, email, education, workHistory, experience } = this.state;
     return (
