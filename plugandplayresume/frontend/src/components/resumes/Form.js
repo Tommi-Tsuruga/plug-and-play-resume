@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addBasicInfo, addExperience } from '../../actions/experience';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addBasicInfo, addExperience } from "../../actions/experience";
 export class Form extends Component {
   state = {
-    name: '',
-    email: '',
-    education: '',
-    workHistory: ''
+    name: "",
+    email: "",
+    education: "",
+    workHistory: ""
   };
 
   static propTypes = {
@@ -25,13 +25,13 @@ export class Form extends Component {
     const experienceFields = { experience };
     this.props.addBasicInfo(basicInfo);
     this.props.addExperience(experienceFields);
-    console.log(experienceFields);
+    // console.log(experienceFields);
     this.setState({
-      name: '',
-      email: '',
-      education: '',
-      workHistory: '',
-      experience: ''
+      name: "",
+      email: "",
+      education: "",
+      workHistory: "",
+      experience: ""
     });
   };
 
