@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { getBasicInfo, deleteBasicInfo } from '../../actions/experience';
+import {
+  getBasicInfo,
+  deleteBasicInfo,
+  getExperienceInfo
+} from '../../actions/experience';
 
 export class Sections extends Component {
   static propTypes = {
@@ -23,6 +27,7 @@ export class Sections extends Component {
               <th>ID</th>
               <th>Name</th>
               <th>Education</th>
+              <th>Work Experience</th>
               <th>Experience</th>
               <th />
             </tr>

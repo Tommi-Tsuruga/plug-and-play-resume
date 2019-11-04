@@ -2,7 +2,7 @@
 from resume.models import BasicInfo, ExperienceInfo
 from rest_framework import viewsets, permissions
 from .serializers import BasicInfoSerializer, ExperienceSerializer
-
+from django.core.exceptions import ValidationError
 # viewest is a crud api, might not work with viewset for special calls
 
 
@@ -38,5 +38,7 @@ class ExperienceViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         # tells the serlializer what to save, but which is serializer?
-
+        # experience = serializer.validated_data.get('experience')
+        # if experience.user != self.request.user:
+        #     raise ValidationError({'experience': ['not valid exp']})
         serializer.save(owner=self.request.user)

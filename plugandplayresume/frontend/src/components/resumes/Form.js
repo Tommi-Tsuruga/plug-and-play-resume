@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addBasicInfo } from '../../actions/experience';
+import { addBasicInfo, addExperience } from '../../actions/experience';
 export class Form extends Component {
   state = {
     name: '',
@@ -11,26 +11,32 @@ export class Form extends Component {
   };
 
   static propTypes = {
-    addBasicInfo: PropTypes.func.isRequired
+    addBasicInfo: PropTypes.func.isRequired,
+    addExperience: PropTypes.func.isRequired
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, education, workHistory } = this.state;
+    const { name, email, education, workHistory, experience } = this.state;
     const basicInfo = { name, email, education, workHistory };
+    // Modify this to take multiple exp fields
+    const experienceFields = { experience };
     this.props.addBasicInfo(basicInfo);
+    this.props.addExperience(experienceFields);
+    console.log(experienceFields);
     this.setState({
       name: '',
       email: '',
       education: '',
-      workHistory: ''
+      workHistory: '',
+      experience: ''
     });
   };
 
   render() {
-    const { name, email, education, workHistory } = this.state;
+    const { name, email, education, workHistory, experience } = this.state;
     return (
       <div className='card card-body mt-4 mb-4'>
         <h2>Add Resume Info</h2>
@@ -76,6 +82,16 @@ export class Form extends Component {
             />
           </div>
           <div className='form-group'>
+            <label>Experience</label>
+            <textarea
+              className='form-control'
+              type='text'
+              name='experience'
+              onChange={this.onChange}
+              value={experience}
+            />
+          </div>
+          <div className='form-group'>
             <button type='submit' className='btn btn-primary'>
               Submit
             </button>
@@ -87,5 +103,5 @@ export class Form extends Component {
 }
 export default connect(
   null,
-  { addBasicInfo }
+  { addBasicInfo, addExperience }
 )(Form);

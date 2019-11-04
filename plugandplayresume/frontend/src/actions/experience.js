@@ -1,7 +1,14 @@
 import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from './auth';
-import { GET_BASICINFO, DELETE_BASICINFO, ADD_BASICINFO } from './types';
+import {
+  GET_BASICINFO,
+  DELETE_BASICINFO,
+  ADD_BASICINFO,
+  ADD_EXPERIENCE,
+  GET_EXPERIENCE,
+  DELETE_EXPERIENCE
+} from './types';
 
 //GET EXP
 export const getBasicInfo = () => (dispatch, getState) => {
@@ -38,6 +45,39 @@ export const addBasicInfo = basicInfo => (dispatch, getState) => {
       dispatch(createMessage({ infoAdded: 'Info Added' }));
       dispatch({
         type: ADD_BASICINFO,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addExperience = experience => (dispatch, getState) => {
+  console.log(experience);
+  const body = JSON.jsonify(experience);
+  console.log(experience);
+
+  axios
+    .post('/api/experience/', experience, tokenConfig(getState))
+    .then(res => {
+      dispatch(createMessage({ expAdded: 'Exp Added' }));
+      dispatch({
+        type: ADD_EXPERIENCE,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getExperienceInfo = () => (dispatch, getState) => {
+  axios
+    .get('/api/experience/', tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: GET_EXPERIENCE,
         payload: res.data
       });
     })
