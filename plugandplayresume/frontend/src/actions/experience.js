@@ -54,10 +54,6 @@ export const addBasicInfo = basicInfo => (dispatch, getState) => {
 };
 
 export const addExperience = experience => (dispatch, getState) => {
-  console.log(experience);
-  const body = JSON.jsonify(experience);
-  console.log(experience);
-
   axios
     .post('/api/experience/', experience, tokenConfig(getState))
     .then(res => {
