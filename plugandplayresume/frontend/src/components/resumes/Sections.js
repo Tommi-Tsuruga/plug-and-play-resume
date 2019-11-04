@@ -10,6 +10,7 @@ import {
 export class Sections extends Component {
   static propTypes = {
     basicInfo: PropTypes.array.isRequired,
+    experience: PropTypes.array.isRequired,
     getBasicInfo: PropTypes.func.isRequired,
     deleteBasicInfo: PropTypes.func.isRequired,
     getExperienceInfo: PropTypes.func.isRequired
@@ -17,7 +18,6 @@ export class Sections extends Component {
 
   componentDidMount() {
     this.props.getBasicInfo();
-    console.log("getting exp");
     this.props.getExperienceInfo();
   }
   render() {
@@ -25,7 +25,10 @@ export class Sections extends Component {
       <Fragment>
         {console.log("eh?")}
         <h2>Resume Sections</h2>
-        {console.log(this.props.basicInfo)}
+        {
+          (console.log("exp info", this.props.experience),
+          console.log("basic info", this.props.basicInfo))
+        }
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -46,7 +49,6 @@ export class Sections extends Component {
                 <td>{basicInfo.education}</td>
                 <td>{basicInfo.workHistory}</td>
                 {/* <td>{experience.experience}</td> */}
-
                 <td>
                   <button
                     onClick={this.props.deleteBasicInfo.bind(
@@ -59,6 +61,22 @@ export class Sections extends Component {
                     Delete
                   </button>
                 </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <table className='table table-striped'>
+          <thead>
+            <tr>
+              <th>Exp sections</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.experience.map(experience => (
+              <tr key={experience.id}>
+                <td>{experience.id}</td>
+                <td>{experience.experience}</td>
+                <td>{experience.experienceKeywords}</td>
               </tr>
             ))}
           </tbody>
