@@ -17,20 +17,21 @@ class ExperienceSerializer(serializers.ModelSerializer):
         fields = ('experience', 'experienceKeywords')
 
     def create(self, data):
-        parsedExp = data.get("experience", None).upper()
+        print("self: ", self)
+        parsedExp = data.get("experience", None)
         resumeStuff = TextRank4Keyword()
         resumeStuff.analyze(parsedExp, window_size=4, lower=False,
                             stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
                                        'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
                                        'information'])
         keywordList = resumeStuff.get_keywords()
-        # print("data: ", data, type(data))
-        # use textrank here
+
         print(" ????", keywordList)
-        # print("?", parsedExp, type(parsedExp))
         experienceObj = ExperienceInfo.objects.create(
-            experience=data['experience'], experienceKeywords=keywordList)
+            experienceKeywords=keywordList, **data)
+
         return experienceObj
+
     # thin views thick serializers, do the data transofrmation here. def create:
 
 

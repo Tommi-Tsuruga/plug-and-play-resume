@@ -16,13 +16,6 @@ class BasicViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
     def get_queryset(self):
         return self.request.user.basicInfo.all()
 
@@ -44,6 +37,13 @@ class ExperienceViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return self.request.user.experienceInfo.all()
 
+    # def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_create(serializer)
+    #     headers = self.get_success_headers(serializer.data)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
     def perform_create(self, serializer):
         print("perform_create")
         # tells the serlializer what to save, but which is serializer?
@@ -51,4 +51,5 @@ class ExperienceViewSet(viewsets.ModelViewSet):
         # if experience.user != self.request.user:
         #     raise ValidationError({'experience': ['not valid exp']})
         # print(self)
+        print(self.request.user)
         serializer.save(owner=self.request.user)

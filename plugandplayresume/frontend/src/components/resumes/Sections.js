@@ -1,26 +1,31 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 import {
   getBasicInfo,
   deleteBasicInfo,
   getExperienceInfo
-} from '../../actions/experience';
+} from "../../actions/experience";
 
 export class Sections extends Component {
   static propTypes = {
     basicInfo: PropTypes.array.isRequired,
     getBasicInfo: PropTypes.func.isRequired,
-    deleteBasicInfo: PropTypes.func.isRequired
+    deleteBasicInfo: PropTypes.func.isRequired,
+    getExperienceInfo: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getBasicInfo();
+    console.log("getting exp");
+    this.props.getExperienceInfo();
   }
   render() {
     return (
       <Fragment>
+        {console.log("eh?")}
         <h2>Resume Sections</h2>
+        {console.log(this.props.basicInfo)}
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -40,6 +45,8 @@ export class Sections extends Component {
                 <td>{basicInfo.email}</td>
                 <td>{basicInfo.education}</td>
                 <td>{basicInfo.workHistory}</td>
+                {/* <td>{experience.experience}</td> */}
+
                 <td>
                   <button
                     onClick={this.props.deleteBasicInfo.bind(
@@ -48,7 +55,7 @@ export class Sections extends Component {
                     )}
                     className='btn btn-danger btn-sm'
                   >
-                    {' '}
+                    {" "}
                     Delete
                   </button>
                 </td>
@@ -62,10 +69,11 @@ export class Sections extends Component {
 }
 
 const mapStateToProps = state => ({
-  basicInfo: state.resumeReducer.basicInfo
+  basicInfo: state.resumeReducer.basicInfo,
+  experience: state.resumeReducer.experience
 });
 
 export default connect(
   mapStateToProps,
-  { getBasicInfo, deleteBasicInfo }
+  { getBasicInfo, deleteBasicInfo, getExperienceInfo }
 )(Sections);

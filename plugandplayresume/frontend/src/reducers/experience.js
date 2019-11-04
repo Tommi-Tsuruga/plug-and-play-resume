@@ -5,10 +5,11 @@ import {
   ADD_EXPERIENCE,
   GET_EXPERIENCE,
   DELETE_EXPERIENCE
-} from '../actions/types.js';
+} from "../actions/types.js";
 
 const initialState = {
-  basicInfo: []
+  basicInfo: [],
+  experience: []
 };
 
 export default function(state = initialState, action) {
