@@ -2,6 +2,7 @@ from rest_framework import serializers
 from resume.models import BasicInfo, ExperienceInfo
 # Creates the api basically
 # resume serializer
+from .utils import TextRank4Keyword
 
 
 class BasicInfoSerializer(serializers.ModelSerializer):
@@ -17,11 +18,18 @@ class ExperienceSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         parsedExp = data.get("experience", None).upper()
-        print("data: ", data, type(data))
-        print(" ????", ExperienceInfo.experienceKeywords)
-        print("?", parsedExp, type(parsedExp))
+        resumeStuff = TextRank4Keyword()
+        resumeStuff.analyze(parsedExp, window_size=4, lower=False,
+                            stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
+                                       'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
+                                       'information'])
+        keywordList = resumeStuff.get_keywords()
+        # print("data: ", data, type(data))
+        # use textrank here
+        print(" ????", keywordList)
+        # print("?", parsedExp, type(parsedExp))
         experienceObj = ExperienceInfo.objects.create(
-            experience=data['experience'], experienceKeywords=parsedExp)
+            experience=data['experience'], experienceKeywords=keywordList)
         return experienceObj
     # thin views thick serializers, do the data transofrmation here. def create:
 
