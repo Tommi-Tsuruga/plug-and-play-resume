@@ -13,6 +13,7 @@ import EditExperiencePage from "../components/EditExperiencePage";
 import HelpPage from "../components/HelpPage";
 import NotFoundPage from "../components/NotFoundPage";
 import Header from "../components/Header";
+import ListingPage from "../components/ListingPage";
 
 export const history = createBrowserHistory();
 
@@ -24,6 +25,7 @@ const AppRouter = () => (
                 <Route path="/" component={PlugResumePage} exact={true}/>
                 <Route path="/login" component={LoginPage}/>
                 <Route path="/experience" component={ExperiencePage}/>
+                <Route path="/listing" component={ListingPage}/>
                 <Route path="/edit/:id" component={EditExperiencePage}/>
                 <Route path="/help" component={HelpPage}/>
                 <Route component={NotFoundPage}/>
