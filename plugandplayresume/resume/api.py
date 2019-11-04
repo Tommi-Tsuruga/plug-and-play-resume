@@ -23,13 +23,20 @@ class BasicViewSet(viewsets.ModelViewSet):
 
         serializer.save(owner=self.request.user)
 
-# class ExperienceViewSet(viewsets.ModelViewSet):
-#     queryset = ExperienceInfo.objects.all()
 
-#     def create(self, request):
+class ExperienceViewSet(viewsets.ModelViewSet):
+    # change later to stop people from accessing everything
 
-#     # change later to stop people from accessing everything
-#     permission_classes = [
-#         permissions.AllowAny
-#     ]
-#     serializer_class = ExperienceSerializer
+    serializer_class = ExperienceSerializer
+
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+    def get_queryset(self):
+        return self.request.user.experienceInfo.all()
+
+    def perform_create(self, serializer):
+        # tells the serlializer what to save, but which is serializer?
+
+        serializer.save(owner=self.request.user)

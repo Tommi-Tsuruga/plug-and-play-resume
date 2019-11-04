@@ -14,6 +14,16 @@ class BasicInfo(models.Model):
 
 
 class ExperienceInfo(models.Model):
-    user = models.ForeignKey(BasicInfo, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        User, related_name="experienceInfo", on_delete=models.CASCADE, null=True)
     experience = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class ExperienceKeywords(models.Model):
+    owner = models.ForeignKey(
+        User, related_name="experienceKeywords", on_delete=models.CASCADE, null=True)
+    experience = models.OneToOneField(
+        ExperienceInfo, on_delete=models.CASCADE, primary_key=True,)
+    keywords = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

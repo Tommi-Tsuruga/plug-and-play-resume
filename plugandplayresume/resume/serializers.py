@@ -14,7 +14,7 @@ class BasicInfoSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperienceInfo
-        fields = 'all'
+        fields = '__all__'
 
 # # parsed serializer for 3rd table
 
