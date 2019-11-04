@@ -38,18 +38,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backendapp.apps.BackendappConfig',
+    'accounts.apps.UsersConfig',
     'rest_framework',
     'knox',
-    'frontendapp',
+    'frontend',
     'webpack_loader',
+    'resume'
 ]
+
+# Rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
 
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR,
-                                   'frontendapp/webpack-stats.json')
+                                   'frontend/webpack-stats.json')
     }
 }
 
@@ -69,7 +75,7 @@ ROOT_URLCONF = 'plug-and-play-resume.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "frontendapp/template/"), ],
+        'DIRS': [os.path.join(BASE_DIR, "frontend/template/"), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,4 +143,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-fit''s/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'frontendapp/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/static')
