@@ -19,12 +19,12 @@ class ListingSerializer(serializers.ModelSerializer):
         parsedExp += " \n "
         parsedExp += data.get("listingTitle", None)
         print("exp: \n", parsedExp, "\ntype: ", type(parsedExp))
-        resumeStuff = TextRank4Keyword()
-        resumeStuff.analyze(parsedExp, window_size=4, lower=False,
-                            stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
-                                       'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
-                                       'information'])
-        keywordList = resumeStuff.get_keywords()
+        listingStuff = TextRank4Keyword()
+        listingStuff.analyze(parsedExp, window_size=4, lower=False,
+                             stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
+                                        'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
+                                        'information', 'busy', 'product', 'production', 'business', 'people', 'problem'])
+        keywordList = listingStuff.get_keywords()
 
         print(" ????", keywordList)
         listingObj = ListingInfo.objects.create(

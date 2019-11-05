@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
     case ADD_LISTING:
       return {
         ...state,
-        listingInfo: [...state.listing, action.payload]
+        listingInfo: [...state.listingInfo, action.payload]
       };
     default:
       return state;
