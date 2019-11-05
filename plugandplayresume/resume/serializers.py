@@ -17,8 +17,11 @@ class ExperienceSerializer(serializers.ModelSerializer):
         fields = ('id', 'experienceTitle', 'experience', 'experienceKeywords')
 
     def create(self, data):
-        print("self: ", self)
+        # print("self: ", self)
         parsedExp = data.get("experience", None)
+        parsedExp += " \n "
+        parsedExp += data.get("experienceTitle", None)
+        print("exp: \n", parsedExp, "\ntype: ", type(parsedExp))
         resumeStuff = TextRank4Keyword()
         resumeStuff.analyze(parsedExp, window_size=4, lower=False,
                             stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
