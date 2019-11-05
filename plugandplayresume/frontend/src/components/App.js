@@ -43,12 +43,13 @@ class App extends Component {
               <Alerts />
               <div className='container'>
                 <Switch>
-                  <PrivateRoute exact path='/' component={ResumeDashboard} />
                   <PrivateRoute
                     exact
-                    path='/listing'
-                    component={ListingDashboard}
+                    path='/'
+                    exact
+                    component={ResumeDashboard}
                   />
+                  <Route exact path='/listing' component={ListingDashboard} />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />
                 </Switch>
