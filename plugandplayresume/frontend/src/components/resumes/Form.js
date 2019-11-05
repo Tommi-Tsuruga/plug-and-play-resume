@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addBasicInfo, addExperience } from '../../actions/experience';
+
 export class Form extends Component {
   state = {
     name: '',
@@ -31,6 +32,7 @@ export class Form extends Component {
     } = this.state;
     const basicInfo = { name, email, education, workHistory };
     // Modify this to take multiple exp fields
+
     const experienceFields = { experience, experienceTitle };
     this.props.addBasicInfo(basicInfo);
     this.props.addExperience(experienceFields);
@@ -57,6 +59,7 @@ export class Form extends Component {
       experience,
       experienceTitle
     } = this.state;
+
     return (
       <div className='card card-body mt-4 mb-4'>
         <h2>Add Resume Info</h2>

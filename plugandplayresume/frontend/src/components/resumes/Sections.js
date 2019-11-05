@@ -23,12 +23,11 @@ export class Sections extends Component {
   render() {
     return (
       <Fragment>
-        {console.log('eh?')}
         <h2>Resume Sections</h2>
-        {
+        {/* {
           (console.log('exp info', this.props.experience),
           console.log('basic info', this.props.basicInfo))
-        }
+        } */}
         <table className='table table-striped'>
           <thead>
             <tr>
