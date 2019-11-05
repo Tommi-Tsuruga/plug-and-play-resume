@@ -6,9 +6,8 @@ import { getListing, deleteListing } from '../../actions/listing';
 export class ListingSections extends Component {
   static propTypes = {
     listingInfo: PropTypes.array.isRequired,
-    getListing: PropTypes.func.isRequired
-    // ,
-    // deleteListing: PropTypes.func.isRequired
+    getListing: PropTypes.func.isRequired,
+    deleteListing: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -18,10 +17,7 @@ export class ListingSections extends Component {
     return (
       <Fragment>
         <h2>Listing Sections</h2>
-        {/* {
-          (console.log('exp info', this.props.experience),
-          console.log('basic info', this.props.Listing))
-        } */}
+        {console.log('listing info', this.props.listingInfo)}
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -31,6 +27,28 @@ export class ListingSections extends Component {
               <th>Listing Keywords</th>
             </tr>
           </thead>
+          <tbody>
+            {this.props.listingInfo.map(listingInfo => (
+              <tr key={listingInfo.id}>
+                <td>{listingInfo.id}</td>
+                <td>{listingInfo.listingTitle}</td>
+                <td>{listingInfo.listing}</td>
+                <td>{listingInfo.lisitngKeywords}</td>
+                <td>
+                  <button
+                    onClick={this.props.deleteListing.bind(
+                      this,
+                      listingInfo.id
+                    )}
+                    className='btn btn-danger btn-sm'
+                  >
+                    {' '}
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </Fragment>
     );
@@ -38,10 +56,10 @@ export class ListingSections extends Component {
 }
 
 const mapStateToProps = state => ({
-  listingInfo: state.listingReducer.listing
+  listingInfo: state.listingReducer.listingInfo
 });
 
 export default connect(
   mapStateToProps,
-  { getListing }
+  { getListing, deleteListing }
 )(ListingSections);
