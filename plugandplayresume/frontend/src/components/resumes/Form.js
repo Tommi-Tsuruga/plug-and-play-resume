@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { addBasicInfo, addExperience } from "../../actions/experience";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addBasicInfo, addExperience } from '../../actions/experience';
 export class Form extends Component {
   state = {
-    name: "",
-    email: "",
-    education: "",
-    workHistory: ""
+    name: '',
+    email: '',
+    education: '',
+    workHistory: '',
+    experience: '',
+    experienceTitle: ''
   };
 
   static propTypes = {
@@ -19,19 +21,27 @@ export class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, education, workHistory, experience } = this.state;
+    const {
+      name,
+      email,
+      education,
+      workHistory,
+      experience,
+      experienceTitle
+    } = this.state;
     const basicInfo = { name, email, education, workHistory };
     // Modify this to take multiple exp fields
-    const experienceFields = { experience };
+    const experienceFields = { experience, experienceTitle };
     this.props.addBasicInfo(basicInfo);
     this.props.addExperience(experienceFields);
     // console.log(experienceFields);
     this.setState({
-      name: "",
-      email: "",
-      education: "",
-      workHistory: "",
-      experience: ""
+      name: '',
+      email: '',
+      education: '',
+      workHistory: '',
+      experienceTitle: '',
+      experience: ''
     });
   };
 
@@ -39,7 +49,14 @@ export class Form extends Component {
   //(one of the ones that you can click a plus next to to add a new one  something)
   // each plus will fire off an axios call to experience api to add to db
   render() {
-    const { name, email, education, workHistory, experience } = this.state;
+    const {
+      name,
+      email,
+      education,
+      workHistory,
+      experience,
+      experienceTitle
+    } = this.state;
     return (
       <div className='card card-body mt-4 mb-4'>
         <h2>Add Resume Info</h2>
@@ -82,6 +99,16 @@ export class Form extends Component {
               name='workHistory'
               onChange={this.onChange}
               value={workHistory}
+            />
+          </div>
+          <div className='form-group'>
+            <label>Experience Title</label>
+            <textarea
+              className='form-control'
+              type='text'
+              name='experienceTitle'
+              onChange={this.onChange}
+              value={experienceTitle}
             />
           </div>
           <div className='form-group'>

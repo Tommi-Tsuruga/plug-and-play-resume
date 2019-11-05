@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/tommi/Documents/capstone/plug-and-play-resume/plug-and-play-env"
+set -gx VIRTUAL_ENV "/home/tommi/Documents/Capstone/plug-and-play-env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

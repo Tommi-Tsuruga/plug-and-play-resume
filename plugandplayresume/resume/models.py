@@ -16,6 +16,7 @@ class BasicInfo(models.Model):
 class ExperienceInfo(models.Model):
     owner = models.ForeignKey(
         User, related_name="experienceInfo", on_delete=models.CASCADE, null=True)
+    experienceTitle = models.TextField()
     experience = models.TextField()
     experienceKeywords = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { PropTypes } from "prop-types";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import {
   getBasicInfo,
   deleteBasicInfo,
   getExperienceInfo
-} from "../../actions/experience";
+} from '../../actions/experience';
 
 export class Sections extends Component {
   static propTypes = {
@@ -23,11 +23,11 @@ export class Sections extends Component {
   render() {
     return (
       <Fragment>
-        {console.log("eh?")}
+        {console.log('eh?')}
         <h2>Resume Sections</h2>
         {
-          (console.log("exp info", this.props.experience),
-          console.log("basic info", this.props.basicInfo))
+          (console.log('exp info', this.props.experience),
+          console.log('basic info', this.props.basicInfo))
         }
         <table className='table table-striped'>
           <thead>
@@ -57,7 +57,7 @@ export class Sections extends Component {
                     )}
                     className='btn btn-danger btn-sm'
                   >
-                    {" "}
+                    {' '}
                     Delete
                   </button>
                 </td>
@@ -68,13 +68,17 @@ export class Sections extends Component {
         <table className='table table-striped'>
           <thead>
             <tr>
-              <th>Exp sections</th>
+              <th>Exp ID</th>
+              <th>Exp Title</th>
+              <th>Experience</th>
+              <th>Exp Keywords</th>
             </tr>
           </thead>
           <tbody>
             {this.props.experience.map(experience => (
               <tr key={experience.id}>
                 <td>{experience.id}</td>
+                <td>{experience.experienceTitle}</td>
                 <td>{experience.experience}</td>
                 <td>{experience.experienceKeywords}</td>
               </tr>

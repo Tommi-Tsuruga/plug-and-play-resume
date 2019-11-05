@@ -14,7 +14,7 @@ class BasicInfoSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperienceInfo
-        fields = ('id', 'experience', 'experienceKeywords')
+        fields = ('id', 'experienceTitle', 'experience', 'experienceKeywords')
 
     def create(self, data):
         print("self: ", self)
