@@ -2,11 +2,14 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { hashHistory } from 'react-router';
 const PrivateRoute = ({ component: Component, authReducer, ...rest }) => (
   <Route
     {...rest}
     render={props => {
+      {
+        console.log('private route');
+      }
+
       if (authReducer.isLoading) {
         return <h2>Loading...</h2>;
       } else if (!authReducer.isAuthenticated) {

@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from listing.models import ListingInfo
+from listing.models import ListingInfo, GeneratedResume
+from resume.models import BasicInfo
 # Creates the api basically
 # resume serializer
 from utils import TextRank4Keyword
@@ -31,3 +32,32 @@ class ListingSerializer(serializers.ModelSerializer):
             listingKeywords=keywordList, **data)
 
         return listingObj
+
+
+class GeneratedResumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GeneratedResume
+        fields = ('name', 'email', 'education', 'workHistory',
+                  'relevantExperience1', 'relevantExperience2', 'relevantExperience3')
+
+
+# will probably wind up duplicating data here
+
+
+    def create(self, data):
+        # Comments.objects.select_related('user__pk','user__profile__pk')
+        for e in BasicInfo.objects.select_related('owner'):
+            print(e.name, e.workHistory, e.email)
+            name = e.name
+            workHistory = e.workHistory
+            email = e.email
+
+        # name = e.name
+        # email = e.email
+        # education = e.education
+        # print(type(e))
+        # print(type(a))
+        resumeObj = GeneratedResume.objects.create(
+            name=name, workHistory=workHistory, email=email, **data)
+
+        return resumeObj

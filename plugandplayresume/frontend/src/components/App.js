@@ -49,7 +49,11 @@ class App extends Component {
                     exact
                     component={ResumeDashboard}
                   />
-                  <Route exact path='/listing' component={ListingDashboard} />
+                  <PrivateRoute
+                    exact
+                    path='/listing'
+                    component={ListingDashboard}
+                  />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />
                 </Switch>
