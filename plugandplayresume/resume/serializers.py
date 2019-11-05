@@ -1,8 +1,12 @@
-from rest_framework import serializers
+from utils import TextRank4Keyword
 from resume.models import BasicInfo, ExperienceInfo
+from rest_framework import serializers
+import sys
+import os.path
+sys.path.append(os.path.abspath('../'))
+
 # Creates the api basically
 # resume serializer
-from .utils import TextRank4Keyword
 
 
 class BasicInfoSerializer(serializers.ModelSerializer):
