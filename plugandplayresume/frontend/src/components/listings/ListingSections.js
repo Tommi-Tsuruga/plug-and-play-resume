@@ -33,7 +33,7 @@ export class ListingSections extends Component {
                 <td>{listingInfo.id}</td>
                 <td>{listingInfo.listingTitle}</td>
                 <td>{listingInfo.listing}</td>
-                {/* <td>{listingInfo.listingKeywords}</td> */}
+                <td>{listingInfo.listingKeywords}</td>
                 <td>
                   <button
                     onClick={this.props.deleteListing.bind(
