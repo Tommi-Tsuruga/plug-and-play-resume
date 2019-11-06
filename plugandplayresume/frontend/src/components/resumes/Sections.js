@@ -4,7 +4,8 @@ import { PropTypes } from 'prop-types';
 import {
   getBasicInfo,
   deleteBasicInfo,
-  getExperienceInfo
+  getExperienceInfo,
+  deleteExperience
 } from '../../actions/experience';
 
 export class Sections extends Component {
@@ -73,6 +74,19 @@ export class Sections extends Component {
                 <td>{experience.experienceTitle}</td>
                 <td>{experience.experienceText}</td>
                 <td>{experience.experienceKeywords}</td>
+                <td>
+                  <button
+                    onClick={this.props.deleteExperience.bind(
+                      this,
+                      experience.id
+                    )}
+                    className='btn btn-danger btn-sm'
+                  >
+                    {' '}
+                    Delete
+                  </button>
+                  
+                </td>
               </tr>
             ))}
           </tbody>
@@ -89,5 +103,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBasicInfo, deleteBasicInfo, getExperienceInfo }
+  { getBasicInfo, deleteBasicInfo, getExperienceInfo, deleteExperience }
 )(Sections);
