@@ -57,11 +57,13 @@ export class ListingSections extends Component {
                 <td>
                   <button
                     onClick={this.submitResume.bind(this, listingInfo.id)}
-                    className='btn btn-danger btn-sm'
+                    className='btn btn-primary'
                   >
-                    Gemerate
+                    Gnerate
                   </button>
-                  <Link to='/generated'>Test</Link>
+                  <Link to='/generated'>
+                    <button className='btn btn-primary'>Resume</button>
+                  </Link>
                   <button
                     onClick={this.props.deleteListing.bind(
                       this,

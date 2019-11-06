@@ -22,6 +22,7 @@ export class GeneratedSections extends Component {
           <h3>Generated Resume</h3>
         </center>
         <br></br>
+        {console.log(this.props.generatedInfo)}
         {this.props.generatedInfo.map(generatedInfo => (
           <Fragment>
             <h2>Name: </h2>
