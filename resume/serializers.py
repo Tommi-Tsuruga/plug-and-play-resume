@@ -54,6 +54,6 @@ class EducationSerializer(serializers.ModelSerializer):
                                         'engineering', 'engineers',
                                         'information'])
         keyword_list = resume_stuff.get_keywords()
-        education_obj = Experience.objects.create(
+        education_obj = Education.objects.create(
             education_keywords=keyword_list, **data)
         return education_obj
