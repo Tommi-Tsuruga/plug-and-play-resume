@@ -7,8 +7,8 @@ import React from "react";
 import {Router, Route, Switch, Link, NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import PlugResumePage from "../components/PlugResumePage";
-import LoginPage from "../components/LoginPage";
-import RegisterPage from "../components/RegisterPage";
+import LoginPage from "../components/accounts/LoginPage";
+import RegisterPage from "../components/accounts/RegisterPage";
 import ExperiencePage from "../components/ResumePage";
 import EditExperiencePage from "../components/experience/EditExperiencePage";
 import HelpPage from "../components/HelpPage";
@@ -26,7 +26,7 @@ export class AppRouter extends React.Component {
         this.props.loadUser();
     }
 
-    render() {
+    render = () => {
         const isAuthenticated = this.props.auth.isAuthenticated;
         console.log(isAuthenticated);
         return (
@@ -52,7 +52,7 @@ export class AppRouter extends React.Component {
                             component={ExperiencePage}/>
                         <PrivateRoute
                             isAuthenticated={isAuthenticated}
-                            path="resume/edit/:id"
+                            path="/experience/edit/:id"
                             component={EditExperiencePage}/>
                         <PrivateRoute
                             isAuthenticated={isAuthenticated}
@@ -74,6 +74,5 @@ const mapDispatchToProps = dispatch => ({
         return dispatch(loadUser());
     }
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

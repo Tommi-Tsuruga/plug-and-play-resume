@@ -22,7 +22,7 @@ export default class EducationForm extends React.Component {
     }
     onSchoolNameChange = (e) => {
         const schoolName = e.target.value;
-        this.setState(() => ({schoolName}))
+        this.setState(() => ({schoolName}));
     };
     onDatesChange = ({startDate, endDate}) => {
         this.setState(() => ({startDate, endDate}));
@@ -36,7 +36,7 @@ export default class EducationForm extends React.Component {
         } else {
             this.setState(() => ({error: ''}));
             this.props.onSubmit({
-                schoolName: this.state.title,
+                schoolName: this.state.schoolName,
                 startDate: this.state.startDate.format("YYYY-MM-DD"),
                 endDate: this.state.endDate.format("YYYY-MM-DD")
             });

@@ -6,10 +6,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const EducationListItem = ({schoolName, startDate, endDate}) => (
+const EducationListItem = ({id, school_name, start_date, end_date}) => (
         <div className="list-item">
         <div className="list-item__title">
-            {`${schoolName} (${startDate} - ${endDate}`})
+            {`${school_name} (${start_date} - ${end_date}`})
         </div>
         <Link to={`/edit/${id}`}>
             <button className="button--link">Edit</button>

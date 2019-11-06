@@ -3,108 +3,57 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
+import axios from 'axios'
 import "regenerator-runtime/runtime";
-import {httpRequest, fetchRequest} from "../utils";
+import {
+    ADD_EXPERIENCE,
+    EDIT_EXPERIENCE,
+    FETCH_EXPERIENCES,
+    REMOVE_EXPERIENCE
+} from "./types";
+import {requestConfig} from "./auth";
+import experiences from "../reducers/experiences";
 
+
+// Fetch Experiences
+export const fetchExperiences = () => (dispatch, getState) => {
+        axios.get("/api/experience/", requestConfig(getState))
+            .then(res => dispatch({ type: FETCH_EXPERIENCES, ...res }))
+            .catch(err => console.log(err))
+};
 
 // ADD_EXPERIENCE
-export const addExperience = (experience) => ({
-    type: 'ADD_EXPERIENCE',
-    experience: {
-        startDate: experience.start_date,
-        endDate: experience.end_date,
-        ...experience
-    }
-});
-
-export const startAddExperience = (experienceData = {}) => {
-    return (dispatch, getState) => {
-        const headers = {"Content-Type": "application/json"};
-        const {
-            title = '',
-            company = '',
-            description = '',
-            startDate = 0,
-            endDate = 0
-        } = experienceData;
-        const experience = {
-            title,
-            company,
-            description,
-            start_date: startDate,
-            end_date: endDate
-        };
-        console.log(experience);
-        const {token} = getState().auth;
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
-        const body = JSON.stringify(experience);
-        console.log(body);
-        httpRequest('POST', '/api/experience/', headers, body)
-            .then(experience => dispatch(addExperience(experience)))
-    }
+export const addExperience = (experienceData = {}) => (dispatch, getState) => {
+    const {
+        id = 0,
+        title = '',
+        company = '',
+        description = '',
+        startDate = 0,
+        endDate = 0
+    } = experienceData;
+    const experience = {
+        ...experienceData,
+        start_date: startDate,
+        end_date: endDate
+    };
+    return axios.post('/api/experience/', experience, requestConfig(getState))
+        .then(res => dispatch({ type: ADD_EXPERIENCE, ...res }))
+        .catch(err => console.log(err))
 };
 
 
 // REMOVE_EXPERIENCE
-export const removeExperience = (id) => ({
-    type: 'REMOVE_EXPERIENCE',
-    id
-});
-
-export const startRemoveExperience = (id) => {
-    return (dispatch, getState) => {
-        const headers = {"Content-Type": "application/json"};
-        const {token} = getState().auth;
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
+export const removeExperience = (id) => (dispatch, getState) => {
         const url = `/api/experience/${id}`;
-        httpRequest('DELETE', url)
-            .then(({id}) => dispatch(removeExperience(id)));
-    }
+        axios.delete(url, requestConfig(getState))
+            .then(({id}) => dispatch({type: REMOVE_EXPERIENCE, id}));
 };
 
-
-// EDIT_EXPERIENCE
-export const editExperience = (id, updates) => ({
-    type: 'EDIT_EXPERIENCE',
-    id,
-    updates
-});
-
-export const startEditExperience = (id, updates) => {
-    return (dispatch, getState) => {
+export const editExperience = (id, updates) => (dispatch, getState) => {
         const url = `/api/experience/${id}`;
-        const headers = {"Content-Type": "application/json"};
-        const {token} = getState().auth;
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
-        httpRequest('PUT', url, headers, updates)
-            .then(({id, updates}) =>
-                dispatch(editExperience(id, updates))
-            );
-    }
-};
-
-
-// Fetch Experiences
-export const fetchExperiences = (experiences) => ({
-    type: 'FETCH_EXPERIENCES',
-    experiences
-});
-
-export const startFetchExperiences = () => {
-    return (dispatch, getState) => {
-        const headers = {"Content-Type": "application/json"};
-        const {token} = getState().auth;
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
-        fetchRequest("/api/experience/", headers)
-            .then(experiences => dispatch(fetchExperiences(experiences)));
-    }
+        axios(url, updates, requestConfig(getState, 'PUT'))
+            .then((res) => dispatch({type: EDIT_EXPERIENCE, id, ...res}))
+            .catch(err => console.log(err))
 };
 

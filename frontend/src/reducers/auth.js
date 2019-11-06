@@ -3,7 +3,16 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
+import {
+    USER_LOADING,
+    USER_LOADED,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    REGISTER_FAIL,
+    REGISTER_SUCCESS, AUTH_ERROR, LOGOUT_SUCCESS
+} from "../actions/types";
 // Auth Reducer
+
 const authDefaultReducer = {
     token: localStorage.getItem("token"),
     isAuthenticated: null,
@@ -12,22 +21,20 @@ const authDefaultReducer = {
     errors: {},
 };
 
-
-export default (state = authDefaultReducer , action) => {
-
+export default (state = authDefaultReducer, action) => {
     switch (action.type) {
-
-        case 'USER_LOADING':
+        case USER_LOADING:
             return {...state, isLoading: true};
 
-        case 'USER_LOADED':
+        case USER_LOADED:
             return {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
                 user: action.user
             };
-        case 'LOGIN_SUCCESSFUL':
+        case LOGIN_SUCCESS:
+            console.log(action.data);
             localStorage.setItem("token", action.data.token);
             return {
                 ...state,
@@ -36,11 +43,11 @@ export default (state = authDefaultReducer , action) => {
                 isLoading: false,
                 errors: null
             };
-        case 'AUTHENTICATION_ERROR':
+        case AUTH_ERROR:
 
-        case 'LOGIN_FAILED':
+        case LOGIN_FAIL:
 
-        case 'LOGOUT_SUCCESSFUL':
+        case LOGOUT_SUCCESS:
             localStorage.removeItem("token");
             return {
                 ...state,

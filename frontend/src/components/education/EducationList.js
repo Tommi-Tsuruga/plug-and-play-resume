@@ -12,8 +12,7 @@ const EducationList = (props) => (
         <h3 className="list-header">Education</h3>
         <div className="container">
             <div className="list-body">
-                {props.educations.map((education) => {
-                    console.log("education list called");
+                {props.educations.map(education => {
                     return <EducationListItem
                         key={education.id} {...education} />;
                 })}
@@ -23,7 +22,8 @@ const EducationList = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-    educations: state.educations
+    educations: state.educations.educations,
+    education: state.educations.education
 });
 
 export default connect(mapStateToProps)(EducationList);

@@ -7,6 +7,8 @@ import thunk from "redux-thunk";
 import experienceReducer from '../reducers/experiences';
 import educationReducer from '../reducers/educations'
 import authReducer from '../reducers/auth'
+import basicInfoReducer from "../reducers/basicInfo";
+
 
 const composeEnhancers = (typeof window !== 'undefined' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -14,9 +16,10 @@ const composeEnhancers = (typeof window !== 'undefined' &&
 export default () => {
     const store = createStore(
         combineReducers({
-                experiences: experienceReducer,
-                educations: educationReducer,
-                auth: authReducer
+            auth: authReducer,
+            basicInfo: basicInfoReducer,
+            educations: educationReducer,
+            experiences: experienceReducer
             }
         ),
         composeEnhancers(applyMiddleware(thunk))

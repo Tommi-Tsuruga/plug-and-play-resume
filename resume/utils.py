@@ -104,17 +104,23 @@ class TextRank4Keyword():
 
         # Normalize matrix by column
         norm = np.sum(g, axis=0)
-        g_norm = np.divide(g, norm, where=norm != 0)  # this is ignore the 0 element in norm
+        # this is ignore the 0 element in norm
+        g_norm = np.divide(g, norm, where=norm != 0)
 
         return g_norm
 
     def get_keywords(self, number=10):
         """Print top number keywords"""
-        node_weight = OrderedDict(sorted(self.node_weight.items(), key=lambda t: t[1], reverse=True))
+        keyword_str = ""
+        node_weight = OrderedDict(
+            sorted(self.node_weight.items(), key=lambda t: t[1], reverse=True))
         for i, (key, value) in enumerate(node_weight.items()):
-            print(key + ' - ' + str(value))
+            keyword_str += key
+            keyword_str += ', '
+            # print(key + ' - ' + str(value))
             if i > number:
-                break
+                return keyword_str
+        return keyword_str
 
     def analyze(self, text,
                 candidate_pos=['NOUN', 'PROPN'],
@@ -128,7 +134,8 @@ class TextRank4Keyword():
         doc = nlp(text)
 
         # Filter sentences
-        sentences = self.sentence_segment(doc, candidate_pos, lower)  # list of list of words
+        sentences = self.sentence_segment(
+            doc, candidate_pos, lower)  # list of list of words
 
         # Build vocabulary
         vocab = self.get_vocab(sentences[1])
@@ -159,14 +166,14 @@ class TextRank4Keyword():
         self.node_weight = node_weight
 
 
-listingFile = open('tfidftext.txt', 'r')
-listing = listingFile.read()
-listing = listing.lower()
+# listingFile = open('tfidftext.txt', 'r')
+# listing = listingFile.read()
+# listing = listing.lower()
 
-jobListing = TextRank4Keyword()
-# experience needs years, be careful when parsing
-jobListing.analyze(listing, window_size=4, lower=False,
-                   stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
-                              'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
-                              'information'])
-jobListing.get_keywords(15)
+# jobListing = TextRank4Keyword()
+# # experience needs years, be careful when parsing
+# jobListing.analyze(listing, window_size=4, lower=False,
+#                    stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
+#                               'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
+#                               'information'])
+# jobListing.get_keywords(15)

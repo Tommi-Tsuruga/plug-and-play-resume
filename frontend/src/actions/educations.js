@@ -3,60 +3,35 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
+import axios from 'axios';
 import "regenerator-runtime/runtime";
-import {httpRequest, fetchRequest} from "../utils";
-
+import {FETCH_EDUCATIONS, ADD_EDUCATION, DELETE_EDUCATION } from "./types";
+import { requestConfig } from "./auth";
 
 // Fetch Educations
-export const fetchEducations = (educations) => ({
-    type: 'FETCH_EDUCATIONS',
-    educations
-});
-
-export const startFetchEducations = () => {
-    return (dispatch, getState) => {
-        const headers = {"Content-Type": "application/json"};
-        const {token} = getState().auth;
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
-        fetchRequest("/api/education/", headers)
-            .then(educations => dispatch(fetchEducations(educations)));
-    }
+export const fetchEducations = () => (dispatch, getState) => {
+    axios.get("/api/education/", requestConfig(getState))
+        .then(res => dispatch({ type: FETCH_EDUCATIONS, ...res }))
+        .catch(err => console.log(err));
 };
 
-
 // Add Education
-export const addEducation = (education) => ({
-    type: 'ADD_EDUCATION',
-    schoolName: education.school_name,
-    startDate: education.start_date,
-    endDate: education.end_date,
-    ...education
-});
-
-export const startAddEducation = (educationData = {}) => {
-    return (dispatch, getState) => {
-        const headers = {"Content-Type": "application/json"};
-        const {
-            schoolName = '',
-            startDate = 0,
-            endDate = 0
-        } = educationData;
-        const education = {
-            school_name: schoolName,
-            start_date: startDate,
-            end_date: endDate
-        };
-        console.log(education);
-        const {token} = getState().auth;
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
-        const body = JSON.stringify(education);
-        httpRequest('POST', '/api/education/', headers, body)
-            .then(education => dispatch(addEducation(education)))
-    }
+export const addEducation = (educationData = {}) => (dispatch, getState) => {
+    const {
+        id = 0,
+        schoolName = '',
+        startDate = 0,
+        endDate = 0
+    } = educationData;
+    const education = {
+        ...educationData,
+        school_name: schoolName,
+        start_date: startDate,
+        end_date: endDate
+    };
+    axios.post('/api/education/', education, requestConfig(getState))
+        .then(res => dispatch({ type: ADD_EDUCATION, ...res }))
+        .catch(err => console.log(err));
 };
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "front-end",
+  "name": "frontend",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Keisuke Suzuki",
@@ -17,6 +17,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "axios": "^0.19.0",
+    "axis": "^1.0.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "dotenv": "^8.1.0",

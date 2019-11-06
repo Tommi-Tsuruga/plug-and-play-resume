@@ -20,14 +20,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path
 from django.views.generic import TemplateView
+from rest_framework import routers
+
+from accounts import endpoints
+from frontend import urls as frontend_urls
+from resume.api import ExperienceViewSet, EducationViewSet, BasicViewSet
+
+router = routers.DefaultRouter()
+router.register('basic', BasicViewSet, 'basic')
+router.register('experience', ExperienceViewSet, 'experience')
+router.register('education', EducationViewSet, 'education')
+
 
 urlpatterns = [
-
-    path('admin/', admin.site.urls),
-    path('', include('frontend.urls')),
-    path('', include('resume.urls')),
-    path('', include('accounts.endpoints'))
+    re_path(r'^api/', include(router.urls)),
+    re_path(r'^api/', include(endpoints)),
+    re_path(r'^api/auth/', include('knox.urls')),
+    re_path(r'^.*', include(frontend_urls)),
 ]
-
-
-

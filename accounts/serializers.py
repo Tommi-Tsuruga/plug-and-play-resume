@@ -5,15 +5,12 @@
 # date            : 10/22/19
 # usage           : python serializers.py
 # ==============================================================================
-from abc import ABC
-
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import UserProfile
 
 
-class CreateUserSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'password')
@@ -32,13 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username')
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ('id', 'username')
-
-
-class LoginUserSerializer(serializers.Serializer):
+class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 
@@ -46,5 +37,4 @@ class LoginUserSerializer(serializers.Serializer):
         user = authenticate(**data)
         if user and user.is_active:
             return user
-        raise serializers.ValidationError(
-            "Unable to log in with provided credentials.")
+        raise serializers.ValidationError("Incorrect credentials.")

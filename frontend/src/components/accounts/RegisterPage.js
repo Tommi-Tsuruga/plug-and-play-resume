@@ -1,15 +1,16 @@
 /**
- * LoginPage.js
+ * RegisterPage.js
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
+
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom'
-import {startAddExperience} from "../actions/experiences";
-import {login} from "../actions/auth";
+import {addExperience} from "../../actions/experiences";
+import {login, register} from "../../actions/auth";
 import LoginFrom from "./LoginFrom";
 
-export const LoginPage = (props) => (
+export const RegisterPage = (props) => (
     <div className="container">
             <h1 className="header__title">PlugAndPlayResume</h1>
         <fieldset>
@@ -22,11 +23,11 @@ export const LoginPage = (props) => (
             )}
         </fieldset>
         <LoginFrom
-            buttonText="Login"
-            linkText="Don't have an account? Register"
-            link="/register"
+            buttonText="Register"
+            linkText="Have an account? Login"
+            link="/login"
             onSubmit={({username, password}) => {
-                props.dispatch(login(username,password))
+                props.dispatch(register(username,password))
             }}
         />
     </div>
@@ -45,4 +46,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(RegisterPage)

@@ -6,7 +6,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import ExperienceForm from "./ExperienceForm";
-import {startAddExperience} from "../../actions/experiences";
+import {addExperience} from "../../actions/experiences";
 
 const AddExperience = (props) => (
     <div className="add-experience">
@@ -14,10 +14,16 @@ const AddExperience = (props) => (
         <ExperienceForm
             buttonText="Add Experience"
             onSubmit={experience => {
-                props.dispatch(startAddExperience(experience));
+                console.log(experience);
+                props.dispatch(addExperience(experience));
             }}
         />
     </div>
 );
 
-export default connect()(AddExperience);
+const mapStateToProps = (state) => ({
+    experience: state.experiences.experience
+
+});
+
+export default connect(mapStateToProps)(AddExperience);

@@ -12,8 +12,8 @@ const ExperienceList = (props) => (
         <h3 className="list-header">Your Experiences</h3>
         <div className="container">
             <div className="list-body">
-                {props.experiences.map((experience) => {
-                    console.log("experience list called");
+                {props.experiences.map(experience => {
+                    console.log(experience);
                     return <ExperienceListItem
                         key={experience.id} {...experience} />;
                 })}
@@ -22,7 +22,7 @@ const ExperienceList = (props) => (
     </div>
 );
 const mapStateToProps = (state) => ({
-    experiences: state.experiences
+    experiences: state.experiences.experiences
 });
 
 
