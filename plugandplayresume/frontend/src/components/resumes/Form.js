@@ -34,7 +34,7 @@ export class Form extends Component {
 
   createUI() {
     return this.state.experiences.map((el, i) => (
-      <div key={i}>
+      <div className='form-group' key={i}>
         <input
           placeholder='Experience Title'
           name='experienceTitle'
@@ -49,6 +49,7 @@ export class Form extends Component {
         />
         <input
           type='button'
+          className='btn btn-danger btn-sm'
           value='remove'
           onClick={this.removeClick.bind(this, i)}
         />
@@ -139,6 +140,7 @@ export class Form extends Component {
             {this.createUI()}
             <input
               type='button'
+              className='btn btn-primary'
               value='add more'
               onClick={this.addClick.bind(this)}
             />
