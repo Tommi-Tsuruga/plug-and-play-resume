@@ -1,19 +1,39 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { getListing, deleteListing } from '../../actions/listing';
+import { getListing, deleteListing, addResume } from '../../actions/listing';
 
 export class ListingSections extends Component {
+  state = {
+    listingID: ''
+  };
   static propTypes = {
     listingInfo: PropTypes.array.isRequired,
     getListing: PropTypes.func.isRequired,
-    deleteListing: PropTypes.func.isRequired
+    deleteListing: PropTypes.func.isRequired,
+    addResume: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getListing();
   }
+
+  submitResume(i) {
+    console.log('i in this submit function', i);
+    this.props.addResume({ i });
+  }
+  onSubmit = e => {
+    // e.preventDefault();
+    // const { listingID } = this.state;
+    // console.log('id in ls.js', listingID);
+    // this.props.addResume({ listingID });
+    // this.setState({
+    //   listingID: ''
+    // });
+  };
+
   render() {
+    const { listingID } = this.state;
     return (
       <Fragment>
         <h2>Listing Sections</h2>
@@ -35,13 +55,18 @@ export class ListingSections extends Component {
                 <td>{listingInfo.listingKeywords}</td>
                 <td>
                   <button
+                    onClick={this.submitResume.bind(this, listingInfo.id)}
+                    className='btn btn-danger btn-sm'
+                  >
+                    Gemerate
+                  </button>
+                  <button
                     onClick={this.props.deleteListing.bind(
                       this,
                       listingInfo.id
                     )}
                     className='btn btn-danger btn-sm'
                   >
-                    {' '}
                     Delete
                   </button>
                 </td>
@@ -60,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getListing, deleteListing }
+  { getListing, deleteListing, addResume }
 )(ListingSections);

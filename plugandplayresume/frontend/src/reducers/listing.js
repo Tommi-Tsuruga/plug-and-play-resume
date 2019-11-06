@@ -1,7 +1,13 @@
-import { GET_LISTING, DELETE_LISTING, ADD_LISTING } from '../actions/types.js';
+import {
+  GET_LISTING,
+  DELETE_LISTING,
+  ADD_LISTING,
+  ADD_RESUME
+} from '../actions/types.js';
 
 const initialState = {
-  listingInfo: []
+  listingInfo: [],
+  resumeInfo: []
 };
 
 export default function(state = initialState, action) {
@@ -22,6 +28,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         listingInfo: [...state.listingInfo, action.payload]
+      };
+    case ADD_RESUME:
+      return {
+        state,
+        resumeInfo: [...state.resumeInfo, action.payload]
       };
     default:
       return state;

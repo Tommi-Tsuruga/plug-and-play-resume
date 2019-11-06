@@ -39,4 +39,10 @@ class GeneratedResumeViewset(viewsets.ModelViewSet):
         return self.request.user.generatedResume.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        print("self data", self.request.data)
+        print("self data", self.request.data.get('i'))
+
+        print("self type", type(self.request.data))
+
+        serializer.save(owner=self.request.user,
+                        listingID=self.request.data.get('i'))

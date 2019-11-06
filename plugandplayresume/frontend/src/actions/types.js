@@ -26,3 +26,4 @@ export const ADD_EXPERIENCE = 'ADD_EXPERIENCE';
 export const GET_LISTING = 'GET_LISTING';
 export const DELETE_LISTING = 'DELETE_LISTING';
 export const ADD_LISTING = 'ADD_LISTING';
+export const ADD_RESUME = 'ADD_RESUME';

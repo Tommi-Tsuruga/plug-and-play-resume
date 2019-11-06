@@ -18,8 +18,9 @@ class GeneratedResume(models.Model):
     education = models.TextField(blank=True)
     workHistory = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    relevantExperience1 = models.TextField()
-    relevantExperience2 = models.TextField()
+    relevantExperience1 = models.TextField(blank=True, null=True)
+    relevantExperience2 = models.TextField(blank=True, null=True)
     relevantExperience3 = models.TextField(null=True)
+    listingID = models.IntegerField(null=True, blank=True)
     owner = models.ForeignKey(
         User, related_name="generatedResume", on_delete=models.CASCADE, null=True)

@@ -45,3 +45,18 @@ export const addListing = listing => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
+export const addResume = resume => (dispatch, getState) => {
+  // console.log('logging resume', resume);
+  axios
+    .post('/api/resume/', resume, tokenConfig(getState))
+    .then(res => {
+      // console.log('resume data: ', res.data);
+      dispatch({
+        type: ADD_RESUME,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
