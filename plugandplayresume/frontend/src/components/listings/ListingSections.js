@@ -1,11 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
-import { getListing, deleteListing, addResume } from '../../actions/listing';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import { Link } from "react-router-dom";
+import { getListing, deleteListing, addResume } from "../../actions/listing";
 
 export class ListingSections extends Component {
   state = {
-    listingID: ''
+    listingID: ""
   };
   static propTypes = {
     listingInfo: PropTypes.array.isRequired,
@@ -19,7 +20,7 @@ export class ListingSections extends Component {
   }
 
   submitResume(i) {
-    console.log('i in this submit function', i);
+    console.log("i in this submit function", i);
     this.props.addResume({ i });
   }
   onSubmit = e => {
@@ -60,6 +61,7 @@ export class ListingSections extends Component {
                   >
                     Gemerate
                   </button>
+                  <Link to='/generated'>Test</Link>
                   <button
                     onClick={this.props.deleteListing.bind(
                       this,
