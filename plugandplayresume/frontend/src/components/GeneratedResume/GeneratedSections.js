@@ -18,16 +18,29 @@ export class GeneratedSections extends Component {
   render() {
     return (
       <Fragment>
-        <h1>Generated Resume</h1>
-        <p>Name: </p>
-        {console.log("???", this.props.generatedInfo)}
+        <center>
+          <h3>Generated Resume</h3>
+        </center>
+        <br></br>
         {this.props.generatedInfo.map(generatedInfo => (
-          <tr key={generatedInfo.id}>
-            <td>{generatedInfo.id}</td>
-            <td>{generatedInfo.name}</td>
-            <td>{generatedInfo.education}</td>
-            <td>{generatedInfo.relevantExperience1}</td>
-          </tr>
+          <Fragment>
+            <h2>Name: </h2>
+            <p>{generatedInfo.name}</p>
+            <br></br>
+            <h2>Education: </h2>
+            <br></br>
+            <p>{generatedInfo.education}</p>
+            <br></br>
+
+            <h2>RelevantExperience:</h2>
+            <br></br>
+
+            <ul>
+              <li>{generatedInfo.relevantExperience1}</li>
+              <li>{generatedInfo.relevantExperience2}</li>
+              <li>{generatedInfo.relevantExperience3}</li>
+            </ul>
+          </Fragment>
         ))}
       </Fragment>
     );
