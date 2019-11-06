@@ -17,7 +17,6 @@ export class ListingSections extends Component {
     return (
       <Fragment>
         <h2>Listing Sections</h2>
-        {console.log('listing info', this.props.listingInfo)}
         <table className='table table-striped'>
           <thead>
             <tr>

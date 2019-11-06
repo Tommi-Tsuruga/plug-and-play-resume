@@ -18,10 +18,11 @@ class BasicInfoSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperienceInfo
-        fields = ('id', 'experienceTitle', 'experience', 'experienceKeywords')
+        fields = ('id', 'experienceTitle',
+                  'experienceText', 'experienceKeywords')
 
     def create(self, data):
-        parsedExp = data.get("experience", None)
+        parsedExp = data.get("experienceText", None)
         parsedExp += " \n "
         parsedExp += data.get("experienceTitle", None)
         resumeStuff = TextRank4Keyword()

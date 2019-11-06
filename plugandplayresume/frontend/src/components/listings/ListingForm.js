@@ -20,7 +20,6 @@ export class ListingForm extends Component {
     const { listing, listingTitle } = this.state;
     // Modify this to take multiple exp fields
     const listInfo = { listing, listingTitle };
-    console.log('listing here', listInfo);
     this.props.addListing(listInfo);
     this.setState({
       listing: '',

@@ -8,8 +8,6 @@ export const getListing = () => (dispatch, getState) => {
   axios
     .get('/api/listing/', tokenConfig(getState))
     .then(res => {
-      // console.log('base res data', res);
-
       dispatch({
         type: GET_LISTING,
         payload: res.data

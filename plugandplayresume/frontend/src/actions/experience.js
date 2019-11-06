@@ -15,8 +15,6 @@ export const getBasicInfo = () => (dispatch, getState) => {
   axios
     .get('/api/basic/', tokenConfig(getState))
     .then(res => {
-      // console.log('base res data', res);
-
       dispatch({
         type: GET_BASICINFO,
         payload: res.data
@@ -74,8 +72,6 @@ export const getExperienceInfo = () => (dispatch, getState) => {
   axios
     .get('/api/experience/', tokenConfig(getState))
     .then(res => {
-      // console.log('res data', res);
-
       dispatch({
         type: GET_EXPERIENCE,
         payload: res.data

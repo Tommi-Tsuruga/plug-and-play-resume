@@ -24,18 +24,13 @@ export class Sections extends Component {
     return (
       <Fragment>
         <h2>Resume Sections</h2>
-        {/* {
-          (console.log('exp info', this.props.experience),
-          console.log('basic info', this.props.basicInfo))
-        } */}
         <table className='table table-striped'>
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
+              <th>Email</th>
               <th>Education</th>
-              <th>Work Experience</th>
-              <th>Experience</th>
               <th />
             </tr>
           </thead>
@@ -46,8 +41,6 @@ export class Sections extends Component {
                 <td>{basicInfo.name}</td>
                 <td>{basicInfo.email}</td>
                 <td>{basicInfo.education}</td>
-                <td>{basicInfo.workHistory}</td>
-                {/* <td>{experience.experience}</td> */}
                 <td>
                   <button
                     onClick={this.props.deleteBasicInfo.bind(
@@ -78,7 +71,7 @@ export class Sections extends Component {
               <tr key={experience.id}>
                 <td>{experience.id}</td>
                 <td>{experience.experienceTitle}</td>
-                <td>{experience.experience}</td>
+                <td>{experience.experienceText}</td>
                 <td>{experience.experienceKeywords}</td>
               </tr>
             ))}
