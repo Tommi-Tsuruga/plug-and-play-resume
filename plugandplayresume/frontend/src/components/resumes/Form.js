@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addBasicInfo, addExperience } from '../../actions/experience';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addBasicInfo, addExperience } from "../../actions/experience";
 
 export class Form extends Component {
   state = {
-    name: '',
-    email: '',
-    education: '',
-    workHistory: '',
-    experiences: [{ experienceTitle: '', experienceText: '' }]
+    name: "",
+    email: "",
+    education: "",
+    experiences: [{ experienceTitle: "", experienceText: "" }]
   };
   addClick() {
     this.setState(prevState => ({
       experiences: [
         ...prevState.experiences,
-        { experienceTitle: '', experienceText: '' }
+        { experienceTitle: "", experienceText: "" }
       ]
     }));
   }
@@ -39,13 +38,13 @@ export class Form extends Component {
         <input
           placeholder='Experience Title'
           name='experienceTitle'
-          value={el.experienceTitle || ''}
+          value={el.experienceTitle || ""}
           onChange={this.handleChange.bind(this, i)}
         />
         <input
           placeholder='Experience'
           name='experienceText'
-          value={el.experienceText || ''}
+          value={el.experienceText || ""}
           onChange={this.handleChange.bind(this, i)}
         />
         <input
@@ -68,27 +67,26 @@ export class Form extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, education, workHistory, experiences } = this.state;
-    const basicInfo = { name, email, education, workHistory };
+    const { name, email, education, experiences } = this.state;
+    const basicInfo = { name, email, education };
     if (
-      typeof experiences[0].experienceTitle !== 'undefined' &&
-      experiences[0].experienceTitle !== ''
+      typeof experiences[0].experienceTitle !== "undefined" &&
+      experiences[0].experienceTitle !== ""
     ) {
       for (var i = 0; i < experiences.length; i++) {
         this.props.addExperience(experiences[i]);
       }
     }
     //add more logic here for the rest of them
-    if (basicInfo.name !== '') {
-      console.log('submit');
+    if (basicInfo.name !== "") {
+      console.log("submit");
       this.props.addBasicInfo(basicInfo);
     }
     this.setState({
-      name: '',
-      email: '',
-      education: '',
-      workHistory: '',
-      experiences: [{ experienceTitle: '', experienceText: '' }]
+      name: "",
+      email: "",
+      education: "",
+      experiences: [{ experienceTitle: "", experienceText: "" }]
     });
   };
 
@@ -96,7 +94,7 @@ export class Form extends Component {
   //(one of the ones that you can click a plus next to to add a new one  something)
   // each plus will fire off an axios call to experience api to add to db
   render() {
-    const { name, email, education, workHistory } = this.state;
+    const { name, email, education } = this.state;
 
     return (
       <div className='card card-body mt-4 mb-4'>
@@ -130,16 +128,6 @@ export class Form extends Component {
               name='education'
               onChange={this.onChange}
               value={education}
-            />
-          </div>
-          <div className='form-group'>
-            <label>Work History</label>
-            <textarea
-              className='form-control'
-              type='text'
-              name='workHistory'
-              onChange={this.onChange}
-              value={workHistory}
             />
           </div>
           <button type='submit' className='btn btn-primary'>
