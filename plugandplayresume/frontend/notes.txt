@@ -1,0 +1,4 @@
+need to do this by hand, can't use  create-react app
+src is where components/react app
+templates is index.html
+static is going to be compiled js (main.js)
