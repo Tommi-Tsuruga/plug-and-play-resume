@@ -55,21 +55,54 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
             email = e.email
             education = e.education
 
-        # a = BasicInfo.objects.select_related('owner'):
-        expWordList = []
-        expKeyList = []
-        for i in ExperienceInfo.objects.select_related('owner'):
-            # print("i:", i.experienceText)
-            expWordList.append(i.experienceText)
-            expKeyList.append(i.experienceKeywords)
-
-        print(expWordList, '\n', expKeyList)
-        print(expWordList[1])
         k = ListingInfo.objects.select_related('owner').get(id=callKey)
-        print("K??", k, "maybe", k.listingKeywords)
-        relevantExperience1 = "this is a test string"
-        relevantExperience2 = "this is another test string"
-        relevantExperience3 = "this is a third test string"
+        # print("K??", k, "maybe", k.listingKeywords)
+        wordsk = k.listingKeywords.split(',')
+        # print('wordsk', wordsk)
+        # listingSet = set(wordsk)
+        # a = BasicInfo.objects.select_related('owner'):
+        # print("listing set", listingSet)
+
+        expWordCount = {}
+
+        for idx, val in enumerate(ExperienceInfo.objects.select_related('owner')):
+            tempSet = set()
+            tempSet = set(val.experienceKeywords.split(','))
+            listingWords = wordsk
+            setListing = set(listingWords)
+            tempSet = tempSet.intersection(setListing)
+            expWordCount[val.id] = len(tempSet)
+            tempSet.clear()
+
+        print("final set", expWordCount)
+        # print(len(expWordCount[0]))
+        keyOrder = sorted(expWordCount.items(),
+                          key=lambda x: x[1], reverse=True)
+        print(keyOrder)
+
+        # for i in range(3):
+        #     print(keyOrder[i], type(keyOrder[i]))
+
+        generatedExp1 = ExperienceInfo.objects.select_related(
+            'owner').get(id=keyOrder[0][0]).experienceTitle
+        generatedExp1 += '\n-'
+        generatedExp1 += ExperienceInfo.objects.select_related(
+            'owner').get(id=keyOrder[0][0]).experienceText
+        relevantExperience1 = generatedExp1
+
+        generatedExp2 = ExperienceInfo.objects.select_related(
+            'owner').get(id=keyOrder[1][0]).experienceTitle
+        generatedExp2 += '\n-'
+        generatedExp2 += ExperienceInfo.objects.select_related(
+            'owner').get(id=keyOrder[1][0]).experienceText
+        relevantExperience2 = generatedExp2
+
+        generatedExp3 = ExperienceInfo.objects.select_related(
+            'owner').get(id=keyOrder[2][0]).experienceTitle
+        generatedExp3 += '\n-'
+        generatedExp3 += ExperienceInfo.objects.select_related(
+            'owner').get(id=keyOrder[2][0]).experienceText
+        relevantExperience3 = generatedExp3
 
         resumeObj = GeneratedResume.objects.create(
             name=name, email=email, education=education, relevantExperience1=relevantExperience1, relevantExperience2=relevantExperience2, relevantExperience3=relevantExperience3, **data)

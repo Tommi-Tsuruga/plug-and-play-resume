@@ -29,7 +29,7 @@ class ExperienceSerializer(serializers.ModelSerializer):
         resumeStuff.analyze(parsedExp, window_size=4, lower=False,
                             stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
                                        'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
-                                       'information'])
+                                       'information', 'busy', 'product', 'production', 'business', 'people', 'problem'])
         keywordList = resumeStuff.get_keywords()
 
         experienceObj = ExperienceInfo.objects.create(
