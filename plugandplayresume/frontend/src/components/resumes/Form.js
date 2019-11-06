@@ -70,10 +70,26 @@ export class Form extends Component {
     e.preventDefault();
     const { name, email, education, workHistory, experiences } = this.state;
     const basicInfo = { name, email, education, workHistory };
-    for (var i = 0; i < experiences.length; i++) {
-      this.props.addExperience(experiences[i]);
+    console.log('experience text: ', experiences);
+    console.log('experience typeof: ', typeof experiences);
+
+    console.log('???', typeof experiences[0].experienceTitle);
+    if (
+      typeof experiences[0].experienceTitle !== 'undefined' &&
+      experiences[0].experienceTitle !== ''
+    ) {
+      console.log('\nwhy?', experiences, experiences.experienceText);
+      for (var i = 0; i < experiences.length; i++) {
+        this.props.addExperience(experiences[i]);
+      }
     }
-    this.props.addBasicInfo(basicInfo);
+    console.log('bi', basicInfo);
+    console.log(typeof basicInfo.name);
+    //add more logic here for the rest of them
+    if (basicInfo.name !== '') {
+      console.log('submit');
+      this.props.addBasicInfo(basicInfo);
+    }
     this.setState({
       name: '',
       email: '',
@@ -133,6 +149,11 @@ export class Form extends Component {
               value={workHistory}
             />
           </div>
+          <button type='submit' className='btn btn-primary'>
+            Submit
+          </button>
+        </form>
+        <form onSubmit={this.onSubmit}>
           <div>
             {this.createUI()}
             <input

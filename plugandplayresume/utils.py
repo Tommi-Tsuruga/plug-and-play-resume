@@ -117,7 +117,7 @@ class TextRank4Keyword():
         for i, (key, value) in enumerate(node_weight.items()):
             keyword_str += key
             keyword_str += ', '
-            print(key + ' - ' + str(value))
+            # print(key + ' - ' + str(value))
             if i > number:
                 return keyword_str
         return keyword_str

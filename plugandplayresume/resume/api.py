@@ -38,11 +38,5 @@ class ExperienceViewSet(viewsets.ModelViewSet):
         return self.request.user.experienceInfo.all()
 
     def perform_create(self, serializer):
-        print("perform_create")
-        # tells the serlializer what to save, but which is serializer?
-        # experience = serializer.validated_data.get('experience')
-        # if experience.user != self.request.user:
-        #     raise ValidationError({'experience': ['not valid exp']})
-        # print(self)
-        print(self.request.user)
+
         serializer.save(owner=self.request.user)

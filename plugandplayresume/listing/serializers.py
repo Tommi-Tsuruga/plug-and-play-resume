@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from listing.models import ListingInfo, GeneratedResume
-from resume.models import BasicInfo
+from resume.models import BasicInfo, ExperienceInfo
 # Creates the api basically
 # resume serializer
 from utils import TextRank4Keyword
@@ -15,11 +15,9 @@ class ListingSerializer(serializers.ModelSerializer):
         fields = ('id', 'listingTitle', 'listing', 'listingKeywords')
 
     def create(self, data):
-        # print("self: ", self)
         parsedExp = data.get("listing", None)
         parsedExp += " \n "
         parsedExp += data.get("listingTitle", None)
-        print("exp: \n", parsedExp, "\ntype: ", type(parsedExp))
         listingStuff = TextRank4Keyword()
         listingStuff.analyze(parsedExp, window_size=4, lower=False,
                              stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
@@ -27,7 +25,6 @@ class ListingSerializer(serializers.ModelSerializer):
                                         'information', 'busy', 'product', 'production', 'business', 'people', 'problem'])
         keywordList = listingStuff.get_keywords()
 
-        print(" ????", keywordList)
         listingObj = ListingInfo.objects.create(
             listingKeywords=keywordList, **data)
 
@@ -43,21 +40,18 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
 
 # will probably wind up duplicating data here
 
-
     def create(self, data):
         # Comments.objects.select_related('user__pk','user__profile__pk')
         for e in BasicInfo.objects.select_related('owner'):
-            print(e.name, e.workHistory, e.email)
             name = e.name
-            workHistory = e.workHistory
             email = e.email
+            education = e.education
 
-        # name = e.name
-        # email = e.email
-        # education = e.education
-        # print(type(e))
-        # print(type(a))
+        print("create called")
+        for i in ExperienceInfo.objects.select_related('owner'):
+            print("i:", i.experienceText)
+
         resumeObj = GeneratedResume.objects.create(
-            name=name, workHistory=workHistory, email=email, **data)
+            name=name, email=email, education=education, **data)
 
         return resumeObj
