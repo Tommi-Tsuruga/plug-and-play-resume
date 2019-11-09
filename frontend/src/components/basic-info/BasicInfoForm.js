@@ -11,9 +11,9 @@ export default class BasicInfoForm extends React.Component {
         super(props);
 
         this.state = {
-            firstName: props.basicInfo.basicInfo ? props.basicInfo.firstName : '',
-            lastName: props.basicInfo.basicInfo ? props.basicInfo.lastName : '',
-            email: props.basicInfo.basicInfo ? props.basicInfo.email : ''
+            firstName: props.basicInfo ? props.basicInfo.firstName : '',
+            lastName: props.basicInfo ? props.basicInfo.lastName : '',
+            email: props.basicInfo ? props.basicInfo.email : ''
         };
     }
     onFirstNameChange = (e) => {

@@ -12,12 +12,12 @@ import {
     REMOVE_EXPERIENCE
 } from "./types";
 import {requestConfig} from "./auth";
-import experiences from "../reducers/experiences";
 
 
 // Fetch Experiences
 export const fetchExperiences = () => (dispatch, getState) => {
-        axios.get("/api/experience/", requestConfig(getState))
+    console.log("fetchExperiences() called");
+        return axios.get("/api/experience/", requestConfig(getState))
             .then(res => dispatch({ type: FETCH_EXPERIENCES, ...res }))
             .catch(err => console.log(err))
 };
@@ -47,7 +47,8 @@ export const addExperience = (experienceData = {}) => (dispatch, getState) => {
 export const removeExperience = (id) => (dispatch, getState) => {
         const url = `/api/experience/${id}`;
         axios.delete(url, requestConfig(getState))
-            .then(({id}) => dispatch({type: REMOVE_EXPERIENCE, id}));
+            .then(({id}) => dispatch({type: REMOVE_EXPERIENCE, id}))
+            .catch(err => console.log(err));
 };
 
 export const editExperience = (id, updates) => (dispatch, getState) => {

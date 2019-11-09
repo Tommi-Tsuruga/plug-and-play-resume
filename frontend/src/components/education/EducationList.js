@@ -6,24 +6,26 @@
 import React from "react"
 import {connect} from "react-redux"
 import EducationListItem from "./EducationListItem"
+import {fetchGenerated} from "../../actions/generated";
 
-const EducationList = (props) => (
-        <div className="add-experience">
-        <h3 className="list-header">Education</h3>
-        <div className="container">
-            <div className="list-body">
-                {props.educations.map(education => {
-                    return <EducationListItem
-                        key={education.id} {...education} />;
-                })}
+class EducationList extends React.Component {
+    render = () => (
+        <div className="section">
+            <h3 className="list-header">Education</h3>
+            <div className="container">
+                <div className="list-body">
+                    {this.props.educations.map(education => {
+                        return <EducationListItem
+                            key={education.id} {...education} />;
+                    })}
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+}
 
 const mapStateToProps = (state) => ({
-    educations: state.educations.educations,
-    education: state.educations.education
-});
+        educations: state.educations.educations
+    });
 
 export default connect(mapStateToProps)(EducationList);

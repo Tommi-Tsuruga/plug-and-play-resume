@@ -167,12 +167,12 @@ class TextRank4Keyword():
 
 
 # listingFile = open('tfidftext.txt', 'r')
-# listing = listingFile.read()
-# listing = listing.lower()
+# listings = listingFile.read()
+# listings = listings.lower()
 
 # jobListing = TextRank4Keyword()
 # # experience needs years, be careful when parsing
-# jobListing.analyze(listing, window_size=4, lower=False,
+# jobListing.analyze(listings, window_size=4, lower=False,
 #                    stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
 #                               'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
 #                               'information'])

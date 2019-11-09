@@ -11,12 +11,14 @@ import {startLogout} from '../actions/auth'
 export const Header = ({startLogout}) => (
     <div className="container">
         <header className="header">
-            <Link className="header__title" to="/">
-                <h1 className="header__title">PlugAndPlayResume</h1>
-            </Link>
-            <button className="header__content" onClick={startLogout}>
-                {<h2>Logout</h2>}
-            </button>
+            <div className="header__title">
+                <Link className="header__title__text" to="/">
+                    <h1>PlugAndPlayResume</h1>
+                </Link>
+                <button className="header__title__button" onClick={startLogout}>
+                    {<h2>Logout</h2>}
+                </button>
+            </div>
             <div className="header__content">
                 <NavLink to="/"
                          className="header__item"
@@ -24,15 +26,20 @@ export const Header = ({startLogout}) => (
                          exact={true}>
                     {<h2>Home</h2>}
                 </NavLink>
+                <NavLink to="/profile"
+                         className="header__item"
+                         activeClassName="is-active">
+                    {<h2>Profile</h2>}
+                </NavLink>
+                <NavLink to="/listing"
+                         className="header__item"
+                         activeClassName="is-active">
+                    {<h2>Listing</h2>}
+                </NavLink>
                 <NavLink to="/resume"
                          className="header__item"
                          activeClassName="is-active">
                     {<h2>Resume</h2>}
-                </NavLink>
-                <NavLink to="/help"
-                         className="header__item"
-                         activeClassName="is-active">
-                    {<h2>Help</h2>}
                 </NavLink>
             </div>
         </header>

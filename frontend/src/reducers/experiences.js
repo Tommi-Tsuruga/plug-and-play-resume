@@ -6,7 +6,6 @@ import {ADD_EXPERIENCE, REMOVE_EXPERIENCE,FETCH_EXPERIENCES, EDIT_EXPERIENCE } f
 
 // Experience Reducer
 const experienceReducerDefaultState = {
-    experience: {},
     experiences: []
 };
 export default (state = experienceReducerDefaultState, action) => {
@@ -14,12 +13,15 @@ export default (state = experienceReducerDefaultState, action) => {
         case ADD_EXPERIENCE:
             return {
                 ...state,
-                experience: action.data
+                experiences: [ ...state.experiences, action.data ]
             };
         case REMOVE_EXPERIENCE:
-            return state.filter(({id}) => id !== action.id);
+            return {
+                ...state,
+                experiences: state.filter(({id}) => id !== action.id)
+            };
         case EDIT_EXPERIENCE:
-            return state.map((experience) => {
+            return state.experiences.map((experience) => {
                 if (experience.id === action.id) {
                     return {
                         ...experience,
@@ -32,7 +34,7 @@ export default (state = experienceReducerDefaultState, action) => {
         case FETCH_EXPERIENCES:
             return {
                 ...state,
-                experiences: [...action.data]
+                experiences: action.data
             };
         default:
             return state;

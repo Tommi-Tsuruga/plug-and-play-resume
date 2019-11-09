@@ -10,8 +10,9 @@ import { requestConfig } from "./auth";
 
 // Fetch Educations
 export const fetchEducations = () => (dispatch, getState) => {
-    axios.get("/api/education/", requestConfig(getState))
-        .then(res => dispatch({ type: FETCH_EDUCATIONS, ...res }))
+   axios.get("/api/education/", requestConfig(getState))
+        .then(res => {
+            dispatch({ type: FETCH_EDUCATIONS, ...res })})
         .catch(err => console.log(err));
 };
 

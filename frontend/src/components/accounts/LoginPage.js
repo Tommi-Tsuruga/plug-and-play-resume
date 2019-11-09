@@ -11,16 +11,7 @@ import LoginFrom from "./LoginFrom";
 
 export const LoginPage = (props) => (
     <div className="container">
-            <h1 className="header__title">PlugAndPlayResume</h1>
-        <fieldset>
-            {props.errors.length > 0 && (
-                <ul>
-                    {props.errors.map(error => (
-                        <li key={error.field}>{error.message}</li>
-                    ))}
-                </ul>
-            )}
-        </fieldset>
+        <h1 className="header__title">PlugAndPlayResume</h1>
         <LoginFrom
             buttonText="Login"
             linkText="Don't have an account? Register"

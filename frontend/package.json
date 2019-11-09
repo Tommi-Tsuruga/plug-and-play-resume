@@ -49,7 +49,8 @@
     "webpack-bundle-tracker": "^0.4.3",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
-    "workbox-webpack-plugin": "^4.3.1"
+    "workbox-webpack-plugin": "^4.3.1",
+    "prop-types": "latest"
   },
   "devDependencies": {
     "yarn-upgrade-all": "^0.5.2"

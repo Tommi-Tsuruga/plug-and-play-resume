@@ -28,6 +28,7 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
+    experience_keywords = models.TextField(null=True)
 
 
 class Education(models.Model):

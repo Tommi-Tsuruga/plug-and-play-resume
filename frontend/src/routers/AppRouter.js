@@ -4,75 +4,50 @@
  */
 
 import React from "react";
-import {Router, Route, Switch, Link, NavLink} from "react-router-dom";
-import {connect} from "react-redux";
+import {Router, Route, Switch} from "react-router-dom";
 import PlugResumePage from "../components/PlugResumePage";
 import LoginPage from "../components/accounts/LoginPage";
 import RegisterPage from "../components/accounts/RegisterPage";
-import ExperiencePage from "../components/ResumePage";
-import EditExperiencePage from "../components/experience/EditExperiencePage";
-import HelpPage from "../components/HelpPage";
+import SectionPage from "../components/SectionPage";
 import NotFoundPage from "../components/NotFoundPage";
-import Header from "../components/Header";
 import {createBrowserHistory} from "history";
-import {PublicRoute} from "./PublicRoute";
-import {PrivateRoute} from "./PrivateRoute";
-import {loadUser} from "../actions/auth";
+import PublicRoute from "./PublicRoute";
+import PrivateRoute from "./PrivateRoute";
+import ResumePage from "../components/ResumePage";
+import ListingPage from "../components/ListingPage";
 
 export const history = createBrowserHistory();
 
-export class AppRouter extends React.Component {
-    componentDidMount() {
-        this.props.loadUser();
-    }
-
-    render = () => {
-        const isAuthenticated = this.props.auth.isAuthenticated;
-        console.log(isAuthenticated);
+export default class AppRouter extends React.Component {
+    render() {
         return (
             <Router history={history}>
-                <div>
+                <>
                     <Switch>
                         <PrivateRoute
-                            isAuthenticated={isAuthenticated}
                             path="/"
                             component={PlugResumePage}
                             exact={true} />
                         <PublicRoute
-                            isAuthenticated={isAuthenticated}
                             path="/login"
                             component={LoginPage} />
                         <PublicRoute
-                            isAuthenticated={isAuthenticated}
                             path="/register"
-                            component={RegisterPage}/>
+                            component={RegisterPage} />
                         <PrivateRoute
-                            isAuthenticated={isAuthenticated}
+                            path="/profile"
+                            component={SectionPage} />
+                        <PrivateRoute
+                            path="/listing"
+                            component={ListingPage}/>
+                        <PrivateRoute
                             path="/resume"
-                            component={ExperiencePage}/>
-                        <PrivateRoute
-                            isAuthenticated={isAuthenticated}
-                            path="/experience/edit/:id"
-                            component={EditExperiencePage}/>
-                        <PrivateRoute
-                            isAuthenticated={isAuthenticated}
-                            path="/help" component={HelpPage}/>
-                        <Route component={NotFoundPage}/>
+                            component={ResumePage} />
+                        <Route
+                            component={NotFoundPage} />
                     </Switch>
-                </div>
+                </>
             </Router>
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    auth: state.auth
-});
-
-const mapDispatchToProps = dispatch => ({
-    loadUser: () => {
-        return dispatch(loadUser());
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

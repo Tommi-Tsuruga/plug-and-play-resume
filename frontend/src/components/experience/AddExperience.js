@@ -6,10 +6,10 @@
 import React from "react";
 import {connect} from 'react-redux';
 import ExperienceForm from "./ExperienceForm";
-import {addExperience} from "../../actions/experiences";
+import { addExperience } from "../../actions/experiences";
 
 const AddExperience = (props) => (
-    <div className="add-experience">
+    <div className="section">
         <h3 className="list-header">Add Experience</h3>
         <ExperienceForm
             buttonText="Add Experience"
@@ -21,9 +21,4 @@ const AddExperience = (props) => (
     </div>
 );
 
-const mapStateToProps = (state) => ({
-    experience: state.experiences.experience
-
-});
-
-export default connect(mapStateToProps)(AddExperience);
+export default connect()(AddExperience);

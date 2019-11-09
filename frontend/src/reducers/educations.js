@@ -6,7 +6,6 @@ import {ADD_EDUCATION, FETCH_EDUCATIONS} from "../actions/types";
 
 // Education Reducer
 const educationReducerDefaultState = {
-    education: {},
     educations: []
 };
 
@@ -15,12 +14,12 @@ export default (state = educationReducerDefaultState, action) => {
         case ADD_EDUCATION:
             return {
                 ...state,
-                education: action.data
+                educations: [ ...state.educations, action.data ]
             };
         case FETCH_EDUCATIONS:
             return {
                 ...state,
-                educations: [...action.data]
+                educations: action.data
             };
         default:
             return state;

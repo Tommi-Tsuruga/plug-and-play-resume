@@ -8,15 +8,13 @@ import {connect} from 'react-redux'
 import BasicInfoForm from "./BasicInfoForm";
 import {UpdateBasicInfo} from "../../actions/basicInfo";
 
-const BasicInfo = (props) => (
-    <div className="add-experience">
+export const BasicInfo = (props) => (
+    <div className="section">
         <h3 className="list-header">Basic Info</h3>
         <BasicInfoForm
             onSubmit={basicInfo => {
-                console.log(BasicInfo);
                 props.dispatch((UpdateBasicInfo(basicInfo)));
             }}
-            basicInfo={props.basicInfo}
         />
     </div>
 );

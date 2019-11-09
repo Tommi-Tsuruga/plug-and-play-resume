@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'knox',
     'frontend',
     'webpack_loader',
-    'resume'
+    'resume',
+    'listing'
 ]
 
 # Rest framework settings

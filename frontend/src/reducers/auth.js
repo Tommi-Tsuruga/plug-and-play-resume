@@ -13,10 +13,10 @@ import {
 } from "../actions/types";
 // Auth Reducer
 
-const authDefaultReducer = {
+export const authDefaultReducer = {
     token: localStorage.getItem("token"),
     isAuthenticated: null,
-    isLoading: true,
+    isLoading: false,
     user: null,
     errors: {},
 };
@@ -31,10 +31,10 @@ export default (state = authDefaultReducer, action) => {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                user: action.user
+                user: action.data
             };
         case LOGIN_SUCCESS:
-            console.log(action.data);
+        case REGISTER_SUCCESS:
             localStorage.setItem("token", action.data.token);
             return {
                 ...state,
@@ -43,10 +43,6 @@ export default (state = authDefaultReducer, action) => {
                 isLoading: false,
                 errors: null
             };
-        case AUTH_ERROR:
-
-        case LOGIN_FAIL:
-
         case LOGOUT_SUCCESS:
             localStorage.removeItem("token");
             return {
@@ -55,8 +51,23 @@ export default (state = authDefaultReducer, action) => {
                 token: null,
                 user: null,
                 isAuthenticated: false,
+                isLoading: false,
+                experiences: [],
+                educations: [],
+                basicInfo: []
+            };
+        case AUTH_ERROR:
+        case LOGIN_FAIL:
+        case REGISTER_FAIL:
+            localStorage.removeItem("token");
+            return {
+                ...state,
+                token: null,
+                user: null,
+                isAuthenticated: false,
                 isLoading: false
             };
+
         default:
             return state;
     }

@@ -17,39 +17,44 @@ import {
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({type: USER_LOADING});
-    axios("/api/auth/user/", requestConfig(getState))
-        .then(res => dispatch({
-            type: USER_LOADED,
-            ...res
-        }))
-        .catch(err => console.log(err))
-};
-
-export const login = (username, password) => (dispatch, getState) => {
-    const params = { username, password };
-    console.log(username, password);
-    axios.post("/api/auth/login/", params, requestConfig(getState))
+    return axios("/api/auth/user/", requestConfig(getState))
         .then(res => {
             dispatch({
-            type: LOGIN_SUCCESS,
-            ...res
-
-        })
+                type: USER_LOADED,
+                user: res.data
+            })
         })
         .catch(err => console.log(err))
 };
 
-export const startLogout = () => (dispatch, getState) => {
-    axios.post("/api/auth/logout/", null, requestConfig(getState))
-        .then(res => dispatch({type: LOGOUT_SUCCESS, ...res}))
-        .catch(err => console.log(err));
+export const login = (username, password) => {
+    return (dispatch, getState) => {
+        const params = {username, password};
+        return axios.post("/api/auth/login/", params, requestConfig(getState))
+            .then(res => {
+                console.log("login called");
+                dispatch({
+                    type: LOGIN_SUCCESS,
+                    ...res
+                })
+            })
+            .catch(err => console.log(err))
+    };
+}
+
+export const startLogout = () => {
+    return (dispatch, getState) => {
+        return axios.post("/api/auth/logout/", null, requestConfig(getState))
+            .then(res => dispatch({type: LOGOUT_SUCCESS, ...res}))
+            .catch(err => console.log(err));
+    }
 };
 
 export const register = (username, password) => {
     return (dispatch, getState) => {
         const params = {username, password};
-        axios.post("/api/auth/register/", params, requestConfig(getState))
-            .then(res => dispatch({type: REGISTER_SUCCESS, ...res }))
+        return axios.post("/api/auth/register/", params, requestConfig(getState))
+            .then(res => dispatch({type: REGISTER_SUCCESS, ...res}))
             .catch(err => console.log(err));
     }
 };

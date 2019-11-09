@@ -83487,9 +83487,9 @@ function (_React$Component) {
 
 /***/ "./src/components/ExperiencePage.js":
 /*!******************************************!*\
-  !*** ./src/components/ResumePage.js!
+  !*** ./src/components/UserInfoPagege.js!
   \******************************************/
-/*! exports provided: ResumePage, default */
+/*! exports provided: SectionPage, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83525,7 +83525,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
- * ResumePage.js@author [Keisuke Suzuki](https://github.com/Ks5810)
+ * SectionPage.jsjs@author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 
 
@@ -84868,7 +84868,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PlugResumePage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/PlugResumePage */ "./src/components/PlugResumePage.js");
 /* harmony import */ var _components_LoginPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LoginPage */ "./src/components/LoginPage.js");
 /* harmony import */ var _components_RegisterPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/RegisterPage */ "./src/components/RegisterPage.js");
-/* harmony import */ var _components_ExperiencePage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/ResumePage */ "./src/components/ExperiencePage.js");
+/* harmony import */ var _components_ExperiencePage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/SectionPage */ "./src/components/ExperiencePage.js");
 /* harmony import */ var _components_experience_EditExperiencePage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/experience/EditExperiencePage */ "./src/components/experience/EditExperiencePage.js");
 /* harmony import */ var _components_HelpPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/HelpPage */ "./src/components/HelpPage.js");
 /* harmony import */ var _components_NotFoundPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/NotFoundPage */ "./src/components/NotFoundPage.js");

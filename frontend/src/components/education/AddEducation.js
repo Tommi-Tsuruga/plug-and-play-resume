@@ -9,12 +9,11 @@ import EducationForm from "./EducationForm";
 import {addEducation} from "../../actions/educations";
 
 const AddEducation = (props) => (
-    <div className="add-experience">
+    <div className="section">
         <h3 className="list-header">Add Education</h3>
         <EducationForm
             buttonText="Add Education"
         onSubmit={education => {
-            console.log(education);
             props.dispatch(addEducation(education));
             }}
         />
@@ -22,8 +21,7 @@ const AddEducation = (props) => (
 );
 
 const mapStateToProps = (state) => ({
-    educations: state.educations.educations,
-    education: state.educations.education
+    educations: state.educations.educations
 });
 
 export default connect(mapStateToProps)(AddEducation);
