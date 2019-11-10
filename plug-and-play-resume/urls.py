@@ -24,14 +24,14 @@ from rest_framework import routers
 
 from accounts import endpoints
 from frontend import urls as frontend_urls
-from listing.api import ListingViewSet, GeneratedResumeViewSet
+from listing.api import ListingInfoViewSet, GeneratedResumeViewSet
 from resume.api import ExperienceViewSet, EducationViewSet, BasicViewSet
 
 router = routers.DefaultRouter()
 router.register('basic', BasicViewSet, 'basic')
 router.register('experience', ExperienceViewSet, 'experience')
 router.register('education', EducationViewSet, 'education')
-router.register('listings', ListingViewSet, 'listings')
+router.register('listing', ListingInfoViewSet, 'listing')
 router.register('resume', GeneratedResumeViewSet, 'resume')
 
 

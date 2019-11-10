@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 import BasicInfoForm from "./BasicInfoForm";
 import {UpdateBasicInfo} from "../../actions/basicInfo";
 
-export const BasicInfo = (props) => (
+const BasicInfo = (props) => (
     <div className="section">
         <h3 className="list-header">Basic Info</h3>
         <BasicInfoForm
@@ -20,8 +20,4 @@ export const BasicInfo = (props) => (
 );
 
 
-const mapStateToProps = (state) => ({
-    basicInfo: state.basicInfo.basicInfo
-});
-
-export default connect(mapStateToProps)(BasicInfo);
+export default connect()(BasicInfo);

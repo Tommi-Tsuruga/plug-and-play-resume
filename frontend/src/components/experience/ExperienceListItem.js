@@ -8,13 +8,15 @@ import {Link} from 'react-router-dom';
 
 const ExperienceListItem = ({id, title, description, company, start_date, end_date, experience_keywords}) => (
     <div className="list-item">
-        <div className="list-item__title">
-            {`${title} at ${company} (${start_date} - ${end_date}`})
+        <div className="list-item__text">
+            <div className="list-item__title">
+                {`${title} at ${company} (${start_date} - ${end_date}`})
+            </div>
+            <div className="list-item__data"> {`Keywords: ${experience_keywords}`}</div>
+            <div className="list-item__data"> {`Description: ${description}`} </div>
         </div>
-        <p>Description: {description} </p>
-        <p>Keywords: {experience_keywords}</p>
         <Link to={`/edit/${id}`}>
-            <button className="button--link">Edit</button>
+            <button className="list-item__button">Edit</button>
         </Link>
     </div>
 );

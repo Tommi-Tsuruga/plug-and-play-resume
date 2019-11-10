@@ -9,7 +9,7 @@ import educationReducer from '../reducers/educations'
 import authReducer from '../reducers/auth'
 import basicInfoReducer from "../reducers/basicInfo";
 import generatedReducer from "../reducers/generated";
-import listingReducer from "../reducers/listings"
+import listingReducer from "../reducers/listings";
 
 const composeEnhancers = (typeof window !== 'undefined' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -22,7 +22,7 @@ const store = createStore(
             educations: educationReducer,
             experiences: experienceReducer,
             generated: generatedReducer,
-            listings: listingReducer,
+            listingInfo: listingReducer,
         }
     ),
     composeEnhancers(applyMiddleware(thunk))

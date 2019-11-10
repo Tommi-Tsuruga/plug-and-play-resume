@@ -6,14 +6,13 @@ import {addListing} from '../../actions/listings';
 const AddListing = (props) => (
     <div className="section">
         <h3 className="list-header">Add Listing</h3>
-        <ListingForm
-            buttonText="Add"
-            onSubmit={listing => {
-                props.dispatch(addListing(listing));
-                props.history.push('/listing')
-            }}
-        />
-    </div>
+            <ListingForm
+                buttonText="Add"
+                onSubmit={(listing) => {
+                    props.dispatch(addListing(listing));
+                }}
+            />
+        </div>
 );
 
 export default connect()(AddListing);

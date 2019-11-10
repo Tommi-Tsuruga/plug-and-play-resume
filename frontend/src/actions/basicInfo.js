@@ -2,12 +2,13 @@ import axios from 'axios';
 import "regenerator-runtime/runtime";
 import {FETCH_BASIC_INFO, ADD_BASIC_INFO} from "./types";
 import {requestConfig} from "./auth";
+import basicInfo from "../reducers/basicInfo";
 
 // Fetch BasicInfo
 export const fetchBasicInfo = () => (dispatch, getState) => {
     return axios.get("/api/basic/", requestConfig(getState))
         .then(res => {
-            return dispatch({type: FETCH_BASIC_INFO, ...res})})
+            dispatch({type: FETCH_BASIC_INFO, data: res.data})})
         .catch(err => console.log(err));
 };
 

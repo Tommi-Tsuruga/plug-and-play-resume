@@ -28,9 +28,8 @@
   }
 
   @media (min-width: $desktop-breakpoint) {
+    display: flex;
     align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
     padding: $m-size;
   }
 }
@@ -45,15 +44,23 @@
   }
 }
 
+.list-item__text {
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 1;
+}
+
 .list-item__title {
+  font-weight: bold;
   margin: 0;
   word-break: break-all;
 }
 
 .list-item__data {
   margin: $s-size 0 0 0;
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0;
-    padding-left: $s-size;
-  }
+
+}
+
+.list-item__button {
+  @extend .button;
 }

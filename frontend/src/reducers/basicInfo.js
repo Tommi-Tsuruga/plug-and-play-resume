@@ -15,7 +15,7 @@ export default (state = BasicInfoReducerDefaultState, action) => {
         case ADD_BASIC_INFO:
             return {
                 ...state,
-                basicInfo: [...state.basicInfo, action.data ]
+                basicInfo: [...state.basicInfo, ...action.data ]
             };
         default:
             return state;

@@ -37,13 +37,12 @@
   justify-content: center;
 }
 .header__title__text{
-  flex-grow: 5;
+  flex-grow: 3;
   margin: $m-size 0 0;
 }
 .header__title__button{
-    font-weight: 100;
-    margin: $l-size ;
-    flex-grow: 0.1;
-    height: min-content;
+    @extend .button;
+    margin: $m-size;
+    line-height: 0.7em;
 }
 

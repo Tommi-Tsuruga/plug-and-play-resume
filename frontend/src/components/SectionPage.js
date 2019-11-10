@@ -28,36 +28,34 @@ class SectionPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
+                <h2 className="page-header__title">Your Info</h2>
                 <div className="container">
-                    <h2 className="page-header__title">Your Info</h2>
-                    <div className="container">
-                        <BasicInfo
-                            onSubmit={() => {
-                                this.props.history.push('/resume')
-                            }}/>
-                    </div>
-                    <div className="container">
-                        <BasicInfoList/>
-                    </div>
-                    <div className="container">
-                        <AddExperience
-                            onSubmit={() => {
-                                this.props.history.push('/resume')
-                            }}/>
-                    </div>
-                    <div className="container">
-                        <ExperienceList/>
-                    </div>
-                    <div className="container">
-                        <AddEducation
-                            onSubmit={() => {
-                                this.props.history.push('/resume')
-                            }}/>
-                    </div>
-                    <div className="container">
-                        <EducationList/>
-                    </div>
+                    <BasicInfo
+                        onSubmit={() => {
+                            this.props.history.push('/resume')
+                        }}/>
+                </div>
+                <div className="container">
+                    <BasicInfoList/>
+                </div>
+                <div className="container">
+                    <AddExperience
+                        onSubmit={() => {
+                            this.props.history.push('/resume')
+                        }}/>
+                </div>
+                <div className="container">
+                    <ExperienceList/>
+                </div>
+                <div className="container">
+                    <AddEducation
+                        onSubmit={() => {
+                            this.props.history.push('/resume')
+                        }}/>
+                </div>
+                <div className="container">
+                    <EducationList/>
                 </div>
             </div>
         )

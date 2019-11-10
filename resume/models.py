@@ -30,6 +30,11 @@ class Experience(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     experience_keywords = models.TextField(null=True)
 
+    def __str__(self):
+        return ', '.join(['{key}={value}'
+                         .format(key=key, value=self.__dict__.get(key))
+                          for key in self.__dict__])
+
 
 class Education(models.Model):
     owner = models.ForeignKey(User,
@@ -39,3 +44,8 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     create_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return ', '.join(['{key}={value}'
+                         .format(key=key, value=self.__dict__.get(key))
+                          for key in self.__dict__])

@@ -1,11 +1,11 @@
 from rest_framework import viewsets, permissions
-from .serializers import ListingSerializer, GeneratedResumeSerializer
+from .serializers import ListingInfoSerializer, GeneratedResumeSerializer
 
 
-class ListingViewSet(viewsets.ModelViewSet):
+class ListingInfoViewSet(viewsets.ModelViewSet):
     # change later to stop people from accessing everything
 
-    serializer_class = ListingSerializer
+    serializer_class = ListingInfoSerializer
 
     permission_classes = [
         permissions.IsAuthenticated
@@ -15,6 +15,7 @@ class ListingViewSet(viewsets.ModelViewSet):
         return self.request.user.listingInfo.all()
 
     def perform_create(self, serializer):
+        print("self data", self.request.data)
         serializer.save(owner=self.request.user)
 
 

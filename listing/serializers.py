@@ -9,15 +9,15 @@ import os.path
 sys.path.append(os.path.abspath('../'))
 
 
-class ListingSerializer(serializers.ModelSerializer):
+class ListingInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListingInfo
-        fields = ('id', 'listingTitle', 'listings', 'listingKeywords')
+        fields = ('id', 'listingTitle', 'listing', 'listingKeywords')
 
     def create(self, data):
-        parsed_exp = data.get("listings", None)
+        parsed_exp = data.get("listingTitle", None)
         parsed_exp += " \n "
-        parsed_exp += data.get("listingTitle", None)
+        parsed_exp += data.get("listing", None)
         listing_stuff = TextRank4Keyword()
         listing_stuff.analyze(parsed_exp, window_size=4, lower=False,
                               stopwords=['technology', 'workplace', 'software',
@@ -62,8 +62,7 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
 
         education = {}
         for ind, val in enumerate(Education.objects.select_related('owner')):
-            education[ind] += val.school_name + ' : ' + val.start_date + '-' \
-                              + val.end_date
+            print("education[{}]: {}".format(ind, val))
 
         k = ListingInfo.objects.select_related('owner').get(id=callKey)
         # print("K??", k, "maybe", k.listingKeywords)

@@ -22,7 +22,7 @@ export default class AppRouter extends React.Component {
     render() {
         return (
             <Router history={history}>
-                <>
+                <div>
                     <Switch>
                         <PrivateRoute
                             path="/"
@@ -46,7 +46,7 @@ export default class AppRouter extends React.Component {
                         <Route
                             component={NotFoundPage} />
                     </Switch>
-                </>
+                </div>
             </Router>
         );
     }
