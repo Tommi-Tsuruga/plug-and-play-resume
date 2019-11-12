@@ -1,10 +1,11 @@
+import os.path
+import sys
+
 from rest_framework import serializers
+
 from listing.models import ListingInfo, GeneratedResume
 from resume.models import BasicInfo, Experience, Education
 from resume.utils import TextRank4Keyword
-
-import sys
-import os.path
 
 sys.path.append(os.path.abspath('../'))
 
@@ -47,12 +48,12 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
     # will probably wind up duplicating data here
 
     def create(self, data):
-        # print("data get: ", data.get("listingID", None))
-        # print('self listings: ', self.data)
+        print("data get: ", data.get("listingID", None))
+        print('self listings: ', self.data)
         callKey = data.get("listingID", None)
-        # print('callkey ', callKey)
+        print('callkey ', callKey)
 
-        # print('self listings data: ', data)
+        print('self listings data: ', data)
         # KEY IN data. listingID
         # Comments.objects.select_related('user__pk','user__profile__pk')
         for e in BasicInfo.objects.select_related('owner'):
@@ -62,15 +63,18 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
 
         education = {}
         for ind, val in enumerate(Education.objects.select_related('owner')):
-            print("education[{}]: {}".format(ind, val))
+            tmp = "{}  ({} - {})".format(val.school_name, val.start_date,
+                                         val.end_date)
+            print(tmp)
+            education[ind] = tmp
 
         k = ListingInfo.objects.select_related('owner').get(id=callKey)
-        # print("K??", k, "maybe", k.listingKeywords)
+        print("K??", k, "maybe", k.listingKeywords)
         wordsk = k.listingKeywords.split(',')
-        # print('wordsk', wordsk)
-        # listingSet = set(wordsk)
-        # a = BasicInfo.objects.select_related('owner'):
-        # print("listings set", listingSet)
+        print('wordsk', wordsk)
+        listingSet = set(wordsk)
+        a = BasicInfo.objects.select_related('owner')
+        print("listings set", listingSet)
 
         expWordCount = {}
 
@@ -85,38 +89,38 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
 
         print("final set", expWordCount)
         # print(len(expWordCount[0]))
-        keyOrder = sorted(expWordCount.items(),
-                          key=lambda x: x[1], reverse=True)
-        print(keyOrder)
+        exp_key_order = sorted(expWordCount.items(), key=lambda x: x[1],
+                               reverse=True)
+        print(exp_key_order)
 
         # for i in range(3):
-        #     print(keyOrder[i], type(keyOrder[i]))
+        #     print(exp_key_order[i], type(exp_key_order[i]))
 
-        generatedExp1 = Experience.objects.select_related(
-            'owner').get(id=keyOrder[0][0]).experienceTitle
+        generatedExp1 = Experience.objects.select_related('owner').get(
+            id=exp_key_order[0][0]).title
         generatedExp1 += '\n-'
         generatedExp1 += Experience.objects.select_related(
-            'owner').get(id=keyOrder[0][0]).experienceDescription
+            'owner').get(id=exp_key_order[0][0]).description
         relevantExperience1 = generatedExp1
 
         generatedExp2 = Experience.objects.select_related(
-            'owner').get(id=keyOrder[1][0]).experienceTitle
+            'owner').get(id=exp_key_order[1][0]).title
         generatedExp2 += '\n-'
         generatedExp2 += Experience.objects.select_related(
-            'owner').get(id=keyOrder[1][0]).experienceText
+            'owner').get(id=exp_key_order[1][0]).description
         relevantExperience2 = generatedExp2
 
         generatedExp3 = Experience.objects.select_related(
-            'owner').get(id=keyOrder[2][0]).experienceTitle
+            'owner').get(id=exp_key_order[2][0]).title
         generatedExp3 += '\n-'
         generatedExp3 += Experience.objects.select_related(
-            'owner').get(id=keyOrder[2][0]).experienceText
+            'owner').get(id=exp_key_order[2][0]).description
         relevantExperience3 = generatedExp3
 
         resumeObj = GeneratedResume.objects.create(
             first_name=first_name,
             last_name=last_name,
-            email=email,
+            # email=email,
             education1=education[0],
             education2=education[1],
             relevantExperience1=relevantExperience1,

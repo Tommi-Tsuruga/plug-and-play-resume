@@ -15,7 +15,7 @@ class ListingInfo(models.Model):
 class GeneratedResume(models.Model):
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
-    email = models.EmailField(max_length=100, unique=True, blank=True)
+    email = models.EmailField(max_length=100, blank=True)
     education1 = models.TextField(blank=True)
     education2 = models.TextField(blank=True, null=True)
     workHistory = models.TextField(blank=True)

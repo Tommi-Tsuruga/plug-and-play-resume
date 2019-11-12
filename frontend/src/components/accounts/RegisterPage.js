@@ -18,8 +18,8 @@ export const RegisterPage = (props) => {
                 buttonText="Register"
                 linkText="Have an account? Login"
                 link="/login"
-                onSubmit={({username, password}) => {
-                    props.dispatch(register(username, password));
+                onSubmit={({username, email, password}) => {
+                    props.dispatch(register(username, email, password));
                 }}
             />
         </div>

@@ -9,14 +9,16 @@ const BasicInfoList = (props) => {
             <h3 className="list-header">BasicInfo</h3>
             <div className="container">
                 <div className="list-body">
-                    {props.basicInfo.map((basicInfo) => {
-                        return <BasicInfoListItem
-                            key={basicInfo.id} {...basicInfo} />
-                    })}
+                    { props.basicInfo.map((basicInfo) =>
+                        <BasicInfoListItem
+                            key={basicInfo.id}
+                            {...basicInfo}
+                        />
+                    )}
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 const mapStateToProps = (state) => ({

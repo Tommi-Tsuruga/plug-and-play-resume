@@ -1,39 +1,40 @@
 import axios from 'axios';
-import {requestConfig} from './auth';
-import {FETCH_LISTINGS, ADD_LISTING, DELETE_LISTING, ADD_RESUME} from './types';
+import { requestConfig } from './auth';
+import {
+    ADD_LISTING, ADD_RESUME, DELETE_LISTING, FETCH_LISTINGS
+} from './types';
+import { returnErrors } from "./messages";
 
 //GET EXP
 export const fetchListing = () => (dispatch, getState) => {
-    return axios.get('/api/listing/', requestConfig(getState))
-        .then(res => { dispatch({type: FETCH_LISTINGS, ...res})})
-        .catch(err => dispatch(console.log));
+    axios.get('/api/listing/', requestConfig(getState))
+         .then(res => setTimeout(() =>
+             dispatch( { type: FETCH_LISTINGS, payload: res.data }), 2000))
+         .catch(err => returnErrors(err.response.data, err.response.status));
 };
 
 export const deleteListing = id => (dispatch, getState) => {
-    axios.delete(`/api/listing/${id}`, requestConfig(getState))
-        .then(res => dispatch({type: DELETE_LISTING, id}))
-        .catch(err => console.log(err));
+    axios.delete(`/api/listing/${ id }`, requestConfig(getState))
+         .then(res => setTimeout(() =>
+             dispatch({ type: DELETE_LISTING, payload: res.data }), 2000))
+         .catch(err => returnErrors(err.response.data, err.response.status));
 };
 
 export const addListing = (listingData = {}) => (dispatch, getState) => {
     const { id = 0, listingTitle = '', listing = '' } = listingData;
     const listingInfo = { ...listingData };
-    return axios.post('/api/listing/', listingInfo, requestConfig(getState))
-        .then(res => dispatch({type: ADD_LISTING, ...res }))
-        .catch(err => dispatch(console.log(err)));
+    axios.post('/api/listing/', listingInfo, requestConfig(getState))
+         .then(res => setTimeout(() =>
+             dispatch({ type: ADD_LISTING, payload: res.data }), 2000))
+         .catch(err =>
+             dispatch(returnErrors(err.response.data, err.response.status)));
 };
-export const addResume = resume => (dispatch, getState) => {
+
+export const addResume = (resume) => (dispatch, getState) => {
     console.log('logging resume', resume);
-    axios
-        .post('/api/resume/', resume, requestConfig(getState))
-        .then(res => {
-            // console.log('resume data: ', res.data);
-            dispatch({
-                type: ADD_RESUME,
-                ...res
-            });
-        })
-        .catch(err =>
-            dispatch(console.log(err))
-        );
+    axios.post('/api/resume/', resume, requestConfig(getState))
+         .then(res => setTimeout(() =>
+             dispatch({ type: ADD_RESUME, payload: res.data }), 2000))
+         .catch(err =>
+             dispatch(returnErrors(err.response.data, err.response.status)));
 };

@@ -18,7 +18,6 @@ export const authDefaultReducer = {
     isAuthenticated: null,
     isLoading: false,
     user: null,
-    errors: {},
 };
 
 export default (state = authDefaultReducer, action) => {
@@ -31,14 +30,14 @@ export default (state = authDefaultReducer, action) => {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                user: action.data
+                user: action.payload
             };
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
-            localStorage.setItem("token", action.data.token);
+            localStorage.setItem("token", action.payload.token);
             return {
                 ...state,
-                ...action.data,
+                ...action.payload,
                 isAuthenticated: true,
                 isLoading: false,
                 errors: null
@@ -47,14 +46,15 @@ export default (state = authDefaultReducer, action) => {
             localStorage.removeItem("token");
             return {
                 ...state,
-                errors: action.data,
+                errors: action.payload,
                 token: null,
                 user: null,
                 isAuthenticated: false,
                 isLoading: false,
+                basicInfo: [],
                 experiences: [],
                 educations: [],
-                basicInfo: []
+                listingInfo: [],
             };
         case AUTH_ERROR:
         case LOGIN_FAIL:

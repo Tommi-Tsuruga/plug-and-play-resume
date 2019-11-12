@@ -23,3 +23,6 @@ export const FETCH_LISTINGS = 'FETCH_LISTINGS';
 export const DELETE_LISTING = "DELETE_LISTING";
 export const ADD_LISTING = "ADD_LISTING";
 export const ADD_RESUME = "ADD_RESUME";
+
+export const GET_ERRORS = "GET_ERRORS";
+export const CREATE_MESSAGE = "CREATE_MESSAGES";

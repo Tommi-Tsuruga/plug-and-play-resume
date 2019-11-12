@@ -10,8 +10,7 @@ const PublicRoute = ({
     ...rest,
     }) => (
         <Route {...rest} component={(props) => (
-            userLoading ? (<LoadingPage/>) :
-            (isAuthenticated ? (<Redirect to="/"/>) : (<Component {...props} />))
+            isAuthenticated ? (<Redirect to="/"/>) : (<Component {...props} />)
         )}/>
 );
 

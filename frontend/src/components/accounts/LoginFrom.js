@@ -12,6 +12,7 @@ export default class LoginFrom extends React.Component {
 
     state = {
         username: "",
+        email: "",
         password: "",
     };
 
@@ -23,6 +24,10 @@ export default class LoginFrom extends React.Component {
         const password = e.target.value;
         this.setState(() => ({password}));
     };
+    onEmailChange = (e) => {
+        const email = e.target.value;
+        this.setState(() => ({email}));
+    };
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -31,9 +36,11 @@ export default class LoginFrom extends React.Component {
                 error: 'Please provide both username and password'
             }));
         } else {
+            console.log(this.state.email);
             this.setState(() => ({error: ''}));
             this.props.onSubmit({
                 username: this.state.username,
+                email: this.state.email,
                 password: this.state.password
             })
         }
@@ -50,6 +57,13 @@ export default class LoginFrom extends React.Component {
                     placeholder="Username"
                     value={this.state.username}
                     onChange={this.onUsernameChange}
+                />
+                <input
+                    className="text-input"
+                    type="text"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.onEmailChange}
                 />
                 <input
                     className="text-input"

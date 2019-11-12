@@ -1,16 +1,13 @@
 import React from "react"
-import {connect} from "react-redux";
 
 
-export const GeneratedListItems = (generatedInfo) => (
+const GeneratedListItems = (generatedInfo) => (
     <div className="list-item">
         <div className="list-item__title">
             {`${generatedInfo.first_name} ${generatedInfo.last_name}`}
-            <>
                 <h2>Education: </h2>
-                {generatedInfo.education1}
-                {generatedInfo.education2}
-            </>
+                <li>{generatedInfo.education1}</li>
+                <li>{generatedInfo.education2}</li>
             <>
                 <h2>RelevantExperience</h2>
 

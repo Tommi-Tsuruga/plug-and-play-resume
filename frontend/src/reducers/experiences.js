@@ -10,32 +10,32 @@ const experienceReducerDefaultState = {
 };
 export default (state = experienceReducerDefaultState, action) => {
     switch (action.type) {
+        case FETCH_EXPERIENCES:
+            return {
+                ...state,
+                experiences: action.payload
+            };
         case ADD_EXPERIENCE:
             return {
                 ...state,
-                experiences: [ ...state.experiences, action.data ]
+                experiences: [ ...state.experiences, action.payload ]
             };
         case REMOVE_EXPERIENCE:
             return {
                 ...state,
-                experiences: state.filter(({id}) => id !== action.id)
+                experiences: state.experiences.filter(({id}) => id !== action.payload)
             };
         case EDIT_EXPERIENCE:
             return state.experiences.map((experience) => {
                 if (experience.id === action.id) {
                     return {
                         ...experience,
-                        ...action.updates
+                        ...action.payload
                     };
                 } else {
                     return experience;
                 }
             });
-        case FETCH_EXPERIENCES:
-            return {
-                ...state,
-                experiences: action.data
-            };
         default:
             return state;
     }

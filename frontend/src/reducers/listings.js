@@ -6,6 +6,7 @@ import {
 } from '../actions/types.js';
 
 const listingReducerDefaultState = {
+  isLoading: false,
   listingInfo: [],
   resumeInfo: []
 };
@@ -15,22 +16,22 @@ export default (state = listingReducerDefaultState, action) => {
     case FETCH_LISTINGS:
       return {
         ...state,
-        listingInfo: action.data
+        listingInfo: action.payload
       };
     case DELETE_LISTING:
       return {
         ...state,
-        listingInfo: state.filter(({id}) => id !== action.id)
+        listingInfo: state.listingInfo.filter(({id}) => id !== action.payload)
       };
     case ADD_LISTING:
       return {
         ...state,
-        listingInfo: [...state.listingInfo, action.data]
+        listingInfo: [...state.listingInfo, action.payload]
       };
     case ADD_RESUME:
       return {
         ...state,
-        resumeInfo: [...state.resumeInfo, action.data]
+        resumeInfo: [...state.resumeInfo, action.payload]
       };
     default:
       return state;

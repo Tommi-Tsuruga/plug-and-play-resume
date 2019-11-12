@@ -6,7 +6,7 @@ from .utils import TextRank4Keyword
 class BasicInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = BasicInfo
-        fields = '__all__'
+        fields = ('id', 'first_name', 'last_name', 'email', 'created_at')
 
 
 class ExperienceSerializer(serializers.ModelSerializer):

@@ -9,7 +9,7 @@ export default (state = generatedDefaultState, action) => {
     case FETCH_GENERATED:
       return {
         ...state,
-        generatedInfo: action.data
+        generatedInfo: action.payload
       };
     default:
       return state;

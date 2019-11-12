@@ -38,6 +38,5 @@ router.register('resume', GeneratedResumeViewSet, 'resume')
 urlpatterns = [
     re_path(r'^api/', include(router.urls)),
     re_path(r'^api/', include(endpoints)),
-    re_path(r'^api/auth/', include('knox.urls')),
     re_path(r'^.*', include(frontend_urls)),
 ]

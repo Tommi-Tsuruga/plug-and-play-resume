@@ -23,17 +23,8 @@ export const LoginPage = (props) => (
     </div>
 );
 
-const mapStateToProps = (state) => {
-    let errors = [];
-    if (state.auth.errors) {
-        errors = Object.keys(state.auth.errors).map((field) => ({
-            field, message: state.auth.errors[field]
-        }));
-    }
-    return {
-        errors,
+const mapStateToProps = (state) => ({
         isAuthenticated: state.auth.isAuthenticated
-    }
-};
+});
 
 export default connect(mapStateToProps)(LoginPage);

@@ -9,14 +9,15 @@ const ListingSections = (props) => {
             <h2 className="list-header">Your listing</h2>
             <div className="container">
                 <div className="list-body">
-                    {props.listingInfo.map((info) => {
-                        return <ListingItems
-                            key={info.id}
-                            {...info}
-                            submitResume={(info) =>
-                                props.dispatch(addResume(info))}
+                    { props.listingInfo.map((listingInfo) =>
+                        <ListingItems
+                            key={listingInfo.id}
+                            {...listingInfo}
+                            submitResume={(i) => {
+                                props.dispatch(addResume({i}));
+                            }}
                         />
-                    })}
+                    )}
                 </div>
             </div>
         </div>
@@ -26,4 +27,5 @@ const ListingSections = (props) => {
 const mapStateToProps = state => ({
     listingInfo: state.listingInfo.listingInfo
 });
+
 export default connect(mapStateToProps)(ListingSections);

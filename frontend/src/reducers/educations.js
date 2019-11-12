@@ -14,12 +14,12 @@ export default (state = educationReducerDefaultState, action) => {
         case ADD_EDUCATION:
             return {
                 ...state,
-                educations: [ ...state.educations, action.data ]
+                educations: [ ...state.educations, action.payload ]
             };
         case FETCH_EDUCATIONS:
             return {
                 ...state,
-                educations: action.data
+                educations: action.payload
             };
         default:
             return state;

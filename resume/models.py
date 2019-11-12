@@ -14,8 +14,13 @@ class BasicInfo(models.Model):
         User, related_name="basicInfo", on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return ', '.join(['{key}={value}'
+                         .format(key=key, value=self.__dict__.get(key))
+                          for key in self.__dict__])
 
 
 class Experience(models.Model):
