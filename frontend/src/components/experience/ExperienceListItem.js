@@ -18,6 +18,7 @@ const ExperienceListItem = ({id, title, description, company, start_date, end_da
         <Link to={`/edit/${id}`}>
             <button className="list-item__button">Edit</button>
         </Link>
+        <button className="list-item__button">Remove</button>
     </div>
 );
 export default ExperienceListItem;

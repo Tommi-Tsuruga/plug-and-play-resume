@@ -30,7 +30,7 @@ export const addExperience = (experienceData = {}) => (dispatch, getState) => {
     };
     axios.post('/api/experience/', experience, requestConfig(getState))
         .then(res => setTimeout(() =>
-            dispatch({ type: ADD_EXPERIENCE, payload: res.data }),2000))
+            dispatch({ type: ADD_EXPERIENCE, payload: res.data }),1000))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)))
 };
@@ -40,7 +40,7 @@ export const removeExperience = (id) => (dispatch, getState) => {
     const url = `/api/experience/${ id }`;
     axios.delete(url, requestConfig(getState))
         .then((id) => setTimeout(() =>
-            dispatch({ type: REMOVE_EXPERIENCE, payload: id }), 2000))
+            dispatch({ type: REMOVE_EXPERIENCE, payload: id }), 1000))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };

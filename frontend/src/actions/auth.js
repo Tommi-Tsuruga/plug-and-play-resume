@@ -15,10 +15,7 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
     axios("/api/auth/user/", requestConfig(getState))
         .then(res => setTimeout(() =>
-                                    dispatch({
-                                                 type: USER_LOADED,
-                                                 payload: res.data
-                                             }), 2000))
+             dispatch({ type: USER_LOADED, payload: res.data}), 1000))
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.status));
             dispatch({ type: AUTH_ERROR });
@@ -29,7 +26,7 @@ export const login = (username, password) => (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
     const params = { username, password };
     axios.post("/api/auth/login/", params, requestConfig(getState))
-         .then(res => setTimeout(dispatch({ type: LOGIN_SUCCESS, payload: res.data }), 2000))
+         .then(res => setTimeout(dispatch({ type: LOGIN_SUCCESS, payload: res.data }), 1000))
          .catch(err => {
              dispatch(returnErrors(err.response.data, err.status));
              dispatch({ type: LOGIN_FAIL });
@@ -39,7 +36,7 @@ export const login = (username, password) => (dispatch, getState) => {
 export const startLogout = () => (dispatch, getState) => {
     axios.post("/api/auth/logout/", null, requestConfig(getState))
          .then(res => setTimeout(() => dispatch(
-             { type: LOGOUT_SUCCESS, payload: res.data }), 2000))
+             { type: LOGOUT_SUCCESS, payload: res.data }), 1000))
          .catch(err => dispatch(returnErrors(err.response.data, err.status)) );
 };
 
@@ -48,7 +45,7 @@ export const register = (username, email, password) => (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
     axios.post("/api/auth/register/", params, requestConfig(getState))
          .then(res => setTimeout(() => dispatch(
-             { type: REGISTER_SUCCESS, payload: res.data }), 2000))
+             { type: REGISTER_SUCCESS, payload: res.data }), 1000))
          .catch(err => {
              dispatch(returnErrors(err.response.data, err.status));
              dispatch({ type: REGISTER_FAIL });

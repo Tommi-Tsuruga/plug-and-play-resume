@@ -12,7 +12,7 @@ body {
   font-family: Helvetica, Areal, sans-serif;
   font-size: $m-size;
   line-height: 1.6;
-  background-color: $light-blue;
+  background-color: lighten($light-blue, 0%);
 }
 
 button {
@@ -24,5 +24,5 @@ button:disabled {
 }
 
 .is-active {
-  background: darken($light-blue, 10%);
+  background: $mid-blue;
 }

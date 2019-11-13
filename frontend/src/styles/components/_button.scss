@@ -1,11 +1,13 @@
 .button {
   border: none;
   display: inline-block;
-  font-weight: 300;
+  font-weight: 200;
   background-color: $mid-blue;
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
+  border-radius: 3px;
+  color: $dark-blue
 }
 
 .button--link {
@@ -15,4 +17,7 @@
 .button--full {
   @extend .button;
   width: 100%;
+  border: 1.5px solid darken($mid-blue, 7%);
+  border-top: none;
+  border-left: none;
 }
