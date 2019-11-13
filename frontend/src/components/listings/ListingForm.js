@@ -39,7 +39,6 @@ export default class ListingForm extends Component {
     };
 
     render() {
-        console.log(this.state.listingTitle);
         return (
             <div className="container">
                 <form className="form" onSubmit={this.onSubmit}>

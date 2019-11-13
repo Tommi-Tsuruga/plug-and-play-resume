@@ -18,16 +18,17 @@
 .header__item {
   flex-grow: 0.25;
   text-align: center;
-  border: 1px solid darken($off-white, 7%);
+  border: 1px solid darken($light-blue, 7%);
   text-decoration: none;
 
   h2 {
+    color: $dark-blue;
     margin: 0 0;
   }
   transition: background .3s ease;
 
   &:hover {
-    background: $off-white;
+    background: $light-blue;
   }
 }
 
@@ -39,6 +40,7 @@
 .header__title__text{
   flex-grow: 3;
   margin: $m-size 0 0;
+  color: $royal-blue;
 }
 .header__title__button{
     @extend .button;

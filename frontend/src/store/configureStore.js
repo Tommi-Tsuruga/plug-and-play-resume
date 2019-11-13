@@ -10,6 +10,8 @@ import authReducer from '../reducers/auth'
 import basicInfoReducer from "../reducers/basicInfo";
 import generatedReducer from "../reducers/generated";
 import listingReducer from "../reducers/listings";
+import errorReducer from "../reducers/errors";
+import messageReducer from "../reducers/messages";
 
 const composeEnhancers = (typeof window !== 'undefined' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -23,6 +25,8 @@ const store = createStore(
             experiences: experienceReducer,
             generated: generatedReducer,
             listingInfo: listingReducer,
+            errors: errorReducer,
+            messages: messageReducer
         }
     ),
     composeEnhancers(applyMiddleware(thunk))

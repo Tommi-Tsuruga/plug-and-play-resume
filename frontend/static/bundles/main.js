@@ -83715,7 +83715,7 @@ var LoadingPage = function LoadingPage() {
 
 /***/ "./src/components/LoginFrom.js":
 /*!*************************************!*\
-  !*** ./src/components/LoginFrom.js ***!
+  !*** ./src/components/AccountFrom.jsjs ***!
   \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -83861,7 +83861,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_experiences__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/experiences */ "./src/actions/experiences.js");
 /* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/auth */ "./src/actions/auth.js");
-/* harmony import */ var _LoginFrom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./LoginFrom */ "./src/components/LoginFrom.js");
+/* harmony import */ var _LoginFrom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AccountFrom */ "./src/components/LoginFrom.js");
 /**
  * LoginPage.js
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
@@ -83989,7 +83989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_experiences__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/experiences */ "./src/actions/experiences.js");
 /* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/auth */ "./src/actions/auth.js");
-/* harmony import */ var _LoginFrom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./LoginFrom */ "./src/components/LoginFrom.js");
+/* harmony import */ var _LoginFrom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AccountFrom */ "./src/components/LoginFrom.js");
 /**
  * RegisterPage.js
  * @author [Keisuke Suzuki](https://github.com/Ks5810)

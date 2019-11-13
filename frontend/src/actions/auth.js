@@ -25,11 +25,11 @@ export const loadUser = () => (dispatch, getState) => {
         })
 };
 
-export const login = (username, email, password) => (dispatch, getState) => {
-    const params = { username, email, password };
+export const login = (username, password) => (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
+    const params = { username, password };
     axios.post("/api/auth/login/", params, requestConfig(getState))
-         .then(res => dispatch({ type: LOGIN_SUCCESS, payload: res.data }))
+         .then(res => setTimeout(dispatch({ type: LOGIN_SUCCESS, payload: res.data }), 2000))
          .catch(err => {
              dispatch(returnErrors(err.response.data, err.status));
              dispatch({ type: LOGIN_FAIL });
@@ -37,7 +37,6 @@ export const login = (username, email, password) => (dispatch, getState) => {
 };
 
 export const startLogout = () => (dispatch, getState) => {
-    dispatch({ type: USER_LOADING });
     axios.post("/api/auth/logout/", null, requestConfig(getState))
          .then(res => setTimeout(() => dispatch(
              { type: LOGOUT_SUCCESS, payload: res.data }), 2000))
@@ -62,6 +61,7 @@ export const requestConfig = (getState) => {
     if (token) {
         headers['Authorization'] = `Token ${ token }`;
     }
+     console.log(token);
     return {
         headers,
         mode: 'cors',

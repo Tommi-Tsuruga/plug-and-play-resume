@@ -3,16 +3,20 @@
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
 import React from "react";
-import {connect} from "react-redux";
-import {Link} from 'react-router-dom'
-import {addExperience} from "../../actions/experiences";
-import {login} from "../../actions/auth";
-import LoginFrom from "./LoginFrom";
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import AccountFrom from "./AccountFrom";
 
 export const LoginPage = (props) => (
     <div className="container">
-        <h1 className="header__title">PlugAndPlayResume</h1>
-        <LoginFrom
+        <header className="header">
+            <div className="header__title">
+                <div className="header__title__text">
+                    <h1>PlugAndPlayResume</h1>
+                </div>
+            </div>
+                </header>
+        <AccountFrom
             buttonText="Login"
             linkText="Don't have an account? Register"
             link="/register"

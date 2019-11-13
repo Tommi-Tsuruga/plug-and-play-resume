@@ -4,27 +4,29 @@
  */
 
 import React from "react";
-import {connect} from "react-redux";
-import {Link, Redirect} from 'react-router-dom'
-import {addExperience} from "../../actions/experiences";
-import {login, register} from "../../actions/auth";
-import LoginFrom from "./LoginFrom";
+import { connect } from "react-redux";
+import { register } from "../../actions/auth";
+import AccountFrom from "./AccountFrom";
 
-export const RegisterPage = (props) => {
-    return (
-        <div className="container">
-            <h1 className="header__title">PlugAndPlayResume</h1>
-            <LoginFrom
-                buttonText="Register"
-                linkText="Have an account? Login"
-                link="/login"
-                onSubmit={({username, email, password}) => {
-                    props.dispatch(register(username, email, password));
-                }}
-            />
-        </div>
-    )
-};
+export const RegisterPage = (props) => (
+    <div className="container">
+        <header className="header">
+            <div className="header__title">
+                <div className="header__title__text">
+                    <h1>PlugAndPlayResume</h1>
+                </div>
+            </div>
+        </header>
+        <AccountFrom
+            buttonText="Register"
+            linkText="Have an account? Login"
+            link="/login"
+            onSubmit={ ({ username, email, password }) => {
+                props.dispatch(register(username, email, password));
+            } }
+        />
+    </div>
+);
 
 const mapStateToProps = (state) => {
     return {

@@ -2,9 +2,7 @@ import {FETCH_BASIC_INFO, ADD_BASIC_INFO} from "../actions/types";
 
 // BasicInfo Reducer
 const basicInfoReducerDefaultState = {
-    basicInfo: [],
-    isLoading: false,
-    isLoaded: false
+    basicInfo: []
 };
 
 export default (state = basicInfoReducerDefaultState, action) => {
@@ -13,8 +11,6 @@ export default (state = basicInfoReducerDefaultState, action) => {
             return {
                 ...state,
                 basicInfo: action.payload,
-                isLoading: false,
-                isLoaded: true
             };
         case ADD_BASIC_INFO:
             return {

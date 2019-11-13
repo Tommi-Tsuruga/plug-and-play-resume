@@ -10,7 +10,6 @@ const GeneratedListItems = (generatedInfo) => (
                 <li>{generatedInfo.education2}</li>
             <>
                 <h2>RelevantExperience</h2>
-
                 <li>{generatedInfo.relevantExperience1}</li>
                 <li>{generatedInfo.relevantExperience2}</li>
                 <li>{generatedInfo.relevantExperience3}</li>

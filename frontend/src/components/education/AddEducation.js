@@ -13,7 +13,7 @@ const AddEducation = (props) => (
         <h3 className="list-header">Add Education</h3>
         <EducationForm
             buttonText="Add Education"
-        onSubmit={education => {
+            onSubmit={education => {
             props.dispatch(addEducation(education));
             }}
         />

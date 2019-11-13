@@ -4,12 +4,8 @@
  */
 
 import {
-    USER_LOADING,
-    USER_LOADED,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    REGISTER_FAIL,
-    REGISTER_SUCCESS, AUTH_ERROR, LOGOUT_SUCCESS
+    AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL,
+    REGISTER_SUCCESS, USER_LOADED, USER_LOADING
 } from "../actions/types";
 // Auth Reducer
 
@@ -23,7 +19,7 @@ export const authDefaultReducer = {
 export default (state = authDefaultReducer, action) => {
     switch (action.type) {
         case USER_LOADING:
-            return {...state, isLoading: true};
+            return { ...state, isLoading: true };
 
         case USER_LOADED:
             return {
@@ -33,6 +29,14 @@ export default (state = authDefaultReducer, action) => {
                 user: action.payload
             };
         case LOGIN_SUCCESS:
+            localStorage.setItem("token", action.payload.token);
+            return {
+                ...state,
+                ...action.payload,
+                isAuthenticated: true,
+                isLoading: false,
+                errors: null
+            };
         case REGISTER_SUCCESS:
             localStorage.setItem("token", action.payload.token);
             return {

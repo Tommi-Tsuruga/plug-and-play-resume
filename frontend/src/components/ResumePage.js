@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {fetchGenerated} from "../actions/generated";
-import GeneratedInfoList from "./generated-resume/GeneratedInfoList";
+import GeneratedInfoList from "./generated-resume/GeneratedList";
 
 class ResumePage extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class ResumePage extends Component {
             </div>
         )
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
     dispatch

@@ -6,7 +6,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExperienceListItem from './ExperienceListItem';
-import {fetchExperiences} from "../../actions/experiences";
 
 const ExperienceList = (props) => (
     <div className="section">

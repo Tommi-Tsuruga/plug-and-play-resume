@@ -6,12 +6,14 @@ import { returnErrors } from "./messages";
 // Fetch BasicInfo
 export const fetchBasicInfo = () => (dispatch, getState) => {
     axios.get("/api/basic/", requestConfig(getState))
-         .then(res => setTimeout(() =>
-             dispatch({ type: FETCH_BASIC_INFO, payload: res.data }), 2000))
+         .then(res => {
+             console.log(res.data);
+             setTimeout(() =>
+             dispatch({ type: FETCH_BASIC_INFO, payload: res.data }), 2000)})
          .catch(err => dispatch(returnErrors(err.response.data, err.status)));
 };
 
-export const UpdateBasicInfo = (basicInfoData = {}) => (dispatch, getState) => {
+export const updateBasicInfo = (basicInfoData = {}) => (dispatch, getState) => {
     const { firstName = '', lastName = '' } = basicInfoData;
     const basicInfo = {
         ...basicInfoData,

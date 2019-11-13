@@ -4,47 +4,51 @@
  */
 
 import React from "react";
-import {Router, Route, Switch} from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import PlugResumePage from "../components/PlugResumePage";
 import LoginPage from "../components/accounts/LoginPage";
 import RegisterPage from "../components/accounts/RegisterPage";
 import SectionPage from "../components/SectionPage";
 import NotFoundPage from "../components/NotFoundPage";
-import {createBrowserHistory} from "history";
+import { createBrowserHistory } from "history";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import ResumePage from "../components/ResumePage";
 import ListingPage from "../components/ListingPage";
+import EditEducationPage from "../components/education/EditEducationPage";
 
 export const history = createBrowserHistory();
 
 export default class AppRouter extends React.Component {
     render() {
         return (
-            <Router history={history}>
+            <Router history={ history }>
                 <div>
                     <Switch>
                         <PrivateRoute
                             path="/"
-                            component={PlugResumePage}
-                            exact={true} />
+                            component={ PlugResumePage }
+                            exact={ true }/>
                         <PublicRoute
                             path="/login"
-                            component={LoginPage} />
+                            component={ LoginPage }/>
                         <PublicRoute
                             path="/register"
-                            component={RegisterPage} />
+                            component={ RegisterPage }/>
                         <PrivateRoute
                             path="/profile"
-                            component={SectionPage} />
+                            component={ SectionPage }/>
                         <PrivateRoute
                             path="/listing"
-                            component={ListingPage}/>
+                            component={ ListingPage }/>
                         <PrivateRoute
                             path="/resume"
-                            component={ResumePage} />
+                            component={ ResumePage }/>
+                        <PrivateRoute
+                            path="/education/:id"
+                            component={ EditEducationPage }/>
                         <Route
-                            component={NotFoundPage} />
+                            component={ NotFoundPage }/>
                     </Switch>
                 </div>
             </Router>
