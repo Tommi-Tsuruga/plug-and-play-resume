@@ -14,30 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf import settings
 from django.conf.urls import include
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path, re_path
-from django.views.generic import TemplateView
-from rest_framework import routers
+from django.urls import re_path
 
-from accounts import endpoints
+from accounts import urls as accounts_urls
 from frontend import urls as frontend_urls
-from listing.api import ListingInfoViewSet, GeneratedResumeViewSet
-from resume.api import ExperienceViewSet, EducationViewSet, BasicViewSet
-
-router = routers.DefaultRouter()
-router.register('basic', BasicViewSet, 'basic')
-router.register('experience', ExperienceViewSet, 'experience')
-router.register('education', EducationViewSet, 'education')
-router.register('listing', ListingInfoViewSet, 'listing')
-router.register('resume', GeneratedResumeViewSet, 'resume')
-
+from listing import urls as listing_urls
+from resume import urls as resume_urls
 
 urlpatterns = [
-    re_path(r'^api/', include(router.urls)),
-    re_path(r'^api/auth/', include(endpoints)),
-    re_path(r'^api/', include(endpoints)),
+    re_path(r'^api/', include(accounts_urls)),
+    re_path(r'^api/', include(resume_urls)),
+    re_path(r'^api/', include(listing_urls)),
     re_path(r'^.*', include(frontend_urls)),
 ]

@@ -6,19 +6,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExperienceListItem from './ExperienceListItem';
+import { removeExperience } from "../../actions/experiences";
 
 const ExperienceList = (props) => (
-    <div className="section">
-        <h3 className="list-header">Your Experiences</h3>
         <div className="container">
             <div className="list-body">
                 {props.experiences.map(experience => {
                     return <ExperienceListItem
-                        key={experience.id} {...experience} />;
+                        onClick={ id => props.dispatch(
+                            removeExperience(id))
+                        }
+                        key={experience.id}
+                            {...experience}
+                    />;
                 })}
             </div>
         </div>
-    </div>
 );
 
 const mapStateToProps = (state) => ({

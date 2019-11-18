@@ -12,45 +12,41 @@ import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
 
 
+// Change timeOut here
+const TIMEOUT = 0;
+
 // Fetch Experiences
+
 export const fetchExperiences = () => (dispatch, getState) => {
-    console.log("fetchExperiences() called");
     return axios.get("/api/experience/", requestConfig(getState))
-        .then(res => dispatch({ type: FETCH_EXPERIENCES, payload: res.data }))
-        .catch(err => console.log(err))
+        .then(res => setTimeout( () => dispatch({ type: FETCH_EXPERIENCES, payload: res.data }), TIMEOUT))
+        .catch(err => returnErrors(err.response.data, err.response.status))
 };
 
 // ADD_EXPERIENCE
-export const addExperience = (experienceData = {}) => (dispatch, getState) => {
-    const { startDate = 0, endDate = 0 } = experienceData;
-    const experience = {
-        ...experienceData,
-        start_date: startDate,
-        end_date: endDate
-    };
+export const addExperience = (experience = {}) => (dispatch, getState) => {
     axios.post('/api/experience/', experience, requestConfig(getState))
         .then(res => setTimeout(() =>
-            dispatch({ type: ADD_EXPERIENCE, payload: res.data }),1000))
+            dispatch({ type: ADD_EXPERIENCE, payload: res.data }), TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)))
 };
 
 // REMOVE_EXPERIENCE
 export const removeExperience = (id) => (dispatch, getState) => {
-    const url = `/api/experience/${ id }`;
-    axios.delete(url, requestConfig(getState))
-        .then((id) => setTimeout(() =>
-            dispatch({ type: REMOVE_EXPERIENCE, payload: id }), 1000))
+    console.log("typeof experience id: ", typeof id);
+    axios.delete(`/api/experience/${id}/`, requestConfig(getState))
+        .then(res => setTimeout(() =>
+            dispatch({ type: REMOVE_EXPERIENCE, payload: id }), TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const editExperience = (id, updates) => (dispatch, getState) => {
-    const url = `/api/experience/${ id }`;
-    axios(url, updates, requestConfig(getState, 'PUT'))
+export const editExperience = (id, experience) => (dispatch, getState) => {
+    axios.put(`/api/experience/${ id }/`, experience, requestConfig(getState))
         .then(res => setTimeout(() =>
-            dispatch({ type: EDIT_EXPERIENCE, payload: id, updates: updates }),
-                                2000))
+            dispatch({ type: EDIT_EXPERIENCE, payload: res.data, id: id }),
+                                TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };

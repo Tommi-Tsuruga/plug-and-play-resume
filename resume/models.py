@@ -5,16 +5,16 @@
 # date            : 11/4/19
 # usage           : python models.py
 # ==============================================================================
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class BasicInfo(models.Model):
-    owner = models.ForeignKey(
-        User, related_name="basicInfo", on_delete=models.CASCADE, null=True)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE,
+                                 related_name="basicInfo")
+    first_name = models.CharField(max_length=100, default='')
+    last_name = models.CharField(max_length=100, default='')
+    email = models.EmailField(max_length=100, default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -45,7 +45,9 @@ class Education(models.Model):
     owner = models.ForeignKey(User,
                               related_name='education',
                               on_delete=models.CASCADE)
-    school_name = models.CharField(max_length=20)
+    school_name = models.CharField(max_length=100)
+    degree = models.CharField(max_length=100, default="")
+    major = models.CharField(max_length=100, default="")
     start_date = models.DateField()
     end_date = models.DateField()
     create_at = models.DateTimeField(auto_now_add=True)

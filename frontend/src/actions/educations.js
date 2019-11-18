@@ -11,48 +11,40 @@ import {
 import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
 
+// Change timeOut here
+const TIMEOUT = 0;
+
 // Fetch Educations
 export const fetchEducations = () => (dispatch, getState) => {
     axios.get("/api/education/", requestConfig(getState))
         .then(res => setTimeout(() =>
-            dispatch({ type: FETCH_EDUCATIONS, payload: res.data }), 1000))
+            dispatch({ type: FETCH_EDUCATIONS, payload: res.data}), TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // Add Education
 export const addEducation = (educationData = {}) => (dispatch, getState) => {
-    const { schoolName = "", startDate = 0, endDate = 0 } = educationData;
-    const education = {
-        ...educationData,
-        school_name: schoolName,
-        start_date: startDate,
-        end_date: endDate
-    };
-    axios.post('/api/education/', education, requestConfig(getState))
+    axios.post('/api/education/', educationData, requestConfig(getState))
         .then(res => setTimeout(() =>
-            dispatch({ type: ADD_EDUCATION, payload: res.data }), 1000))
+            dispatch({ type: ADD_EDUCATION, payload: res.data }), TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 // Edit Education
-export const editEducation = (index, updates = {}) => (dispatch, getState) => {
+export const editEducation = (id, education) => (dispatch, getState) => {
 
-    console.log(index);
-    axios.post(`/api/education/${index}`, updates, requestConfig(getState))
+    axios.put(`/api/education/${ id }/`, education, requestConfig(getState))
         .then(res => setTimeout(() =>
-            dispatch({ type: EDIT_EDUCATION, payload: res.data }), 1000))
+            dispatch({ type: EDIT_EDUCATION, payload: res.data, id: id }), TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const removeEducation = ({ id }) => (dispatch, getState) => {
-    console.log(id);
-    axios.delete(`/api/education/${id}`, requestConfig(getState))
-        .then(res=> setTimeout(() =>
-            dispatch({ type: DELETE_EDUCATION, payload: res.data }), 1000))
+export const removeEducation = (id) => (dispatch, getState) => {
+    axios.delete(`/api/education/${id}/`, requestConfig(getState))
+        .then(res=> { setTimeout(() =>
+            dispatch({ type: DELETE_EDUCATION, payload: id }), TIMEOUT)})
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-
+};

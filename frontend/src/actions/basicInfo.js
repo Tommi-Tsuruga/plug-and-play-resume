@@ -1,28 +1,25 @@
 import axios from 'axios';
-import { ADD_BASIC_INFO, FETCH_BASIC_INFO } from "./types";
+import "regenerator-runtime/runtime";
+import { UPDATE_BASIC_INFO, FETCH_BASIC_INFO } from "./types";
 import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
 
+// Change timeOut here
+const TIMEOUT = 0;
+
 // Fetch BasicInfo
 export const fetchBasicInfo = () => (dispatch, getState) => {
-    axios.get("/api/basic/", requestConfig(getState))
-         .then(res => {
-             console.log(res.data);
-             setTimeout(() =>
-             dispatch({ type: FETCH_BASIC_INFO, payload: res.data }), 1000)})
+    return axios.get("/api/basic/", requestConfig(getState))
+         .then(res => setTimeout( () =>
+             dispatch({ type: FETCH_BASIC_INFO, payload: res.data })))
          .catch(err => dispatch(returnErrors(err.response.data, err.status)));
 };
 
-export const updateBasicInfo = (basicInfoData = {}) => (dispatch, getState) => {
-    const { firstName = '', lastName = '' } = basicInfoData;
-    const basicInfo = {
-        ...basicInfoData,
-        first_name: firstName,
-        last_name: lastName,
-    };
-    axios.post("/api/basic/", basicInfo, requestConfig(getState))
+// using create or post in django server
+export const updateBasicInfo = (basicInfo = {}) => (dispatch, getState) => {
+    axios.put("/api/basic/", basicInfo, requestConfig(getState))
          .then(res => setTimeout(() =>
-             dispatch({ type: ADD_BASIC_INFO, payload: res.data }), 1000))
+             dispatch({ type: UPDATE_BASIC_INFO, payload: res.data }), TIMEOUT))
          .catch(err => dispatch(returnErrors(err.response.data, err.status)));
 };
 

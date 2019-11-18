@@ -1,24 +1,25 @@
-import {FETCH_BASIC_INFO, ADD_BASIC_INFO} from "../actions/types";
+import { FETCH_BASIC_INFO, UPDATE_BASIC_INFO } from "../actions/types";
 
 // BasicInfo Reducer
 const basicInfoReducerDefaultState = {
-    basicInfo: []
+    first_name: '',
+    last_name: '',
+    email: ''
 };
 
-export default (state = basicInfoReducerDefaultState, action) => {
-    switch (action.types) {
+export default function(state = basicInfoReducerDefaultState, action) {
+    switch (action.type) {
         case FETCH_BASIC_INFO:
             return {
                 ...state,
-                basicInfo: action.payload,
+                ...action.payload
             };
-        case ADD_BASIC_INFO:
+        case UPDATE_BASIC_INFO:
             return {
                 ...state,
-                basicInfo: [...state.basicInfo, action.payload ]
+                ...action.payload
             };
         default:
             return state;
-
     }
 };

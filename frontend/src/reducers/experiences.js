@@ -2,7 +2,9 @@
  * experiences.js
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
-import {ADD_EXPERIENCE, REMOVE_EXPERIENCE,FETCH_EXPERIENCES, EDIT_EXPERIENCE } from "../actions/types";
+import {
+    ADD_EXPERIENCE, EDIT_EXPERIENCE, FETCH_EXPERIENCES, REMOVE_EXPERIENCE
+} from "../actions/types";
 
 // Experience Reducer
 const experienceReducerDefaultState = {
@@ -23,19 +25,18 @@ export default (state = experienceReducerDefaultState, action) => {
         case REMOVE_EXPERIENCE:
             return {
                 ...state,
-                experiences: state.experiences.filter(({id}) => id !== action.payload)
+                experiences: state.experiences.filter(
+                    ({ id }) => id !== parseInt(action.payload))
             };
         case EDIT_EXPERIENCE:
-            return state.experiences.map((experience) => {
-                if (experience.id === action.id) {
-                    return {
-                        ...experience,
-                        ...action.payload
-                    };
-                } else {
-                    return experience;
-                }
-            });
+            return {
+                ...state,
+                experiences: state.experiences.map((experience) =>
+                    experience.id === parseInt(action.id) ? {
+                            ...experience,
+                            ...action.payload
+                        } : experience)
+            };
         default:
             return state;
     }

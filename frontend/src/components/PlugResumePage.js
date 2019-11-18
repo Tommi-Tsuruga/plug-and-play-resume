@@ -7,7 +7,11 @@ import React from "react";
 
 const PlugResumePage = () => (
     <div className="container">
-        Generate a resume only for this job!
+        <div className="container">
+            <div className="section">
+                Generate a resume only for this job!
+            </div>
+        </div>
     </div>
 );
 

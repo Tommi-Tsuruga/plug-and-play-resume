@@ -15,7 +15,6 @@ class ResumePage extends Component {
     render() {
         return (
             <div className="container">
-                <h2 className="page-header__title">Generated Resume</h2>
                 <GeneratedInfoList/>
             </div>
         )

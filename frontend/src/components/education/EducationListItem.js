@@ -4,22 +4,30 @@
  */
 
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const EducationListItem = ({id, school_name, start_date, end_date, onClick}) => (
+const EducationListItem = ({
+    id, school_name, start_date, end_date,
+    degree, major, onClick
+}) => (
     <div className="list-item">
         <div className="list-item__text">
             <div className="list-item__title">
-                {`${school_name} (${start_date} - ${end_date})`}
+                { `${ school_name } (${ start_date } - ${ end_date })` }
+            </div>
+            <div className="list-item__data">
+                { `${ degree } in ${ major }` }
             </div>
         </div>
-        <Link to={`/education/${id}`}>
-            <button className="list-item__button">Edit</button>
-        </Link>
+        <button className="list-item__button">
+            <Link className="link--text" to={ `/education/${ id }` }>
+                Edit</Link>
+        </button>
         <button
             className="list-item__button"
             value={ id }
-            onClick={(e) => onClick(e.target.value)}>Remove</button>
+            onClick={ (e) => onClick(e.target.value) }>Remove
+        </button>
     </div>
 );
 

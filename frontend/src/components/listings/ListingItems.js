@@ -1,17 +1,11 @@
 import React from "react"
 
-const ListingItems = ({ id, listingTitle, listing, listingKeywords, submitResume }) => {
-    //
-    // const onClick = (e) => {
-    //     console.log(e.target.value);
-    //     submitResume(e.target.value);
-    // };
-
+const ListingItems = ({ id, listingTitle, listing, listingKeywords, submitResume, removeResume, index }) => {
     return (
         <div className="list-item">
             <div className="list-item__text">
                 <div className="list-item__title">
-                    { `${ id }. ${ listingTitle }` }
+                    { `${ index+1 }. ${ listingTitle }` }
                 </div>
                 <div className="list-item__data">
                     { `Keywords: ${ listingKeywords }` }
@@ -23,8 +17,14 @@ const ListingItems = ({ id, listingTitle, listing, listingKeywords, submitResume
             <button
                 className="list-item__button"
                 value={ id }
-                onClick={ (e) => submitResume(e.target.value) }
-            >Generate Resume
+                onClick={ (e) => removeResume(e.target.value)}
+            >Remove
+            </button>
+            <button
+                className="list-item__button"
+                value={ id }
+                onClick={ (e) => submitResume(e.target.value)}
+            >Generate
             </button>
         </div>
     );

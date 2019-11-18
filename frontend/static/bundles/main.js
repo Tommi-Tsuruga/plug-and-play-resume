@@ -83344,7 +83344,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_styles_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_styles_styles_scss__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_dates_initialize__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-dates/initialize */ "./node_modules/react-dates/initialize.js");
 /* harmony import */ var react_dates_initialize__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dates_initialize__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_LoadingPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/LoadingPage */ "./src/components/LoadingPage.js");
+/* harmony import */ var _components_LoadingPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Loading */ "./src/components/LoadingPage.js");
 /* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./actions/auth */ "./src/actions/auth.js");
 /**
  * app.js
@@ -83689,7 +83689,7 @@ var HelpPage = function HelpPage() {
 
 /***/ "./src/components/LoadingPage.js":
 /*!***************************************!*\
-  !*** ./src/components/LoadingPage.js ***!
+  !*** ./src/components/Loading***!
   \***************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

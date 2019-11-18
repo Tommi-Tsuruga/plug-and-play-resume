@@ -7,10 +7,11 @@ import React from "react";
 import {connect} from 'react-redux';
 import ExperienceForm from "./ExperienceForm";
 import { addExperience } from "../../actions/experiences";
+import ExperienceList from "./ExperienceList";
 
 const AddExperience = (props) => (
     <div className="section">
-        <h3 className="list-header">Add Experience</h3>
+        <h2 className="list-header">Experience</h2>
         <ExperienceForm
             buttonText="Add Experience"
             onSubmit={experience => {
@@ -18,6 +19,7 @@ const AddExperience = (props) => (
                 props.dispatch(addExperience(experience));
             }}
         />
+        <ExperienceList/>
     </div>
 );
 

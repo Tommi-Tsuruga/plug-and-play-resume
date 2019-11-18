@@ -1,0 +1,47 @@
+.CalendarDay__selected_span {
+  background: $light-blue; //background
+  color: $mid-blue; //text
+  border: 1px solid $light-blue; //default styles include a border
+}
+
+// Will edit selected date or the endpoints of a range of dates
+.CalendarDay__selected {
+  background: $mid-blue;
+  color: white;
+}
+
+// Will edit when hovered over. _span style also has this property
+.CalendarDay__selected:hover {
+  background: $light-blue;
+  color: white;
+}
+
+// Will edit when the second date (end date) in a range of dates
+// is not yet selected. Edits the dates between your mouse and said date
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  color: $mid-blue;
+  background: $light-blue;
+}
+
+
+//.DateInput_input::placeholder { color: $mid-blue; }
+.DateInput_input {
+  @extend .text-input;
+  height: 49px;
+}
+
+.DateRangePickerInput_arrow {
+  display: inline-block;
+  vertical-align: middle;
+  color: $light-blue
+}
+
+.DateRangePickerInput_arrow_svg {
+  vertical-align: middle;
+  fill: $mid-blue;
+}
+
+.DateRangePickerInput {
+  background-color: $light-blue;
+}

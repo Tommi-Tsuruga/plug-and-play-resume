@@ -6,20 +6,21 @@ import { createMessage, returnErrors } from "../../actions/messages";
 import errors from "../../reducers/errors";
 
 
-
 const ListingSections = (props) => {
     const MIN_EXPERIENCES = 5;
     const errorMsg = "You need to have at least four experiences to generate " +
                      "accurate resume";
     return (
-        <div className="section">
-            <h2 className="list-header">Your listing</h2>
             <div className="container">
                 <div className="list-body">
-                    { props.listingInfo.map((listingInfo) =>
+                    { props.listingInfo.map((listingInfo, index) =>
                         <ListingItems
-                            key={listingInfo.id}
+                            key={index}
+                            index={index}
                             {...listingInfo}
+                            removeResume={(id) => {
+                                props.dispatch(deleteListing(id))
+                            }}
                             submitResume={(i) => {
                                 if (props.experiences.length < MIN_EXPERIENCES)
                                 { alert(errorMsg) }
@@ -29,7 +30,6 @@ const ListingSections = (props) => {
                     )}
                 </div>
             </div>
-        </div>
     );
 };
 

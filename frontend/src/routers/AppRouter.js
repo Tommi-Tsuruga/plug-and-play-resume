@@ -8,7 +8,7 @@ import { Route, Router, Switch } from "react-router-dom";
 import PlugResumePage from "../components/PlugResumePage";
 import LoginPage from "../components/accounts/LoginPage";
 import RegisterPage from "../components/accounts/RegisterPage";
-import SectionPage from "../components/SectionPage";
+import SectionPage from "../components/ProfilePage";
 import NotFoundPage from "../components/NotFoundPage";
 import { createBrowserHistory } from "history";
 import PublicRoute from "./PublicRoute";
@@ -16,6 +16,8 @@ import PrivateRoute from "./PrivateRoute";
 import ResumePage from "../components/ResumePage";
 import ListingPage from "../components/ListingPage";
 import EditEducationPage from "../components/education/EditEducationPage";
+import EditExperiencePage from "../components/experience/EditExperiencePage";
+import EditListingPage from "../components/listings/EditListingPage";
 
 export const history = createBrowserHistory();
 
@@ -47,6 +49,12 @@ export default class AppRouter extends React.Component {
                         <PrivateRoute
                             path="/education/:id"
                             component={ EditEducationPage }/>
+                        <PrivateRoute
+                            path="/experience/:id"
+                            component={ EditExperiencePage }/>
+                        <PrivateRoute
+                            path="/listing/:id"
+                            component={ EditListingPage }/>
                         <Route
                             component={ NotFoundPage }/>
                     </Switch>

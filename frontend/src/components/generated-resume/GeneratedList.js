@@ -1,33 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
 import GeneratedListItems from "./GeneratedListItems";
+import Loading from "../Loading";
 
-const GeneratedList = (props) => {
-    if (props.generatedInfo.length === 0) {
-        return (
-            <p>You don't have any resume yet</p>
-        );
-    } else {
-        return (
-            <div className="section">
-                <h3 className="list-header">Your Generated Resume</h3>
-                <div className="container">
-                    <div className="list-body">
-                        { props.generatedInfo.map(generatedInfo => {
-                            return <GeneratedListItems
-                                key={ generatedInfo.listingID }
+const GeneratedList = (props) => (
+    <div className="section">
+        <h2 className="list-header">
+            Generated Resume
+        </h2>
+        <div className="container">
+            <div className="list-body">
+                { props.isLoading ? <Loading/> :
+                    !props.generatedInfo.length ?
+                        <div className="list-item">
+                            You don't have any resume yet
+                        </div> : props.generatedInfo.map(generatedInfo =>
+                            <GeneratedListItems
+                                key={ generatedInfo.id}
                                 { ...generatedInfo }
-                            />
-                        })}
-                    </div>
-                </div>
+                            />)
+                }
             </div>
-        )
-    }
-};
+        </div>
+    </div>
+);
 
 const mapStateToProps = state => ({
-    generatedInfo: state.generated.generatedInfo
+    generatedInfo: state.generated.generatedInfo,
+    isLoading: state.generated.isLoading
 });
 
 export default connect(mapStateToProps)(GeneratedList);

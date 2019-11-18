@@ -1,9 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import ListingForm from './listings/ListingForm';
-import {addResume, fetchListing} from "../actions/listings"
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { fetchListing } from "../actions/listings"
 import ListingSections from './listings/ListingSections';
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 import AddListing from "./listings/AddListing";
 
 class ListingPage extends Component {
@@ -18,11 +16,8 @@ class ListingPage extends Component {
     render() {
         return (
                 <div className="container">
-                    <h2 className="page-header__title">Your Listing</h2>
-                    <div className="container">
+                    <div className="section">
                         <AddListing/>
-                    </div>
-                    <div className="container">
                         <ListingSections/>
                     </div>
                 </div>
@@ -30,4 +25,8 @@ class ListingPage extends Component {
     }
 }
 
-export default connect()(ListingPage);
+const mapStateToProps = (state) => ({
+    listingInfo: state.listingInfo.listingInfo
+});
+
+export default connect(mapStateToProps)(ListingPage);

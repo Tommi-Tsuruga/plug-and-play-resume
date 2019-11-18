@@ -1,7 +1,8 @@
 import { FETCH_GENERATED } from "../actions/types.js";
 
 const generatedDefaultState = {
-  generatedInfo: []
+  generatedInfo: [],
+  isLoading: true
 };
 
 export default (state = generatedDefaultState, action) => {
@@ -9,7 +10,8 @@ export default (state = generatedDefaultState, action) => {
     case FETCH_GENERATED:
       return {
         ...state,
-        generatedInfo: action.payload
+        generatedInfo: action.payload,
+        isLoading: false
       };
     default:
       return state;

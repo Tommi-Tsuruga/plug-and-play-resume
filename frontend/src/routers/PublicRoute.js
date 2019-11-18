@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
-import LoadingPage from "../components/LoadingPage";
+import Loading from "../components/Loading";
 
 const PublicRoute = ({
     isAuthenticated,
     userLoading,
     component: Component,
     ...rest,
-    }) => (
+    }) => userLoading ? <Loading/> : (
         <Route {...rest} component={(props) => (
             isAuthenticated ? (<Redirect to="/"/>) : (<Component {...props} />)
         )}/>

@@ -1,11 +1,16 @@
 .text-input {
+  align-items: center;
   height: 50px;
   font-weight: 300;
   padding: $s-size;
+  flex-direction: column;
   background-color: darken($light-blue, 3%);
-  border: 1.5px solid $mid-blue;
+  border: 0.5px solid $mid-blue;
   border-bottom: none;
   border-right: none;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+  }
 }
 
 .select {
@@ -20,10 +25,9 @@
   width: 100%;
 }
 
-.text-input__item {
+.text-input__login {
   @extend .text-input;
   margin-bottom: $s-size;
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0 $s-size 0 0;
-  }
+  width: 50%;
+
 }

@@ -6,13 +6,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import store from "./store/configureStore";
 import { Provider as AlertProvider } from "react-alert";
-import AlertTemplate from "react-alert-template-basic";
 import { Provider } from 'react-redux';
+import { loadUser } from './actions/auth';
+import AlertTemplate from "react-alert-template-basic";
 import AppRouter from "./routers/AppRouter";
+import 'react-dates/initialize';
 import 'normalize.css/normalize.css';
 import "./styles/styles.scss";
-import 'react-dates/initialize';
-import { loadUser } from './actions/auth';
 
 console.log('app.js is running');
 
