@@ -59,6 +59,7 @@ export default (state = authDefaultReducer, action) => {
                 experiences: [],
                 educations: [],
                 listingInfo: [],
+                generatedInfo: [],
             };
         case AUTH_ERROR:
         case LOGIN_FAIL:

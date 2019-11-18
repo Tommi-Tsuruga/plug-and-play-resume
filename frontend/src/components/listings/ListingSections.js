@@ -7,7 +7,7 @@ import errors from "../../reducers/errors";
 
 
 const ListingSections = (props) => {
-    const MIN_EXPERIENCES = 5;
+    const MIN_EXPERIENCES = 4;
     const errorMsg = "You need to have at least four experiences to generate " +
                      "accurate resume";
     return (

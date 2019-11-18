@@ -5,7 +5,7 @@ import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
 
 // Change timeOut here
-const TIMEOUT = 0;
+const TIMEOUT = 1000;
 
 // Fetch BasicInfo
 export const fetchBasicInfo = () => (dispatch, getState) => {

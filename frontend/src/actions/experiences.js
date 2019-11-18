@@ -13,7 +13,7 @@ import { returnErrors } from "./messages";
 
 
 // Change timeOut here
-const TIMEOUT = 0;
+const TIMEOUT = 1000;
 
 // Fetch Experiences
 
@@ -43,7 +43,9 @@ export const removeExperience = (id) => (dispatch, getState) => {
 };
 
 export const editExperience = (id, experience) => (dispatch, getState) => {
-    axios.put(`/api/experience/${ id }/`, experience, requestConfig(getState))
+    const updates = JSON.stringify(experience);
+    console.log(updates);
+    axios.put(`/api/experience/${ id }/`, updates, requestConfig(getState))
         .then(res => setTimeout(() =>
             dispatch({ type: EDIT_EXPERIENCE, payload: res.data, id: id }),
                                 TIMEOUT))

@@ -16,8 +16,8 @@ export default class ExperienceForm extends React.Component {
             title: experience ? experience.title : '',
             company: experience ? experience.company : '',
             description: experience ? experience.description : '',
-            start_date: experience ? moment(experience.start_date,DATE_FORMAT) : moment(),
-            end_date: experience ? moment(experience.end_date, DATE_FORMAT) : moment(),
+            start_date: experience ? moment(experience.start_date).format(DATE_FORMAT) : moment(),
+            end_date: experience ? moment(experience.end_date).format(DATE_FORMAT) : moment(),
             error: '',
             buttonText: this.props.buttonText
         };
@@ -35,8 +35,8 @@ export default class ExperienceForm extends React.Component {
         const company = e.target.value;
         this.setState(() => ({ company }))
     };
-    onDatesChange = ({ start_date, end_date }) => {
-        this.setState(() => ({ start_date, end_date }));
+    onDatesChange = ({ startDate, endDate }) => {
+        this.setState(() => ({ startDate, endDate }));
     };
     onSubmit = (e) => {
         e.preventDefault();
@@ -51,8 +51,8 @@ export default class ExperienceForm extends React.Component {
                                     title: this.state.title,
                                     company: this.state.company,
                                     description: this.state.description,
-                                    start_date: moment(this.state.start_date).format(DATE_FORMAT),
-                                    end_date: moment(this.state.end_date).format(DATE_FORMAT)
+                                    start_date: moment(this.state.startDate).format(DATE_FORMAT),
+                                    end_date: moment(this.state.endDate).format(DATE_FORMAT)
                                 });
         }
     };
@@ -81,8 +81,8 @@ export default class ExperienceForm extends React.Component {
                         className="input-group__item"
                         type="experience"
                         experience={ this.props.experience }
-                        onDatesChange={ ({ start_date, end_date }) => {
-                            this.onDatesChange({ start_date, end_date })
+                        onDatesChange={ ({ startDate, endDate }) => {
+                            this.onDatesChange({startDate,endDate })
                         } }
                     />
                     <textarea

@@ -27,14 +27,15 @@ class ExperienceSerializer(serializers.ModelSerializer):
                   'start_date', 'end_date', 'experience_keywords')
 
     def update(self, instance, data):
-        data.pop('id')
-        for key, value in data.items():
-            setattr(instance, key, value)
-        data.pop('start_date')
-        data.pop('end_date')
-        parsed_exp = {}
-        for value in data.items():
-            parsed_exp += value + " \n "
+        instance.title = data.get('title')
+        instance.company = data.get('company')
+        instance.description = data.get("description")
+        instance.start_date = data.get("start_date")
+        instance.end_date = data.get("end_date")
+        instance.save()
+        parsed_exp = data.get("title") + " \n "
+        parsed_exp += data.get("company") + " \n "
+        parsed_exp += data.get("description") + " \n "
         listing_stuff = TextRank4Keyword()
         listing_stuff.analyze(parsed_exp, window_size=4, lower=False,
                               stopwords=stopwords)
