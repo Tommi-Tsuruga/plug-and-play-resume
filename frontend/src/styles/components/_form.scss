@@ -1,0 +1,25 @@
+
+.form-error {
+  font-style: italic;
+
+}
+
+.form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  > * {
+    margin-bottom: $s-size;
+
+  }
+}
+
+.form--item {
+  width: 100%
+}
+
+
+
+
+
+

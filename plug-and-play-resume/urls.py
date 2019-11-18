@@ -14,19 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf import settings
 from django.conf.urls import include
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path
+from django.urls import re_path
 
-from backendapp import endpoints as endpoints
-from frontendapp import urls as frontendapp_urls
+from accounts import urls as accounts_urls
+from frontend import urls as frontend_urls
+from listing import urls as listing_urls
+from resume import urls as resume_urls
 
 urlpatterns = [
-    path('', include(frontendapp_urls)),
-    path('admin/', admin.site.urls),
-    path('api/auth/', include('knox.urls')),
-    path('api/', include(endpoints))
-    ]
-
+    re_path(r'^api/', include(accounts_urls)),
+    re_path(r'^api/', include(resume_urls)),
+    re_path(r'^api/', include(listing_urls)),
+    re_path(r'^.*', include(frontend_urls)),
+]

@@ -1,0 +1,27 @@
+.button {
+  display: inline-block;
+  font-weight: 200;
+  background-color: $mid-blue;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: $s-size;
+  color: $dark-blue
+}
+
+.button--link {
+  background: none;
+}
+
+.button--full {
+  @extend .button;
+  width: 100%;
+  border: 1.5px solid darken($mid-blue, 7%);
+  border-top: none;
+  border-left: none;
+  font-weight: bold;
+}
+
+.link--text {
+  text-decoration: none;
+  color: $dark-blue;
+}
