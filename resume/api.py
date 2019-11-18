@@ -44,3 +44,14 @@ class EducationViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class JobHistoryViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = JobHistorySerializer
+
+    def get_queryset(self):
+        return self.request.user.job_history.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)

@@ -27,6 +27,7 @@ export const ADD_LISTING = "ADD_LISTING";
 export const ADD_RESUME = "ADD_RESUME";
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_MESSAGE = "CREATE_MESSAGES";
+export const ADD_JOB_HISTORY = "ADD_JOB_HISTORY";
 
 // date format
 export const DATE_FORMAT = "YYYY-MM-DD";

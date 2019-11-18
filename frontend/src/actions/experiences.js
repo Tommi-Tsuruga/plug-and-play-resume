@@ -53,3 +53,11 @@ export const editExperience = (id, experience) => (dispatch, getState) => {
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
+export const addJobHistory = (jobHisotry = {}) => (dispatch, getState) => {
+    axios.put(`/api/jobhistory/`, requestConfig(getState))
+        .then(res => setTimeout(() =>
+            dispatch({ type: EDIT_EXPERIENCE, payload: res.data }), TIMEOUT))
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
+};
+

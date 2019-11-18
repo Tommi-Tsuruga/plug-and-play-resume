@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from rest_framework import serializers
 
 from listing.serializers import stopwords
-from .models import Experience, Education, BasicInfo
+from .models import Experience, Education, BasicInfo, WorkHistory
 from .utils import TextRank4Keyword
 
 
@@ -23,8 +23,7 @@ class BasicInfoSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
-        fields = ('id', 'title', 'description', 'company',
-                  'start_date', 'end_date', 'experience_keywords')
+        fields = ('id', 'title', 'description', 'experience_keywords')
 
     def update(self, instance, data):
         instance.title = data.get('title')
@@ -62,3 +61,10 @@ class EducationSerializer(serializers.ModelSerializer):
         model = Education
         fields = ('id', 'school_name', 'degree', 'major', 'start_date',
                   'end_date')
+
+
+class WorkHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkHistory
+        fields = ('id', 'title', 'description', 'company',
+                  'start_date', 'end_date', 'work_keywords')
