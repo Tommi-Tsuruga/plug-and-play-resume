@@ -2,22 +2,16 @@
  * ExperienceForm.js
  * @author [Keisuke Suzuki](https://github.com/Ks5810)
  */
-import React from 'react';
-import moment from 'moment';
+import React, { Component } from 'react';
 import 'react-dates/lib/css/_datepicker.css';
-import DateRangeSelector from "../DateRangeSelector";
-import { DATE_FORMAT } from "../../actions/types";
 
-export default class ExperienceForm extends React.Component {
+export default class ExperienceForm extends Component {
     constructor(props) {
         super(props);
         const experience = props.experience;
         this.state = {
             title: experience ? experience.title : '',
-            company: experience ? experience.company : '',
             description: experience ? experience.description : '',
-            start_date: experience ? moment(experience.start_date).format(DATE_FORMAT) : moment(),
-            end_date: experience ? moment(experience.end_date).format(DATE_FORMAT) : moment(),
             error: '',
             buttonText: this.props.buttonText
         };
@@ -31,29 +25,18 @@ export default class ExperienceForm extends React.Component {
         const description = e.target.value;
         this.setState(() => ({ description }))
     };
-    onCompanyChange = (e) => {
-        const company = e.target.value;
-        this.setState(() => ({ company }))
-    };
-    onDatesChange = ({ startDate, endDate }) => {
-        this.setState(() => ({ startDate, endDate }));
-    };
     onSubmit = (e) => {
         e.preventDefault();
-        if (!this.state.title || !this.state.description || !this.state.company) {
+        if (!(this.state.title && this.state.description)) {
             this.setState(() => ({
-                error: 'Please provide Job Title, Institution and' +
-                    ' Description'
+                error: 'Please provide Experience Title, Description'
             }));
         } else {
             this.setState(() => ({ error: '' }));
             this.props.onSubmit({
-                                    title: this.state.title,
-                                    company: this.state.company,
-                                    description: this.state.description,
-                                    start_date: moment(this.state.startDate).format(DATE_FORMAT),
-                                    end_date: moment(this.state.endDate).format(DATE_FORMAT)
-                                });
+                title: this.state.title,
+                description: this.state.description
+            });
         }
     };
 
@@ -66,24 +49,9 @@ export default class ExperienceForm extends React.Component {
                     <input
                         className="text-input"
                         type="text"
-                        placeholder="Job Title"
+                        placeholder="Experience Title"
                         value={ this.state.title }
                         onChange={ this.onTitleChange }
-                    />
-                    <input
-                        className="text-input"
-                        type="text"
-                        placeholder="Institution"
-                        value={ this.state.company }
-                        onChange={ this.onCompanyChange }
-                    />
-                    <DateRangeSelector
-                        className="input-group__item"
-                        type="experience"
-                        experience={ this.props.experience }
-                        onDatesChange={ ({ startDate, endDate }) => {
-                            this.onDatesChange({startDate,endDate })
-                        } }
                     />
                     <textarea
                         className="textarea"

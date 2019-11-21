@@ -12,6 +12,7 @@ import generatedReducer from "../reducers/generated";
 import listingReducer from "../reducers/listings";
 import errorReducer from "../reducers/errors";
 import messageReducer from "../reducers/messages";
+import jobHistoryReducer from "../reducers/jobHistories"
 
 const composeEnhancers = (typeof window !== 'undefined' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -26,8 +27,8 @@ const store = createStore(
             generated: generatedReducer,
             listingInfo: listingReducer,
             errors: errorReducer,
-            messages: messageReducer
-        }
+            messages: messageReducer,
+            jobHistories: jobHistoryReducer,        }
     ),
     composeEnhancers(applyMiddleware(thunk))
 );

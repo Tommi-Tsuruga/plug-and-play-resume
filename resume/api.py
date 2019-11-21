@@ -7,7 +7,7 @@
 # ==============================================================================
 from rest_framework import generics, permissions, viewsets
 from .serializers import EducationSerializer, ExperienceSerializer, \
-    BasicInfoSerializer
+    BasicInfoSerializer, JobHistorySerializer
 
 
 class BasicInfoAPI(generics.RetrieveUpdateAPIView):
@@ -51,7 +51,7 @@ class JobHistoryViewSet(viewsets.ModelViewSet):
     serializer_class = JobHistorySerializer
 
     def get_queryset(self):
-        return self.request.user.job_history.all()
+        return self.request.user.jobhistory.all()
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

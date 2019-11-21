@@ -15,7 +15,6 @@ class ListingInfoViewSet(viewsets.ModelViewSet):
         return self.request.user.listingInfo.all()
 
     def perform_create(self, serializer):
-        print("self data", self.request.data)
         serializer.save(owner=self.request.user)
 
 
@@ -30,10 +29,6 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
         return self.request.user.generatedResume.all()
 
     def perform_create(self, serializer):
-        print("self data", self.request.data)
-        print("self data", self.request.data.get('i'))
-        print("self type", type(self.request.data))
-
         serializer.save(owner=self.request.user,
                         listingID=self.request.data.get('i'))
 

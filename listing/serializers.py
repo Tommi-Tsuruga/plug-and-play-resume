@@ -4,7 +4,7 @@ import sys
 from rest_framework import serializers
 
 from listing.models import ListingInfo, GeneratedResume
-from resume.models import BasicInfo, Experience, Education
+from resume.models import BasicInfo, Experience, Education, JobHistory
 from resume.utils import TextRank4Keyword
 
 sys.path.append(os.path.abspath('../'))
@@ -47,48 +47,38 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         return listing_obj
 
 
+# Might be good idea to generate skills from JobHistory and Experience?
 class GeneratedResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneratedResume
         fields = ('id', 'first_name', 'last_name', 'email', 'education1',
                   'education2', 'relevantExperience1', 'relevantExperience2',
-                  'relevantExperience3', 'listingID')
+                  'relevantExperience3',
+                  'relevantJobHistory1', 'relevantJobHistory2',
+                  'relevantJobHistory3', 'listingID')
 
-    # will probably wind up duplicating data here
-
+    # Many duplicated pieces. Probably splitting into smaller functions
     def create(self, data):
         call_key = data.get("listingID", None)
 
-        print('self listings data: ', data)
-        # KEY IN data. listingID
-        # Comments.objects.select_related('user__pk','user__profile__pk')
-        print("all()[0]: ", BasicInfo.objects.all().get(owner=data.get(
-            'owner')))
         basic_info = BasicInfo.objects.get(owner=data.get('owner'))
         first_name = basic_info.first_name
         last_name = basic_info.last_name
         email = basic_info.email
-        print(first_name, last_name, email)
-        print("after loop", basic_info)
+
         education = {}
         for ind, val in enumerate(Education.objects.select_related('owner')):
-            tmp = "{}  ({} - {})\n{} in {}".format(val.school_name,
-                                                    val.start_date,
-                                                    val.end_date, val.degree,
-                                                    val.major)
-            print(tmp)
+            tmp = "{}  ({} - {})\n{} in {}" \
+                .format(val.school_name, val.start_date, val.end_date,
+                        val.degree, val.major)
             education[ind] = tmp
 
         k = ListingInfo.objects.select_related('owner').get(id=call_key)
-        print("K??", k, "maybe", k.listingKeywords)
         wordsk = k.listingKeywords.split(',')
-        print('wordsk', wordsk)
         listing_set = set(wordsk)
         a = BasicInfo.objects.select_related('owner')
-        print("listings set", listing_set)
 
         exp_word_count = {}
-
         for idx, val in enumerate(Experience.objects.select_related('owner')):
             temp_set = set()
             temp_set = set(val.experience_keywords.split(','))
@@ -98,15 +88,22 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
             exp_word_count[val.id] = len(temp_set)
             temp_set.clear()
 
-        print("final set", exp_word_count)
-        # print(len(exp_word_count[0]))
+        jh_word_count = {}
+        for idx, val in enumerate(JobHistory.objects.select_related('owner')):
+            temp_set = set()
+            temp_set = set(val.job_history_keywords.split(','))
+            listing_words = wordsk
+            set_listing = set(listing_words)
+            temp_set = temp_set.intersection(set_listing)
+            jh_word_count[val.id] = len(temp_set)
+            temp_set.clear()
+
         exp_key_order = sorted(exp_word_count.items(), key=lambda x: x[1],
                                reverse=True)
-        print(exp_key_order)
+        jh_key_order = sorted(jh_word_count.items(), key=lambda x: x[1],
+                              reverse=True)
 
-        # for i in range(3):
-        #     print(exp_key_order[i], type(exp_key_order[i]))
-
+        # TODO: refactor
         generated_exp1 = Experience.objects.select_related('owner').get(
             id=exp_key_order[0][0]).title
         generated_exp1 += '\n-'
@@ -128,6 +125,27 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
             'owner').get(id=exp_key_order[2][0]).description
         relevant_experience3 = generated_exp3
 
+        generated_job_history1 = JobHistory.objects.select_related(
+            'owner').get(id=jh_key_order[0][0]).title
+        generated_job_history1 += '\n-'
+        generated_job_history1 += JobHistory.objects.select_related(
+            'owner').get(id=jh_key_order[0][0]).description
+        relevant_job_history1 = generated_job_history1
+
+        generated_job_history2 = JobHistory.objects.select_related(
+            'owner').get(id=jh_key_order[1][0]).title
+        generated_job_history2 += '\n-'
+        generated_job_history2 += JobHistory.objects.select_related(
+            'owner').get(id=jh_key_order[1][0]).description
+        relevant_job_history2 = generated_job_history2
+
+        generated_job_history3 = JobHistory.objects.select_related(
+            'owner').get(id=jh_key_order[2][0]).title
+        generated_job_history3 += '\n-'
+        generated_job_history3 += JobHistory.objects.select_related(
+            'owner').get(id=jh_key_order[2][0]).description
+        relevant_job_history3 = generated_job_history3
+
         resume_obj = GeneratedResume.objects.create(
             first_name=first_name,
             last_name=last_name,
@@ -136,6 +154,9 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
             education2=education[1],
             relevantExperience1=relevant_experience1,
             relevantExperience2=relevant_experience2,
-            relevantExperience3=relevant_experience3, **data)
+            relevantExperience3=relevant_experience3,
+            relevantJobHistory1=relevant_job_history1,
+            relevantJobHistory2=relevant_job_history2,
+            relevantJobHistory3=relevant_job_history3, **data)
 
         return resume_obj

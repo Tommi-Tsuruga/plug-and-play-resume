@@ -4,6 +4,7 @@
 
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import BasicInfo from "./basic-info/BasicInfo";
 import AddExperience from "./experience/AddExperience";
 import ExperienceList from "./experience/ExperienceList";
 import AddEducation from "./education/AddEducation"
@@ -11,7 +12,8 @@ import EducationList from "./education/EducationList"
 import { fetchExperiences } from "../actions/experiences";
 import { fetchEducations } from "../actions/educations";
 import { fetchBasicInfo } from "../actions/basicInfo";
-import BasicInfo from "./basic-info/BasicInfo";
+import { fetchJobHistory } from "../actions/jobHistories";
+import AddJobHistory from "./job-history/AddJobHistory";
 
 
 class ProfilePage extends Component {
@@ -24,6 +26,7 @@ class ProfilePage extends Component {
         dispatch(fetchBasicInfo());
         dispatch(fetchExperiences());
         dispatch(fetchEducations());
+        dispatch(fetchJobHistory())
     };
 
     render() {
@@ -31,6 +34,12 @@ class ProfilePage extends Component {
             <div className="container">
                 <div className="container">
                     <BasicInfo
+                        onSubmit={ () => {
+                            this.props.history.push('/profile')
+                        } }/>
+                </div>
+                <div className="container">
+                    <AddJobHistory
                         onSubmit={ () => {
                             this.props.history.push('/profile')
                         } }/>
