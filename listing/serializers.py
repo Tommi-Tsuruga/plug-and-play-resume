@@ -72,6 +72,7 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
                 .format(val.school_name, val.start_date, val.end_date,
                         val.degree, val.major)
             education[ind] = tmp
+            tmp = ""
 
         k = ListingInfo.objects.select_related('owner').get(id=call_key)
         wordsk = k.listingKeywords.split(',')

@@ -6,14 +6,14 @@ import DateRangeSelector from "../DateRangeSelector";
 export default class JobHistoryForm extends Component {
     constructor(props) {
         super(props);
-        const jobHistory = props.jobHistory;
+        console.log(props);
         this.state = {
-            title: jobHistory ? jobHistory.title : '',
-            company: jobHistory ? jobHistory.company : '',
-            description: jobHistory ? jobHistory.description : '',
-            start_date: jobHistory ? moment(jobHistory.start_date)
+            title: props.jobHistory ? props.jobHistory.title : '',
+            company: props.jobHistory ? props.jobHistory.company : '',
+            description: props.jobHistory ? props.jobHistory.description : '',
+            start_date: props.jobHistory ? moment(props.jobHistory.start_date)
                                            .format(DATE_FORMAT) : moment(),
-            end_date: jobHistory ? moment(jobHistory.end_date)
+            end_date: props.jobHistory ? moment(props.jobHistory.end_date)
                                          .format(DATE_FORMAT) : moment(),
             error: '',
             buttonText: this.props.buttonText

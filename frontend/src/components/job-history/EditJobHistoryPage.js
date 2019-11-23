@@ -7,11 +7,11 @@ import JobHistoryList from "./JobHistoryList";
 const EditJobHistoryPage = (props) => {
     return (<div className="container">
             <div className="section">
-                <h2 className="list-header">Edit Experience</h2>
-                { console.log(props.jobHistories) }
+                <h2 className="list-header">Edit jobHistory</h2>
+                { console.log(props.jobHistory) }
                 <JobHistoryForm
                     buttonText="Submit"
-                    jobHisotry={ props.jobHistory }
+                    jobHistory={ props.jobHistory }
                     onSubmit={ jobHistory => {
                         props.dispatch(
                             editJobHistory(props.jobHistory.id, jobHistory));
