@@ -1,6 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+from django.db import models
 
 
 class ListingInfo(models.Model):
@@ -18,11 +17,13 @@ class GeneratedResume(models.Model):
     email = models.EmailField(max_length=100, blank=True)
     education1 = models.TextField(blank=True)
     education2 = models.TextField(blank=True, null=True)
-    workHistory = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    relevantJobHistory1 = models.TextField(blank=True, null=True)
+    relevantJobHistory2 = models.TextField(blank=True, null=True)
+    relevantJobHistory3 = models.TextField(blank=True, null=True)
     relevantExperience1 = models.TextField(blank=True, null=True)
     relevantExperience2 = models.TextField(blank=True, null=True)
     relevantExperience3 = models.TextField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     listingID = models.IntegerField(null=True, blank=True)
-    owner = models.ForeignKey(
-        User, related_name="generatedResume", on_delete=models.CASCADE, null=True)
+    owner = models.ForeignKey(User, related_name="generatedResume",
+                              on_delete=models.CASCADE, null=True)

@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from rest_framework import serializers
 
 from listing.serializers import stopwords
-from .models import Experience, Education, BasicInfo
+from .models import Experience, Education, BasicInfo, JobHistory
 from .utils import TextRank4Keyword
 
 
@@ -23,15 +23,11 @@ class BasicInfoSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
-        fields = ('id', 'title', 'description', 'company',
-                  'start_date', 'end_date', 'experience_keywords')
+        fields = ('id', 'title', 'description', 'experience_keywords')
 
     def update(self, instance, data):
         instance.title = data.get('title')
-        instance.company = data.get('company')
         instance.description = data.get("description")
-        instance.start_date = data.get("start_date")
-        instance.end_date = data.get("end_date")
         instance.save()
         parsed_exp = data.get("title") + " \n "
         parsed_exp += data.get("company") + " \n "
@@ -46,7 +42,6 @@ class ExperienceSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         parsed_exp = data.get("title", None) + " \n "
-        parsed_exp += data.get("company", None) + " \n "
         parsed_exp += data.get("description", None) + " \n "
         resume_stuff = TextRank4Keyword()
         resume_stuff.analyze(parsed_exp, window_size=4, lower=False,
@@ -62,3 +57,22 @@ class EducationSerializer(serializers.ModelSerializer):
         model = Education
         fields = ('id', 'school_name', 'degree', 'major', 'start_date',
                   'end_date')
+
+
+class JobHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobHistory
+        fields = ('id', 'title', 'description', 'company',
+                  'start_date', 'end_date', 'job_history_keywords')
+
+    def create(self, data):
+        parsed_exp = data.get("title", None) + " \n "
+        parsed_exp += data.get("company", None) + " \n "
+        parsed_exp += data.get("description", None) + " \n "
+        resume_stuff = TextRank4Keyword()
+        resume_stuff.analyze(parsed_exp, window_size=4, lower=False,
+                             stopwords=stopwords)
+        keyword_list = resume_stuff.get_keywords()
+        job_history_obj = JobHistory.objects.create(
+            job_history_keywords=keyword_list, **data)
+        return job_history_obj

@@ -18,6 +18,7 @@ import ListingPage from "../components/ListingPage";
 import EditEducationPage from "../components/education/EditEducationPage";
 import EditExperiencePage from "../components/experience/EditExperiencePage";
 import EditListingPage from "../components/listings/EditListingPage";
+import EditJobHistoryPage from "../components/job-history/EditJobHistoryPage";
 
 export const history = createBrowserHistory();
 
@@ -52,6 +53,9 @@ export default class AppRouter extends React.Component {
                         <PrivateRoute
                             path="/experience/:id"
                             component={ EditExperiencePage }/>
+                        <PrivateRoute
+                            path="/jobhistory/:id"
+                            component={ EditJobHistoryPage }/>
                         <PrivateRoute
                             path="/listing/:id"
                             component={ EditListingPage }/>

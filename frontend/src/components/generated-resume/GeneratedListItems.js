@@ -13,7 +13,12 @@ const GeneratedListItems = (generatedInfo) => (
                 <li> { `${ generatedInfo.education1 }` }</li>
                 <li> { `${ generatedInfo.education2 }` }</li>
 
-                <h3>RelevantExperience</h3>
+                <h3>Job History: </h3>
+                <li>{ generatedInfo.relevantJobHistory1 }</li>
+                <li>{ generatedInfo.relevantJobHistory2 }</li>
+                <li>{ generatedInfo.relevantJobHistory3 }</li>
+
+                <h3>Experience: </h3>
                 <li>{ generatedInfo.relevantExperience1 }</li>
                 <li>{ generatedInfo.relevantExperience2 }</li>
                 <li>{ generatedInfo.relevantExperience3 }</li>

@@ -16,7 +16,6 @@ import { returnErrors } from "./messages";
 const TIMEOUT = 1000;
 
 // Fetch Experiences
-
 export const fetchExperiences = () => (dispatch, getState) => {
     return axios.get("/api/experience/", requestConfig(getState))
         .then(res => setTimeout( () => dispatch({ type: FETCH_EXPERIENCES, payload: res.data }), TIMEOUT))
@@ -52,4 +51,5 @@ export const editExperience = (id, experience) => (dispatch, getState) => {
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
 
