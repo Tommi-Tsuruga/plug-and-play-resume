@@ -11,7 +11,6 @@ import { removeEducation } from "../../actions/educations";
 class EducationList extends React.Component {
     render() {
         return (
-            <>
                 <div className="container">
                     <div className="list-body">
                         { this.props.educations.map(education => {
@@ -23,7 +22,6 @@ class EducationList extends React.Component {
                         }) }
                     </div>
                 </div>
-            </>
         );
     }
 }
