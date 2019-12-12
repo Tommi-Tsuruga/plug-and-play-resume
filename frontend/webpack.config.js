@@ -5,7 +5,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const {GenerateSW} = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = (env) => {
@@ -21,7 +21,7 @@ module.exports = (env) => {
             publicPath: 'http://localhost:3000/'
         },
         module: {
-            rules: [{
+            rules: [ {
                 loader: 'babel-loader',
                 test: /\.js$/,
                 exclude: /node_modules/
@@ -32,9 +32,14 @@ module.exports = (env) => {
                     'css-loader',
                     'sass-loader'
                 ]
-            }]
+            }, {
+                test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: "url-loader"
+            }, {
+                test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+                use: 'file-loader'
+            } ]
         },
-
         devtool: IsProduction ? 'source-map' : 'cheap-module-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'static'),
@@ -42,17 +47,17 @@ module.exports = (env) => {
             hot: true,
             inline: true,
             historyApiFallback: true,
-            headers: {'Access-Control-Allow-Origin': '*'},
+            headers: { 'Access-Control-Allow-Origin': '*' },
             port: 3000
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin(),
+            new webpack.HotModuleReplacementPlugin({ multiStep: true }),
             new webpack.NoEmitOnErrorsPlugin(), // don't reload if there is an error
             new GenerateSW(),
             new BundleTracker({
-                path: __dirname,
-                filename: 'webpack-stats.json',
-            })
+                                  path: __dirname,
+                                  filename: 'webpack-stats.json',
+                              })
         ]
     };
 };
