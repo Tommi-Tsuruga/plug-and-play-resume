@@ -9,7 +9,6 @@ export default class AccountFrom extends React.Component {
     constructor(props) {
         super(props)
     }
-
     state = {
         username: "",
         email: "",

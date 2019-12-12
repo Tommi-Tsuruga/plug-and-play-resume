@@ -11,24 +11,18 @@ import Loading from "../Loading";
 
 export const RegisterPage = ({ dispatch, userLoading }) =>
     userLoading ? <Loading/> : (
-    <div className="container">
-        <header className="header">
-            <div className="header__title">
-                <div className="header__title__text">
-                    <h1>PlugAndPlayResume</h1>
-                </div>
-            </div>
-        </header>
-        <AccountFrom
-            buttonText="Register"
-            linkText="Have an account? Login"
-            link="/login"
-            onSubmit={ ({ username, email, password }) => {
-                dispatch(register(username, email, password));
-            } }
-        />
-    </div>
-);
+        <>
+            <h1>PlugAndPlayResume</h1>
+            <AccountFrom
+                buttonText="Register"
+                linkText="Have an account? Login"
+                link="/login"
+                onSubmit={ ({ username, email, password }) => {
+                    dispatch(register(username, email, password));
+                } }
+            />
+        </>
+    );
 
 const mapStateToProps = (state) => ({
     userLoading: state.auth.isLoading

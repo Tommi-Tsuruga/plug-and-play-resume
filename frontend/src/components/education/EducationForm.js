@@ -59,7 +59,7 @@ export default class EducationForm extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <>
                 <form className="form" onSubmit={ this.onSubmit }>
                     { this.state.error &&
                     <p className="form-error">{ this.state.error }</p> }
@@ -97,7 +97,7 @@ export default class EducationForm extends React.Component {
                     <button
                         className="button--full">{ this.props.buttonText }</button>
                 </form>
-            </div>
+            </>
         )
     }
 }

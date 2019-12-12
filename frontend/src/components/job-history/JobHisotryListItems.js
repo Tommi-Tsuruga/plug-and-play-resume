@@ -5,16 +5,10 @@ const JobHistoryListItems = ({
     id, title, description, company, start_date,
     end_date, job_history_keywords, onClick
 }) => (
-    <div className="list-item">
-        <div className="list-item__text">
-            <div className="list-item__title">
-                { `${ title } at ${ company } (${ start_date } - ${ end_date }` })
-            </div>
-            <div
-                className="list-item__data"> { `Keywords: ${ job_history_keywords }` }</div>
-            <div
-                className="list-item__data"> { `Description: ${ description }` } </div>
-        </div>
+    <>
+        { `${ title } at ${ company } (${ start_date } - ${ end_date }` } <br/>
+        { `Keywords: ${ job_history_keywords }` } <br/>
+        { `Description: ${ description }` }
         <button className="list-item__button">
             <Link to={ `/jobhistory/${ id }` }
                   className="link--text">Edit
@@ -24,7 +18,7 @@ const JobHistoryListItems = ({
             className="list-item__button"
             value={ id }
             onClick={ e => onClick(e.target.value) }>Remove
-        </button>
-    </div>
+        </button> <br/>
+    </>
 );
 export default JobHistoryListItems;

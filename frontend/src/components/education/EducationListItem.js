@@ -10,15 +10,9 @@ const EducationListItem = ({
     id, school_name, start_date, end_date,
     degree, major, onClick
 }) => (
-    <div className="list-item">
-        <div className="list-item__text">
-            <div className="list-item__title">
-                { `${ school_name } (${ start_date } - ${ end_date })` }
-            </div>
-            <div className="list-item__data">
-                { `${ degree } in ${ major }` }
-            </div>
-        </div>
+    <>
+        { `${ school_name } (${ start_date } - ${ end_date })` } <br/>
+        { `${ degree } in ${ major }` } <br/>
         <button className="list-item__button">
             <Link className="link--text" to={ `/education/${ id }` }>
                 Edit</Link>
@@ -28,7 +22,8 @@ const EducationListItem = ({
             value={ id }
             onClick={ (e) => onClick(e.target.value) }>Remove
         </button>
-    </div>
+        <br/>
+    </>
 );
 
 export default EducationListItem;

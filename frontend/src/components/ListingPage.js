@@ -15,12 +15,10 @@ class ListingPage extends Component {
 
     render() {
         return (
-                <div className="container">
-                    <div className="section">
-                        <AddListing/>
-                        <ListingSections/>
-                    </div>
-                </div>
+            <>
+                <AddListing/>
+                <ListingSections/>
+            </>
         );
     }
 }

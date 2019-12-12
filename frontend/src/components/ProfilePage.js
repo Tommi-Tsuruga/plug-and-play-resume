@@ -6,9 +6,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import BasicInfo from "./basic-info/BasicInfo";
 import AddExperience from "./experience/AddExperience";
-import ExperienceList from "./experience/ExperienceList";
 import AddEducation from "./education/AddEducation"
-import EducationList from "./education/EducationList"
 import { fetchExperiences } from "../actions/experiences";
 import { fetchEducations } from "../actions/educations";
 import { fetchBasicInfo } from "../actions/basicInfo";
@@ -31,32 +29,26 @@ class ProfilePage extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="container">
-                    <BasicInfo
-                        onSubmit={ () => {
-                            this.props.history.push('/profile')
-                        } }/>
-                </div>
-                <div className="container">
-                    <AddJobHistory
-                        onSubmit={ () => {
-                            this.props.history.push('/profile')
-                        } }/>
-                </div>
-                <div className="container">
-                    <AddExperience
-                        onSubmit={ () => {
-                            this.props.history.push('/profile')
-                        } }/>
-                </div>
-                <div className="container">
-                    <AddEducation
-                        onSubmit={ () => {
-                            this.props.history.push('/profile')
-                        } }/>
-                </div>
-            </div>
+            <>
+                <BasicInfo
+                    onSubmit={ () => {
+                        this.props.history.push('/profile')
+                    } }/>
+
+                <AddJobHistory
+                    onSubmit={ () => {
+                        this.props.history.push('/profile')
+                    } }/>
+                <AddExperience
+                    onSubmit={ () => {
+                        this.props.history.push('/profile')
+                    } }/>
+
+                <AddEducation
+                    onSubmit={ () => {
+                        this.props.history.push('/profile')
+                    } }/>
+            </>
         )
     }
 }

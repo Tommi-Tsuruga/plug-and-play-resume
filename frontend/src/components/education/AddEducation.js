@@ -10,7 +10,7 @@ import {addEducation} from "../../actions/educations";
 import EducationList from "./EducationList";
 
 const AddEducation = (props) => (
-    <div className="section">
+    <>
         <h2 className="list-header">Education</h2>
         <EducationForm
             buttonText="Add Education"
@@ -19,7 +19,7 @@ const AddEducation = (props) => (
             }}
         />
         <EducationList/>
-    </div>
+    </>
 );
 
 const mapStateToProps = (state) => ({

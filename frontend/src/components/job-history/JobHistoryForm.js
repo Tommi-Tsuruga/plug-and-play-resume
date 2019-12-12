@@ -12,9 +12,9 @@ export default class JobHistoryForm extends Component {
             company: props.jobHistory ? props.jobHistory.company : '',
             description: props.jobHistory ? props.jobHistory.description : '',
             start_date: props.jobHistory ? moment(props.jobHistory.start_date)
-                                           .format(DATE_FORMAT) : moment(),
+                .format(DATE_FORMAT) : moment(),
             end_date: props.jobHistory ? moment(props.jobHistory.end_date)
-                                         .format(DATE_FORMAT) : moment(),
+                .format(DATE_FORMAT) : moment(),
             error: '',
             buttonText: this.props.buttonText
         };
@@ -58,7 +58,7 @@ export default class JobHistoryForm extends Component {
 
     render() {
         return (
-            <div className="container">
+            <>
                 <form className="form" onSubmit={ this.onSubmit }>
                     { this.state.error &&
                     <p className="form-error">{ this.state.error }</p> }
@@ -93,7 +93,7 @@ export default class JobHistoryForm extends Component {
                     <button
                         className="button--full">{ this.props.buttonText }</button>
                 </form>
-            </div>
+            </>
         )
     }
 }

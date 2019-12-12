@@ -10,16 +10,8 @@ import Loading from "../Loading";
 
 export const LoginPage = ({ dispatch, userLoading }) => (
     userLoading ? <Loading/> : (
-        <div className="container">
-            <header className="header">
-                <div className="container">
-                    <div className="header__title">
-                        <div className="header__title__text">
-                            <h1 className="header__title__text">PlugAndPlayResume</h1>
-                        </div>
-                    </div>
-                </div>
-            </header>
+        <>
+            <h1 className="header__title__text">PlugAndPlayResume</h1>
             <AccountFrom
                 buttonText="Login"
                 linkText="Don't have an account? Register"
@@ -28,7 +20,7 @@ export const LoginPage = ({ dispatch, userLoading }) => (
                     dispatch(login(username, password))
                 } }
             />
-        </div>
+        </>
     )
 );
 

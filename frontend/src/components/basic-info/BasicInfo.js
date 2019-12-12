@@ -12,7 +12,7 @@ import basicInfo from "../../reducers/basicInfo";
 
 const BasicInfo = (props) => {
     return (
-        <div className="section">
+        <>
             <h2 className="list-header">Basic Info</h2>
             <BasicInfoForm
                 onSubmit={ basicInfo => {
@@ -21,7 +21,7 @@ const BasicInfo = (props) => {
                 } }
             />
             <BasicInfoItem/>
-        </div>
+        </>
     )
 };
 

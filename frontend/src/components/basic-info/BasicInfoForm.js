@@ -16,14 +16,12 @@ class BasicInfoForm extends React.Component {
             email: props.basicInfo ? props.basicInfo.email : ''
         };
     }
-
     componentDidUpdate(prevProps, prevState, snapShot) {
         const { first_name, last_name, email } = this.props.basicInfo;
         if (prevProps.basicInfo !== this.props.basicInfo) {
             this.setState(() =>({ first_name, last_name, email }))
         }
     }
-
     onFirstNameChange = (e) => {
         const first_name = e.target.value;
         this.setState(() => ({ first_name }));
@@ -46,10 +44,9 @@ class BasicInfoForm extends React.Component {
             this.props.onSubmit({ first_name, last_name, email });
         }
     };
-
     render() {
         return (
-            <div className="container">
+            <>
                 <form className="form" onSubmit={ this.onSubmit }>
                     { this.state.error &&
                     <p className="form-error">{ this.state.error }</p> }
@@ -78,7 +75,7 @@ class BasicInfoForm extends React.Component {
                         className="button--full">Save your profile
                     </button>
                 </form>
-            </div>
+            </>
         )
     }
 }

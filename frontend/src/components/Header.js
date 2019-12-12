@@ -9,20 +9,12 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth'
 
 export const Header = ({ startLogout }) => (
-    <div className="container">
-        <header className="header">
-            <div className="container">
-                <div className="header__title">
-                    <div className="header__title__text">
+    <>
                         <h1>PlugAndPlayResume</h1>
-                    </div>
+
                     <button className="header__title__button"
                             onClick={ startLogout }>Logout
                     </button>
-                </div>
-            </div>
-            <div className="container">
-                <div className="header__content">
                     <NavLink to="/"
                              className="header__item"
                              activeClassName="is-active"
@@ -44,10 +36,7 @@ export const Header = ({ startLogout }) => (
                              activeClassName="is-active">
                         { <h2>Resume</h2> }
                     </NavLink>
-                </div>
-            </div>
-        </header>
-    </div>
+    </>
 );
 
 const mapDispatchToProps = (dispatch) => ({

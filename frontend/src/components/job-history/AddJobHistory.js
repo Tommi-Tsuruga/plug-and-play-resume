@@ -5,7 +5,7 @@ import JobHistoryForm from "./JobHistoryForm";
 import JobHistoryList from "./JobHistoryList";
 
 const AddJobHistory = (props) => (
-    <div className="section">
+    <div>
         <h2 className="list-header">JobHistory</h2>
         <JobHistoryForm
             buttonText="Add JobHistory"
