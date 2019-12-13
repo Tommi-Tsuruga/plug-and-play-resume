@@ -6,34 +6,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { login } from "../../actions/auth";
 import AccountFrom from "./AccountFrom";
-import Loading from "../Loading";
+import Loading from "../utils/Loading";
+import { Container } from "react-bootstrap";
 
-export const LoginPage = ({ dispatch, userLoading }) => (
-    userLoading ? <Loading/> : (
-        <div className="container">
-            <header className="header">
-                <div className="container">
-                    <div className="header__title">
-                        <div className="header__title__text">
-                            <h1 className="header__title__text">PlugAndPlayResume</h1>
-                        </div>
-                    </div>
-                </div>
-            </header>
+export const LoginPage = ({ dispatch }) => (
+        <>
             <AccountFrom
-                buttonText="Login"
-                linkText="Don't have an account? Register"
+                btnText="Login"
                 link="/register"
                 onSubmit={ ({ username, password }) => {
                     dispatch(login(username, password))
                 } }
             />
-        </div>
-    )
+        </>
 );
 
-const mapStateToProps = (state) => ({
-    userLoading: state.auth.isLoading
-});
-
-export default connect(mapStateToProps)(LoginPage);
+export default connect()(LoginPage);

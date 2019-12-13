@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import { addListing } from '../../actions/listings';
-import moment from "moment";
+import React, { Component } from 'react';
+import { Alert, Button, Form } from "react-bootstrap";
+
 
 export default class ListingForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listingTitle: props.listingInfo? props.listingInfo.listingTitle : '',
+            listingTitle: props.listingInfo ? props.listingInfo.listingTitle : '',
             listing: props.listingInfo ? props.listingInfo.listing : '',
             error: ''
         };
@@ -19,47 +18,45 @@ export default class ListingForm extends Component {
     };
     onDetailChange = (e) => {
         const listing = e.target.value;
-        this.setState(() => ( { listing }));
+        this.setState(() => ({ listing }));
     };
     onSubmit = (e) => {
         e.preventDefault();
-        const {listing, listingTitle} = this.state;
+        const { listing, listingTitle } = this.state;
         if (!(listing && listingTitle)) {
             this.setState(() => ({
-                error: 'Please provide valid info for both fields'
+                error: 'Please provide valid info for both fields.'
             }));
-        }else {
+        } else {
             // Modify this to take multiple exp fields
-            this.setState(() => ({error: ''}));
+            this.setState(() => ({ error: '' }));
             this.props.onSubmit({
-                listingTitle: this.state.listingTitle,
-                listing: this.state.listing
-            });
+                                    listingTitle: this.state.listingTitle,
+                                    listing: this.state.listing
+                                });
         }
     };
 
     render() {
         return (
-            <div className="container">
-                <form className="form" onSubmit={this.onSubmit}>
-                    {this.state.error &&
-                    <p className="form-error">{this.state.error}</p>}
-                    <input
-                        className='text-input'
+                <Form onSubmit={ this.onSubmit }>
+                    { this.state.error &&
+                    <Alert variant="danger">{ this.state.error }</Alert> }
+                    <Form.Control
                         type='text'
                         placeholder="Listing Title"
-                        value={this.state.listingTitle}
-                        onChange={this.onTitleChange}
+                        value={ this.state.listingTitle }
+                        onChange={ this.onTitleChange }
                     />
-                    <textarea
-                        className='textarea'
+                    <Form.Control
+                        as='textarea'
+                        rows="10"
                         placeholder='Listing Detail'
-                        onChange={this.onDetailChange}
-                        value={this.state.listing}
+                        onChange={ this.onDetailChange }
+                        value={ this.state.listing }
                     />
-                    <button className='button--full'>Add Listing</button>
-                </form>
-            </div>
+                    <Button className='btn-full' type="submit">Add Listing</Button>
+                </Form>
         );
     };
 }

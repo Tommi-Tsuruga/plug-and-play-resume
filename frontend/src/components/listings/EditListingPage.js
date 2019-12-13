@@ -7,12 +7,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import ListingForm from "./ListingForm";
 import { editListing } from "../../actions/listings";
-import listings from "../../reducers/listings";
 import ListingItems from "./ListingItems";
 
 const EditListingPage = (props) => {
     return (
-        <div className="section">
+        <>
             { console.log(props) }
             <ListingForm
                 buttonText="Submit"
@@ -22,12 +21,12 @@ const EditListingPage = (props) => {
                 } }
             />
             <ListingItems/>
-        </div>
+        </>
     );
 };
 
 const mapStateToProps = (state) => ({
-   listings: state.listings.listings
+    listings: state.listings.listings
 });
 
 export default connect(mapStateToProps)(EditListingPage);
