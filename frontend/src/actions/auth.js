@@ -45,8 +45,8 @@ export const startLogout = () => (dispatch, getState) => {
 };
 
 export const register = (username, email, password) => (dispatch, getState) => {
-    const params = { username, email, password };
     dispatch({ type: USER_LOADING });
+    const params = { username, email, password };
     axios.post("/api/auth/register/", params, requestConfig(getState))
          .then(res => setTimeout(() => dispatch(
              { type: REGISTER_SUCCESS, payload: res.data }), TIMEOUT))

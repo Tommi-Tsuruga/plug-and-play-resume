@@ -1,35 +1,35 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {deleteListing, addResume} from "../../actions/listings";
+import React from "react";
+import { connect } from "react-redux";
+import { addResume, deleteListing } from "../../actions/listings";
 import ListingItems from "./ListingItems";
-import { createMessage, returnErrors } from "../../actions/messages";
-import errors from "../../reducers/errors";
+import { ListGroup } from "react-bootstrap";
 
 
 const ListingSections = (props) => {
     const MIN_EXPERIENCES = 4;
     const errorMsg = "You need to have at least four experiences to generate " +
-                     "accurate resume";
+        "accurate resume";
     return (
-            <div className="container">
-                <div className="list-body">
-                    { props.listingInfo.map((listingInfo, index) =>
-                        <ListingItems
-                            key={index}
-                            index={index}
-                            {...listingInfo}
-                            removeResume={(id) => {
-                                props.dispatch(deleteListing(id))
-                            }}
-                            submitResume={(i) => {
-                                if (props.experiences.length < MIN_EXPERIENCES)
-                                { alert(errorMsg) }
-                                 else { props.dispatch(addResume({ i })) }
-                            }}
-                        />
-                    )}
-                </div>
-            </div>
+        <ListGroup>
+            { props.listingInfo.map((listingInfo, index) => (
+                <ListingItems
+                    key={ index }
+                    index={ index }
+                    { ...listingInfo }
+                    removeResume={ (id) => {
+                        props.dispatch(deleteListing(id))
+                    }}
+                    submitResume={ (i) => {
+                        if (props.experiences.length < MIN_EXPERIENCES) {
+                            alert(errorMsg)
+                        } else {
+                            props.dispatch(
+                                addResume({ i }))
+                        }
+                    }}
+                />
+                ))}
+        </ListGroup>
     );
 };
 

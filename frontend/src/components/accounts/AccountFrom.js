@@ -4,16 +4,18 @@
  */
 import React from "react";
 import { Link } from 'react-router-dom'
+import { Button, Form, Alert } from "react-bootstrap";
+import { capitalize, removeSlash, validEmail } from "../../lib";
 
 export default class AccountFrom extends React.Component {
     constructor(props) {
         super(props)
     }
-
     state = {
         username: "",
         email: "",
         password: "",
+        error: ''
     };
     onUsernameChange = (e) => {
         const username = e.target.value;
@@ -29,53 +31,47 @@ export default class AccountFrom extends React.Component {
     };
     onSubmit = (e) => {
         e.preventDefault();
-
-        if (!(this.state.username || this.state.password)) {
+        const isRegister = this.props.btnText === "Register";
+        const { username, email, password, error } = this.state;
+        if (!(username && password)) {
             this.setState(() => ({
-                error: 'Please provide both username and password'
+                error: 'Please provide both username and password.'
             }));
+        } else if(isRegister && !validEmail(email)) {
+            this.setState(
+                () => ({ emailError: 'Enter a valid email address.' }));
         } else {
-            console.log(this.state.email);
-            this.setState(() => ({ error: '' }));
-            this.props.onSubmit({
-                                    username: this.state.username,
-                                    email: this.state.email,
-                                    password: this.state.password
-                                })
+            this.setState(() => ({ error: '', emailError: '' }));
+            this.props.onSubmit({ username, email, password })
         }
     };
-
-    render = () => (
-        <div className="container">
-            <form  onSubmit={ this.onSubmit }>
-                { this.state.error &&
-                <p className="form-error">{ this.state.error }</p> }
-                    <input
-                        className="text-input__login"
-                        type="text"
-                        placeholder="Username"
-                        value={ this.state.username }
-                        onChange={ this.onUsernameChange }
-                    />
-                    { this.props.buttonText === "Register" &&
-                    <input
-                        className="text-input__login"
-                        type="text"
-                        placeholder="Email"
-                        value={ this.state.email }
-                        onChange={ this.onEmailChange }
-                    /> }
-                    <input
-                        className="text-input__login"
-                        type="password"
-                        placeholder="Password"
-                        value={ this.state.password }
-                        onChange={ this.onPasswordChange }
-                    />
-                <button
-                    className="button--full">{ this.props.buttonText }</button>
-                <Link to={ this.props.link }>{ this.props.linkText }</Link>
-            </form>
-        </div>
-    );
+    render() {
+        const { username, email, password, error, emailError } = this.state;
+        return (
+            <Form onSubmit={ this.onSubmit }>
+                { error && <Alert variant="danger">{ error }</Alert> }
+                { emailError && <Alert variant="danger">{ emailError }</Alert> }
+                <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    value={ username }
+                    onChange={ this.onUsernameChange }
+                />
+                { this.props.btnText === "Register" &&
+                <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={ email }
+                    onChange={ this.onEmailChange }
+                /> }
+                <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={ password }
+                    onChange={ this.onPasswordChange }
+                />
+                <Button type="submit">{ this.props.btnText }</Button>
+            </Form>
+        );
+    }
 }
