@@ -8,17 +8,17 @@ import { Route, Router, Switch } from "react-router-dom";
 import PlugResumePage from "../components/PlugResumePage";
 import LoginPage from "../components/accounts/LoginPage";
 import RegisterPage from "../components/accounts/RegisterPage";
-import SectionPage from "../components/ProfilePage";
+import SectionPage from "../components/profile/ProfilePage";
 import NotFoundPage from "../components/NotFoundPage";
 import { createBrowserHistory } from "history";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-import ResumePage from "../components/ResumePage";
-import ListingPage from "../components/ListingPage";
-import EditEducationPage from "../components/education/EditEducationPage";
-import EditExperiencePage from "../components/experience/EditExperiencePage";
+import ResumePage from "../components/generated/ResumePage";
+import ListingPage from "../components/listings/ListingPage";
+import EditEducationPage from "../components/profile/education/EditEducationPage";
+import EditExperiencePage from "../components/profile/experience/EditExperiencePage";
 import EditListingPage from "../components/listings/EditListingPage";
-import EditJobHistoryPage from "../components/job-history/EditJobHistoryPage";
+import EditJobHistoryPage from "../components/profile/job-history/EditJobHistoryPage";
 
 export const history = createBrowserHistory();
 

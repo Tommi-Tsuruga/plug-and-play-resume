@@ -7,7 +7,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
 import AccountFrom from "./AccountFrom";
-import Loading from "../Loading";
+import Loading from "../utils/Loading";
 
 export const RegisterPage = ({ dispatch, userLoading }) =>
     userLoading ? <Loading/> : (

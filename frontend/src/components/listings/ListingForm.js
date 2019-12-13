@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Alert, Button, Form } from "react-bootstrap";
+
 
 export default class ListingForm extends Component {
     constructor(props) {
@@ -37,26 +39,24 @@ export default class ListingForm extends Component {
 
     render() {
         return (
-            <>
-                <form className="form" onSubmit={ this.onSubmit }>
+                <Form onSubmit={ this.onSubmit }>
                     { this.state.error &&
-                    <p className="form-error">{ this.state.error }</p> }
-                    <input
-                        className='text-input'
+                    <Alert variant="danger">{ this.state.error }</Alert> }
+                    <Form.Control
                         type='text'
                         placeholder="Listing Title"
                         value={ this.state.listingTitle }
                         onChange={ this.onTitleChange }
                     />
-                    <textarea
-                        className='textarea'
+                    <Form.Control
+                        as='textarea'
+                        rows="10"
                         placeholder='Listing Detail'
                         onChange={ this.onDetailChange }
                         value={ this.state.listing }
                     />
-                    <button className='button--full'>Add Listing</button>
-                </form>
-            </>
+                    <Button className='btn-full' type="submit">Add Listing</Button>
+                </Form>
         );
     };
 }

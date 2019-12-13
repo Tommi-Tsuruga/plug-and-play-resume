@@ -4,38 +4,47 @@
  */
 
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth'
+import { Container, Nav, Navbar } from "react-bootstrap";
+
+const capitalize = (s) =>(
+    typeof s !== 'string' ? '' : s.charAt(0).toUpperCase() + s.slice(1)
+);
 
 export const Header = ({ startLogout }) => (
     <>
-                        <h1>PlugAndPlayResume</h1>
-
-                    <button className="header__title__button"
-                            onClick={ startLogout }>Logout
-                    </button>
-                    <NavLink to="/"
-                             className="header__item"
-                             activeClassName="is-active"
-                             exact={ true }>
-                        { <h2>Home</h2> }
-                    </NavLink>
-                    <NavLink to="/profile"
-                             className="header__item"
-                             activeClassName="is-active">
-                        { <h2>Profile</h2> }
-                    </NavLink>
-                    <NavLink to="/listing"
-                             className="header__item"
-                             activeClassName="is-active">
-                        { <h2>Listing</h2> }
-                    </NavLink>
-                    <NavLink to="/resume"
-                             className="header__item"
-                             activeClassName="is-active">
-                        { <h2>Resume</h2> }
-                    </NavLink>
+        <Navbar expand="lg" bg="secondary" text="uppercase" fixed="top">
+            <Container>
+                <Link to="/"
+                      className="navbar navbar-brand">
+                    PlugAndPlayResume
+                </Link>
+                <Navbar.Toggle
+                    aria-controls="navbar-nav"
+                    className="bg-primary rounded">
+                    MENU <i className="fas fa-bars"> </i>
+                </Navbar.Toggle>
+                <Navbar.Collapse id="navbar-nav">
+                    <Nav className="ml-auto">
+                        { [ "/profile", "/listing", "/resume" ].map(
+                            (address, index) => (
+                                <Nav.Item
+                                    key={ index }
+                                    className="mx-0 mx-lg-1">
+                                    <Link
+                                        to={ address }
+                                        className="navbar nav-item
+                                           py-3 px-0 nav-link px-lg-3 rounded">
+                                        { capitalize(address.substr(1)) }
+                                    </Link>
+                                </Nav.Item>
+                            )) }
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     </>
 );
 

@@ -1,24 +1,27 @@
 import React from "react"
+import { Button, ButtonGroup, ListGroupItem } from "react-bootstrap";
 
 const ListingItems = ({ id, listingTitle, listing, listingKeywords, submitResume, removeResume, index }) => {
     return (
-        <>
-            { `${ index + 1 }. ${ listingTitle }` } <br/>
+        <ListGroupItem>
+            <h6>{ `${ index + 1 }. ${ listingTitle }` } </h6>
             { `Keywords: ${ listingKeywords }` } <br/>
             { `${ listing } ` } <br/>
-            <button
-                className="list-item__button"
+            <ButtonGroup size="sm" className="btn-full">
+            <Button
+                variant="danger"
                 value={ id }
                 onClick={ (e) => removeResume(e.target.value) }
             >Remove
-            </button>
-            <button
-                className="list-item__button"
+            </Button>
+            <Button
+                variant="info"
                 value={ id }
                 onClick={ (e) => submitResume(e.target.value) }
             >Generate
-            </button> <br/>
-        </>
+            </Button>
+            </ButtonGroup>
+        </ListGroupItem>
     );
 };
 

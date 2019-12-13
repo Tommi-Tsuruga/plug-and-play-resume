@@ -6,7 +6,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { login } from "../../actions/auth";
 import AccountFrom from "./AccountFrom";
-import Loading from "../Loading";
+import Loading from "../utils/Loading";
 
 export const LoginPage = ({ dispatch, userLoading }) => (
     userLoading ? <Loading/> : (
