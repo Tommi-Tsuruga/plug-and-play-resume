@@ -25,7 +25,7 @@ export default class ListingForm extends Component {
         const { listing, listingTitle } = this.state;
         if (!(listing && listingTitle)) {
             this.setState(() => ({
-                error: 'Please provide valid info for both fields'
+                error: 'Please provide valid info for both fields.'
             }));
         } else {
             // Modify this to take multiple exp fields

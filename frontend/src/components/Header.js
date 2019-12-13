@@ -7,14 +7,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth'
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavItem } from "react-bootstrap";
+import { capitalize, removeSlash } from "../lib";
 
-const capitalize = (s) =>(
-    typeof s !== 'string' ? '' : s.charAt(0).toUpperCase() + s.slice(1)
-);
+const privateRoutes = [ "/profile", "/listing", "/resume" ];
+const publicRoutes = [ "/register", "/login" ];
 
-export const Header = ({ startLogout }) => (
-    <>
+export const Header = ({ startLogout, isAuthenticated }) => {
+    const routes = isAuthenticated ? privateRoutes : publicRoutes;
+    return(
         <Navbar expand="lg" bg="secondary" text="uppercase" fixed="top">
             <Container>
                 <Link to="/"
@@ -28,29 +29,39 @@ export const Header = ({ startLogout }) => (
                 </Navbar.Toggle>
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="ml-auto">
-                        { [ "/profile", "/listing", "/resume" ].map(
-                            (address, index) => (
-                                <Nav.Item
-                                    key={ index }
-                                    className="mx-0 mx-lg-1">
-                                    <Link
-                                        to={ address }
-                                        className="navbar nav-item
-                                           py-3 px-0 nav-link px-lg-3 rounded">
-                                        { capitalize(address.substr(1)) }
-                                    </Link>
-                                </Nav.Item>
+                        { routes.map((route, index) => (
+                            <Nav.Item
+                               key={ index }
+                               className="mx-0 mx-lg-1">
+                               <Link
+                                  to={ route }
+                                  className="navbar nav-item py-3 px-0
+                                             nav-link px-lg-3 rounded">
+                                  { capitalize(removeSlash(route)) }
+                               </Link>
+                               </Nav.Item>
                             )) }
+                        { isAuthenticated &&
+                            <Nav.Item
+                                onClick={ startLogout }
+                                className="mx-0 mx-lg-1 py-3 px-0
+                                           nav-link px-lg-3 rounded">
+                                Logout
+                            </Nav.Item>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    </>
-);
+)};
 
 const mapDispatchToProps = (dispatch) => ({
     startLogout: () => dispatch(startLogout())
 });
 
-export default connect(undefined, mapDispatchToProps)(Header);
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

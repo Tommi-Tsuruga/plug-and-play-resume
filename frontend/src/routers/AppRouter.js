@@ -15,14 +15,21 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import ResumePage from "../components/generated/ResumePage";
 import ListingPage from "../components/listings/ListingPage";
-import EditEducationPage from "../components/profile/education/EditEducationPage";
-import EditExperiencePage from "../components/profile/experience/EditExperiencePage";
+import EditEducationPage
+    from "../components/profile/education/EditEducationPage";
+import EditExperiencePage
+    from "../components/profile/experience/EditExperiencePage";
 import EditListingPage from "../components/listings/EditListingPage";
-import EditJobHistoryPage from "../components/profile/job-history/EditJobHistoryPage";
+import EditJobHistoryPage
+    from "../components/profile/job-history/EditJobHistoryPage";
 
 export const history = createBrowserHistory();
 
-export default class AppRouter extends React.Component {
+class AppRouter extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <Router history={ history }>
@@ -67,3 +74,6 @@ export default class AppRouter extends React.Component {
         );
     }
 }
+
+export default AppRouter;
+

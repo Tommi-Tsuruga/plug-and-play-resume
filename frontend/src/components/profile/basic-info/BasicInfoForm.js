@@ -6,6 +6,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Alert, Button, Form } from "react-bootstrap";
+import { validEmail } from "../../../lib";
 
 class BasicInfoForm extends React.Component {
     constructor(props) {
@@ -18,14 +19,12 @@ class BasicInfoForm extends React.Component {
             saved: ''
         };
     }
-
     componentDidUpdate(prevProps, prevState, snapShot) {
         const { first_name, last_name, email } = this.props.basicInfo;
         if (prevProps.basicInfo !== this.props.basicInfo) {
             this.setState(() => ({ first_name, last_name, email }))
         }
     }
-
     onFirstNameChange = (e) => {
         const first_name = e.target.value;
         this.setState(() => ({ first_name }));
@@ -38,15 +37,12 @@ class BasicInfoForm extends React.Component {
         const email = e.target.value;
         this.setState(() => ({ email }));
     };
-    validEmail = (email) => (
-        (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email)
-    );
     onSubmit = (e) => {
         e.preventDefault();
         const { first_name, last_name, email } = this.state;
         if (!(first_name && last_name && email)) {
             this.setState(() => ({ error: 'Please provide all fields' }));
-        } else if(!this.validEmail(email)) {
+        } else if(!validEmail(email)) {
             this.setState(
                 () => ({ emailError: 'Enter a valid email address' }));
         } else {

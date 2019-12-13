@@ -9,24 +9,26 @@ const PrivateRoute = ({
     isLoading,
     component: Component,
     ...rest
-}) => isLoading ? <Loading/> : (
-    <Route { ...rest } component={ (props) => (
-        isAuthenticated ? (
-            <>
-                <Header/>
-                <div className="page">
-                    <Component { ...props } />
-                </div>
-            </>
-        ) : (
-            <Redirect to="/login"/>
-        )
-    ) }/>
+}) => (<>
+        <Header/> {
+        isLoading ? <Loading/> : (
+            <Route { ...rest } component={ (props) => (
+                isAuthenticated ? (
+                    <div className="page">
+                        <Component { ...props } />
+                    </div>
+                ) : (
+                    <Redirect to="/login"/>
+                )
+            ) }/>)
+    }
+    </>
 );
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    isLoading: state.auth.isLoading,
+    isLoading: state.auth.isLoading
+
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

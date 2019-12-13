@@ -22,5 +22,4 @@ const BasicInfo = (props) => {
     )
 };
 
-
 export default connect()(BasicInfo);
