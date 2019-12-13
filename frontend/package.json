@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Keisuke Suzuki",
+  "author": "Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack --mode development",

@@ -1,5 +1,5 @@
 /**
- * ProfilePage.jsjs@author [Keisuke Suzuki](https://github.com/Ks5810)
+ * ProfilePage.jsjs@author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 import React, { Component } from "react";

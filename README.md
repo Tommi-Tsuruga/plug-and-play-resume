@@ -103,7 +103,7 @@ if you need to reset the setting, run
 
 - Tommi Ann Tsuruga - *Admin*
 - Aisha Khoja  
-- Keisuke Suzuki  
+- Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga   
 
 
 <h2>License</h2>

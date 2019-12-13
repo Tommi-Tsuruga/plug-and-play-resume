@@ -82910,7 +82910,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * auth.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 var loadUser = function loadUser() {
@@ -83133,7 +83133,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * experiences.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83348,7 +83348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./actions/auth */ "./src/actions/auth.js");
 /**
  * app.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83405,7 +83405,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * DateRangeSelector.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83525,7 +83525,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
- * SectionPage.jsjs@author [Keisuke Suzuki](https://github.com/Ks5810)
+ * SectionPage.jsjs@author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83610,7 +83610,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/auth */ "./src/actions/auth.js");
 /**
  * Header.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83673,7 +83673,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * HelpPage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83744,7 +83744,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * LoginForm.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83864,7 +83864,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LoginFrom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AccountFrom */ "./src/components/LoginFrom.js");
 /**
  * LoginPage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83929,7 +83929,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * NotFoundPage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83959,7 +83959,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * PlugResumePage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -83992,7 +83992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LoginFrom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AccountFrom */ "./src/components/LoginFrom.js");
 /**
  * RegisterPage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84059,7 +84059,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_experiences__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/experiences */ "./src/actions/experiences.js");
 /**
  * AddEducation.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84122,7 +84122,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * EducationForm.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84259,7 +84259,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 /**
  * EducationList.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84303,7 +84303,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /**
  * EductionListItems.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84345,7 +84345,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_experiences__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/experiences */ "./src/actions/experiences.js");
 /**
  * AddExperience.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84386,7 +84386,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_experiences__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/experiences */ "./src/actions/experiences.js");
 /**
  * EditExperiencePage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84466,7 +84466,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * ExperienceForm.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84637,7 +84637,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 /**
  * ExperienceList.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84684,7 +84684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /**
  * ExperienceListItem.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -84728,7 +84728,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * auth.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 // Auth Reducer
 var authDefaultReducer = {
@@ -84807,7 +84807,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /**
  * experiences.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 // Experience Reducer
 var experienceReducerDefaultState = [];
@@ -84897,7 +84897,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 /**
  * AppRouter.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -85101,7 +85101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/auth */ "./src/reducers/auth.js");
 /**
  * configureStore.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 
 
@@ -85189,7 +85189,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /**
  * util.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 var requestConfig = {
   mode: 'cors',
