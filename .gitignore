@@ -4,3 +4,5 @@ venv
 node_modules
 .idea
 plug_and_play_env/
+__pycache__/
+migrations/

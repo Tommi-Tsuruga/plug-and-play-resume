@@ -2,7 +2,11 @@ import os.path
 import sys
 
 from rest_framework import serializers
-
+from django.http import HttpResponse
+from django.template import Context
+from django.template.loader import get_template
+from subprocess import Popen, PIPE
+import tempfile
 from listing.models import ListingInfo, GeneratedResume
 from resume.models import BasicInfo, Experience, Education, JobHistory
 from resume.utils import TextRank4Keyword
@@ -47,7 +51,40 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         return listing_obj
 
 
+class PDFResumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GeneratedResume
+        fields = ('id', 'first_name', 'last_name', 'email')
+
+    def entry_as_pdf(self):
+        entry = GeneratedResume.objects.get(owner=data.get('owner'))  # (1)
+        context = Context({  # (2)
+            'content': entry.content,
+        })
+        template = get_template('my_latex_template.tex')
+        rendered_tpl = template.render(context).encode('utf-8')  # (3)
+        with tempfile.TemporaryDirectory() as tempdir:  # (4)
+            for i in range(2):
+                process = Popen(
+                    ['pdflatex', '-output-directory', tempdir],
+                    stdin=PIPE,
+                    stdout=PIPE,
+                )
+                process.communicate(rendered_tpl)
+            with open(os.path.join(tempdir, 'texput.pdf'), 'rb') as f:
+                pdf = f.read()
+        r = HttpResponse(content_type='application/pdf')  # (5)
+        # r['Content-Disposition'] = 'attachment; filename=texput.pdf'
+        r.write(pdf)
+        return r
+
+    def create(self, data):
+        entry = entry_as_pdf()
+        return entry
+
 # Might be good idea to generate skills from JobHistory and Experience?
+
+
 class GeneratedResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneratedResume
@@ -60,12 +97,12 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
     # Many duplicated pieces. Probably splitting into smaller functions
     def create(self, data):
         call_key = data.get("listingID", None)
-
+        print(data.get("owner"))
         basic_info = BasicInfo.objects.get(owner=data.get('owner'))
         first_name = basic_info.first_name
         last_name = basic_info.last_name
         email = basic_info.email
-
+        print('self listing data: ', data)
         education = {}
         for ind, val in enumerate(Education.objects.select_related('owner')):
             tmp = "{}  ({} - {})\n{} in {}" \
