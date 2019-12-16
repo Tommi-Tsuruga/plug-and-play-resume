@@ -19,7 +19,6 @@ class ListingPage extends Component {
     <Container>
       <div className='page-section'>
         <Container>
-<<<<<<< HEAD
           <h2>Listing</h2>
           <ListingForm
             buttonText='Add'
@@ -34,26 +33,6 @@ class ListingPage extends Component {
               See your generated resume!
             </Button>
           </LinkContainer>
-=======
-            <div className="page-section">
-                <Container>
-                <h2>Listing</h2>
-                <ListingForm
-                    buttonText="Add"
-                    onSubmit={ (listing) => {
-                        this.props.dispatch(addListing(listing));
-                    } }
-                />
-            <ListingSections/>
-            <LinkContainer to={ `/resume` }>
-                        <Button
-                            size="xl"
-                            className="btn-full"
-                            variant="info">See your generated resume!</Button>
-                    </LinkContainer>
-                </Container>
-            </div>
->>>>>>> 61a6dcf4e1323c116383a844316edb54d3cb9f2c
         </Container>
       </div>
     </Container>

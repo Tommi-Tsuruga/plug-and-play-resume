@@ -25,12 +25,6 @@ spacy==2.2.3
 sqlparse==0.3.0
 srsly==0.2.0
 thinc==7.3.1
-<<<<<<< HEAD
-tqdm==4.40.2
-urllib3==1.25.7
-wasabi==0.4.2
-zipp==0.6.0
-=======
 tqdm==4.36.1
 typed-ast==1.4.0
 uritemplate==3.0.0
@@ -38,4 +32,3 @@ urllib3==1.25.5
 wasabi==0.4.0
 wrapt==1.11.2
 zipp==0.6.0
->>>>>>> 61a6dcf4e1323c116383a844316edb54d3cb9f2c

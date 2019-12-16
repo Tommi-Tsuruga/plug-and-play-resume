@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 import axios from 'axios';
 import { FETCH_GENERATED, CREATE_PDF } from './types';
-import { requestConfig } from './auth';
+import { requestConfig } from '../lib';
 import { returnErrors } from './messages';
-=======
-import axios from "axios";
-import { FETCH_GENERATED } from "./types";
-import { returnErrors } from "./messages";
-import { requestConfig } from "../lib";
->>>>>>> 61a6dcf4e1323c116383a844316edb54d3cb9f2c
 
 // Change timeOut here
 const TIMEOUT = 1000;
