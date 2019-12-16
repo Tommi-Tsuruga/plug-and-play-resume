@@ -21,6 +21,10 @@ There are few things have to be installed manually:
 <pre>pip install django</pre></li>
 <li>djangorestframework
 <pre>pip install djangorestframework</pre></li>
+<pre>pip install django-webpack-loader</pre></li>
+<pre>pip install nltk</pre></li>
+<pre>pip install python-dotenv</pre></li>
+<pre> pip install psycopg2</pre></li>
 <h4>FrontEnd</h4>
 <i>plug-and-play-resume/frontend</i>
 <pre>yarn install</pre>
