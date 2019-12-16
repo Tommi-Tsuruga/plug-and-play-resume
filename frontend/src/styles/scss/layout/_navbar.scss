@@ -1,0 +1,111 @@
+/**
+ * _navbar.scss
+ * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @description Styling for the navbar
+ */
+
+.navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+
+    .navbar-brand {
+        color: $white;
+        &:hover {
+            color: $primary;
+        }
+        &:active,
+        &:focus {
+            color: $white;
+        }
+    }
+
+    .navbar-nav {
+        margin-top: 1rem;
+
+        .nav-item {
+            .nav-link {
+                color: $white;
+
+                &:hover {
+                    color: $primary;
+                }
+                &:active,
+                &:focus {
+                    color: $white;
+                }
+                &.active {
+                    color: $primary;
+                }
+            }
+        }
+    }
+    .navbar-button {
+        margin-top: 0.3rem;
+        font-size: 90%;
+        padding: 0.6rem;
+        color: $white;
+        font-weight: bold;
+        border-color: $secondary;
+        background-color: $danger;
+        &:hover {
+                color: $white;
+                background: $primary;
+            }
+    }
+    .navbar-toggler {
+        font-size: 80%;
+        padding: 0.8rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    @include media-breakpoint-up(lg) {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        transition: padding-top 0.3s, padding-bottom 0.3s;
+
+        .navbar-brand {
+          font-size: 1.75em;
+          transition: font-size 0.3s;
+        }
+        .navbar-button {
+            margin-top: 0.3rem;
+            margin-left: 1rem;
+            font-size: 90%;
+            margin-left: 1rem;
+            padding: 0.7rem;
+            color: $white;
+            font-weight: bold;
+        }
+
+        .navbar-nav {
+            margin-top: 1rem;
+        }
+        .navbar-nav > .nav-item > .nav-link.active {
+            color: $warning;
+            background: $primary;
+
+            &:active,
+            &:focus,
+            &:hover {
+                color: $white;
+                background: $primary;
+            }
+        }
+        .navbar-shrink {
+            padding-top: 0.9rem;
+            padding-bottom: 0.9rem;
+
+            .navbar-brand {
+                font-size: 1.5em;
+                &:active,
+                &:focus {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}
+
