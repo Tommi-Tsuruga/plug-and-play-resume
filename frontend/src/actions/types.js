@@ -22,15 +22,17 @@ export const UPDATE_BASIC_INFO = 'ADD_BASIC_INFO';
 export const FETCH_GENERATED = 'FETCH_GENERATED';
 export const FETCH_LISTINGS = 'FETCH_LISTINGS';
 export const EDIT_LISTING = 'EDIT_LISTING';
-export const DELETE_LISTING = "DELETE_LISTING";
-export const ADD_LISTING = "ADD_LISTING";
-export const ADD_RESUME = "ADD_RESUME";
-export const GET_ERRORS = "GET_ERRORS";
-export const CREATE_MESSAGE = "CREATE_MESSAGES";
-export const ADD_JOB_HISTORY = "ADD_JOB_HISTORY";
-export const EDIT_JOB_HISTORY = "EDIT_JOB_HISTORY";
-export const FETCH_JOB_HISTORY = "FETCH_JOB_HISTORY";
-export const REMOVE_JOB_HISTORY = "REMOVE_JOB_HISTORY";
+export const DELETE_LISTING = 'DELETE_LISTING';
+export const ADD_LISTING = 'ADD_LISTING';
+export const ADD_RESUME = 'ADD_RESUME';
+export const GET_ERRORS = 'GET_ERRORS';
+export const CREATE_MESSAGE = 'CREATE_MESSAGES';
+export const ADD_JOB_HISTORY = 'ADD_JOB_HISTORY';
+export const EDIT_JOB_HISTORY = 'EDIT_JOB_HISTORY';
+export const FETCH_JOB_HISTORY = 'FETCH_JOB_HISTORY';
+export const REMOVE_JOB_HISTORY = 'REMOVE_JOB_HISTORY';
+
+export const CREATE_PDF = 'CREATE_PDF';
 
 // date format
-export const DATE_FORMAT = "YYYY-MM-DD";
+export const DATE_FORMAT = 'YYYY-MM-DD';

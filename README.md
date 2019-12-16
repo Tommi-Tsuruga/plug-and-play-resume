@@ -7,7 +7,6 @@ PlugAndPlayResume creates resumes optimized for specific job positions</p>
 <h2>Motivation</h2>
 In order to make getting your dream job easier, our product will solve the job-hunter's problem of resume customization by giving them an adaptive webapp to identify their most relevant experience.
 
-
 <h2>Prerequisites</h2>
 <h4>Backend</h4>
 In the root directory, <i>plug-and-play-resume/</i>
@@ -21,6 +20,10 @@ There are few things have to be installed manually:
 <pre>pip install django</pre></li>
 <li>djangorestframework
 <pre>pip install djangorestframework</pre></li>
+<pre>pip install django-webpack-loader</pre></li>
+<pre>pip install nltk</pre></li>
+<pre>pip install python-dotenv</pre></li>
+<pre> pip install psycopg2</pre></li>
 <h4>FrontEnd</h4>
 <i>plug-and-play-resume/frontend</i>
 <pre>yarn install</pre>
@@ -33,7 +36,6 @@ then,
 <pre>create database test with owner [ username ]</pre>
 if you need to reset the setting, run
 <pre>drop database test</pre>
-
 
 <h2>Status</h2>
 <h4>Frontend</h4>
@@ -96,16 +98,12 @@ if you need to reset the setting, run
     │   └── __pycache__
     └── __pycache__
 
-
 </pre>
 
 <h2>Authors</h2>
 
-- Tommi Ann Tsuruga - *Admin*
-- Aisha Khoja  
-- Keisuke Suzuki  
-
+- Tommi Ann Tsuruga - _Admin_
+- Aisha Khoja
+- Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga
 
 <h2>License</h2>
-
-

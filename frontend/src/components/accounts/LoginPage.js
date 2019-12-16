@@ -1,6 +1,6 @@
 /**
  * LoginPage.js
- * @author [Keisuke Suzuki](https://github.com/Ks5810)
+ * @author [Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga ](https://github.com/aishak7, https://github.com/Ks5810, https://github.com/tommi-tsuruga)
  */
 import React from "react";
 import { connect } from "react-redux";
