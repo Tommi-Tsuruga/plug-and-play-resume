@@ -4,10 +4,15 @@ import GeneratedListItems from './GeneratedListItems';
 import Loading from '../utils/Loading';
 import { ListGroup } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import { fetchGenerated, createPDF } from '../../actions/generated';
+import {
+  fetchGenerated, createPDF, removeGenerated
+} from '../../actions/generated';
 import { LinkContainer } from 'react-router-bootstrap';
 import { save } from 'save-file';
 class GeneratedList extends Component {
+  constructor(props){
+    super(props)
+  }
   state = {
     listingID: ''
   };
@@ -15,6 +20,11 @@ class GeneratedList extends Component {
   componentDidMount() {
     this.props.fetchGenerated();
   }
+
+  removeGenerated = (id) => {
+    this.props.dispatch(removeGenerated)
+  };
+
   async submitPDF() {
     console.log('this props in this submit function', this.props);
     await this.props.createPDF();
@@ -39,7 +49,10 @@ class GeneratedList extends Component {
             <p> You don't have any resume yet </p>
           ) : (
             this.props.generatedInfo.map(generatedInfo => (
-              <GeneratedListItems key={generatedInfo.id} {...generatedInfo} />
+              <GeneratedListItems key={generatedInfo.id}
+                                  id={generatedInfo.id}
+                                  removeGenerated={this.removeGenerated}
+                                  { ...generatedInfo} />
             ))
           )}
         </ListGroup>

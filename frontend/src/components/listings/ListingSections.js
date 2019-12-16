@@ -7,7 +7,7 @@ import { ListGroup } from "react-bootstrap";
 
 const ListingSections = (props) => {
     const MIN_EXPERIENCES = 2;
-    const errorMsg = "You need to have at least four experiences to generate " +
+    const errorMsg = "You need to have at least two experiences to generate " +
         "accurate resume";
     return (
         <ListGroup>

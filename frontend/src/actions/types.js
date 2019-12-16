@@ -33,6 +33,7 @@ export const FETCH_JOB_HISTORY = 'FETCH_JOB_HISTORY';
 export const REMOVE_JOB_HISTORY = 'REMOVE_JOB_HISTORY';
 
 export const CREATE_PDF = 'CREATE_PDF';
+export const REMOVE_GENERATED = 'REMOVE_GENERATED';
 
 // date format
 export const DATE_FORMAT = 'YYYY-MM-DD';

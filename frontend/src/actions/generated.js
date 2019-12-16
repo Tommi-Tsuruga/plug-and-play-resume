@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_GENERATED, CREATE_PDF } from './types';
+import { FETCH_GENERATED, CREATE_PDF, DELETE_EDUCATION } from './types';
 import { requestConfig } from '../lib';
 import { returnErrors } from './messages';
 
