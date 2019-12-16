@@ -8,8 +8,8 @@ import "regenerator-runtime/runtime";
 import {
     ADD_EXPERIENCE, EDIT_EXPERIENCE, FETCH_EXPERIENCES, REMOVE_EXPERIENCE
 } from "./types";
-import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 
 // Change timeOut here

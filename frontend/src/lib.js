@@ -12,3 +12,19 @@ export const removeSlash = (s) => (
 export const validEmail = (s) => (
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(s)
 );
+
+export const requestConfig = (getState) => {
+    const headers = { 'Content-Type': 'application/json' };
+    const { token } = getState().auth;
+    if (token) {
+        headers['Authorization'] = `Token ${ token }`;
+    }
+    return {
+        headers,
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        redirect: 'follow',
+        referrer: 'no-referrer',
+    }
+};

@@ -1,10 +1,5 @@
 #!/usr/bin/env python
-# title           : models.py
-# description     :
-# author          : Keisuke Suzuki
-# date            : 11/4/19
-# usage           : python models.py
-# ==============================================================================
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -25,8 +20,7 @@ class BasicInfo(models.Model):
 
 
 class Experience(models.Model):
-    owner = models.ForeignKey(User,
-                              related_name='experience',
+    owner = models.ForeignKey(User, related_name='experience',
                               on_delete=models.CASCADE)
     title = models.CharField(max_length=25)
     description = models.TextField()
@@ -40,8 +34,7 @@ class Experience(models.Model):
 
 
 class Education(models.Model):
-    owner = models.ForeignKey(User,
-                              related_name='education',
+    owner = models.ForeignKey(User, related_name='education',
                               on_delete=models.CASCADE)
     school_name = models.CharField(max_length=100)
     degree = models.CharField(max_length=100, default="")
@@ -57,8 +50,7 @@ class Education(models.Model):
 
 
 class JobHistory(models.Model):
-    owner = models.ForeignKey(User,
-                              related_name='jobhistory',
+    owner = models.ForeignKey(User, related_name='jobhistory',
                               on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()

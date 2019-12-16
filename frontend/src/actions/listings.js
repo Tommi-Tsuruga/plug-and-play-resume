@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { requestConfig } from './auth';
-import {
-    ADD_LISTING, ADD_RESUME, DELETE_LISTING, EDIT_LISTING, FETCH_LISTINGS
+import { ADD_LISTING, ADD_RESUME, DELETE_LISTING, EDIT_LISTING, FETCH_LISTINGS
 } from './types';
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 // Change timeOut here
 const TIMEOUT = 0;
@@ -45,9 +44,8 @@ export const editListing = (id, listingData) => (dispatch, getState) => {
 };
 
 export const addResume = (resumeData) => (dispatch, getState) => {
-    const resume = JSON.stringify(resumeData);
-    console.log('logging resume', resume);
-    axios.post('/api/resume/', resume, requestConfig(getState))
+    console.log('logging resume', resumeData);
+    axios.post('/api/resume/', resumeData, requestConfig(getState))
          .then(res => setTimeout(() =>
              dispatch({ type: ADD_RESUME, payload: res.data }), TIMEOUT))
          .catch(err =>

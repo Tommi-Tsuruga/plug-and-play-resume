@@ -23,7 +23,7 @@ class ListingPage extends Component {
                 <ListingForm
                     buttonText="Add"
                     onSubmit={ (listing) => {
-                        props.dispatch(addListing(listing));
+                        this.props.dispatch(addListing(listing));
                     } }
                 />
             <ListingSections/>

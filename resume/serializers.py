@@ -14,6 +14,12 @@ def create_user_basic_info(sender, instance, created, **kwargs):
         BasicInfo.objects.create(owner=instance)
 
 
+def get_keywords(resume_stuff, parsed):
+    resume_stuff.analyze(parsed, window_size=4, lower=False,
+                         stopwords=stopwords)
+    return resume_stuff.get_keywords()
+
+
 class BasicInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = BasicInfo
@@ -25,31 +31,26 @@ class ExperienceSerializer(serializers.ModelSerializer):
         model = Experience
         fields = ('id', 'title', 'description', 'experience_keywords')
 
+    def get_keyword_items(self, data):
+        parsed_exp = data.get("title", None) + " \n "
+        parsed_exp += data.get("description", None) + " \n "
+        return parsed_exp
+
     def update(self, instance, data):
         instance.title = data.get('title')
         instance.description = data.get("description")
-        instance.save()
-        parsed_exp = data.get("title") + " \n "
-        parsed_exp += data.get("company") + " \n "
-        parsed_exp += data.get("description") + " \n "
+        parsed_exp = self.get_keyword_items(data)
         listing_stuff = TextRank4Keyword()
-        listing_stuff.analyze(parsed_exp, window_size=4, lower=False,
-                              stopwords=stopwords)
-        keyword_list = listing_stuff.get_keywords()
-        instance.experience_keywords = keyword_list
+        instance.experience_keywords = get_keywords(listing_stuff, parsed_exp)
         instance.save()
         return instance
 
     def create(self, data):
-        parsed_exp = data.get("title", None) + " \n "
-        parsed_exp += data.get("description", None) + " \n "
+        parsed_exp = self.get_keyword_items(data)
+        print(parsed_exp)
         resume_stuff = TextRank4Keyword()
-        resume_stuff.analyze(parsed_exp, window_size=4, lower=False,
-                             stopwords=stopwords)
-        keyword_list = resume_stuff.get_keywords()
-        experience_obj = Experience.objects.create(
-            experience_keywords=keyword_list, **data)
-        return experience_obj
+        keywords = get_keywords(resume_stuff, parsed_exp)
+        return Experience.objects.create(experience_keywords=keywords, **data)
 
 
 class EducationSerializer(serializers.ModelSerializer):
@@ -65,14 +66,14 @@ class JobHistorySerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'description', 'company',
                   'start_date', 'end_date', 'job_history_keywords')
 
-    def create(self, data):
+    def get_keyword_items(self, data):
         parsed_exp = data.get("title", None) + " \n "
         parsed_exp += data.get("company", None) + " \n "
         parsed_exp += data.get("description", None) + " \n "
+        return parsed_exp
+
+    def create(self, data):
+        parsed_jh = self.get_keyword_items(data)
         resume_stuff = TextRank4Keyword()
-        resume_stuff.analyze(parsed_exp, window_size=4, lower=False,
-                             stopwords=stopwords)
-        keyword_list = resume_stuff.get_keywords()
-        job_history_obj = JobHistory.objects.create(
-            job_history_keywords=keyword_list, **data)
-        return job_history_obj
+        keywords = get_keywords(resume_stuff, parsed_jh)
+        return JobHistory.objects.create(job_history_keywords=keywords, **data)

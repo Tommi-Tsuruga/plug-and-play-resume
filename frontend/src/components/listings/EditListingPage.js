@@ -12,7 +12,6 @@ import ListingItems from "./ListingItems";
 const EditListingPage = (props) => {
     return (
         <>
-            { console.log(props) }
             <ListingForm
                 buttonText="Submit"
                 onSubmit={ listing => {

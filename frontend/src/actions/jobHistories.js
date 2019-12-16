@@ -3,9 +3,8 @@ import "regenerator-runtime/runtime";
 import {
     ADD_JOB_HISTORY, EDIT_JOB_HISTORY, REMOVE_JOB_HISTORY, FETCH_JOB_HISTORY
 } from "./types";
-
-import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 const TIMEOUT = 1000;
 

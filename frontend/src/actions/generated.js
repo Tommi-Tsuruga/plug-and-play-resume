@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FETCH_GENERATED } from "./types";
-import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 // Change timeOut here
 const TIMEOUT= 1000;

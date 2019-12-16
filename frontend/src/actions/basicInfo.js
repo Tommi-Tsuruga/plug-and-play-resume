@@ -1,8 +1,8 @@
 import axios from 'axios';
 import "regenerator-runtime/runtime";
 import { UPDATE_BASIC_INFO, FETCH_BASIC_INFO } from "./types";
-import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 // Change timeOut here
 const TIMEOUT = 1000;
@@ -11,7 +11,7 @@ const TIMEOUT = 1000;
 export const fetchBasicInfo = () => (dispatch, getState) => {
     return axios.get("/api/basic/", requestConfig(getState))
          .then(res => setTimeout( () =>
-             dispatch({ type: FETCH_BASIC_INFO, payload: res.data })))
+             dispatch({ type: FETCH_BASIC_INFO, payload: res.data }), TIMEOUT))
          .catch(err => dispatch(returnErrors(err.response.data, err.status)));
 };
 
