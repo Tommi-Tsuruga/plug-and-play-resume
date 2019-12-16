@@ -27,6 +27,7 @@ media
 # Distribution / packaging
 .Python
 build/
+plug-and-play-env/
 develop-eggs/
 dist/
 downloads/
