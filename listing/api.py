@@ -78,7 +78,7 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
 
         # a = self.request.user
         a = GeneratedResume.objects.get(owner=(self.request.user))
-        print(a.first_name)
+        print("aname", a.first_name)
 
         def generate_print_pdf(data, contact):
             pdf_buffer = io.BytesIO()
@@ -94,12 +94,12 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
             contentTable = Table(
                 data,
                 colWidths=[
-                    0.8 * inch,
-                    6.9 * inch])
+                    1.1 * inch,
+                    7.2 * inch])
             tblStyle = TableStyle([
                 ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
                 ('FONT', (0, 0), (-1, -1), 'Courier'),
-                ('FONTSIZE', (0, 0), (-1, -1), 8),
+                ('FONTSIZE', (0, 0), (-1, -1), 10),
                 ('VALIGN', (0, 0), (-1, -1), 'TOP'),
                 ('ALIGN', (0, 0), (-1, -1), 'LEFT')])
             contentTable.setStyle(tblStyle)
@@ -120,12 +120,12 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
             def myPage(canvas, doc):
                 canvas.saveState()  # save the current state
                 # set the font for the name
-                canvas.setFont('Courier', 16)
+                canvas.setFont('Courier', 18)
                 canvas.drawString(
                     .4 * inch,
                     HEIGHT - (.4 * inch),
                     contact['name'])  # draw the name on top left page 1
-                canvas.setFont('Courier', 8)  # sets the font for contact
+                canvas.setFont('Courier', 10)  # sets the font for contact
                 canvas.line(.4 * inch, HEIGHT - (.47 * inch),
                             WIDTH - (.4 * inch), HEIGHT - (.47 * inch))
                 canvas.drawRightString(
@@ -139,10 +139,19 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
         contact = {
             'name': a.first_name + " " + a.last_name,
             'email': a.email}
+        experienceList = []
+        experienceList.append(a.relevantExperience1)
+        experienceList.append(a.relevantExperience2)
+        experienceList.append(a.relevantExperience3)
+        workHistory = []
+        workHistory.append(a.relevantJobHistory1)
+        workHistory.append(a.relevantJobHistory2)
+        workHistory.append(a.relevantJobHistory3)
+        print(workHistory)
         data = {
             'education': a.education1,
-            'experience': [],
-            'work_history': []}
+            'experience': experienceList,
+            'work_history': workHistory}
         tblData = [
             ['EDUCATION', Paragraph(data['education'], styles['Content'])],
             ['WORK HISTORY', [Paragraph(x, styles['Content'])
