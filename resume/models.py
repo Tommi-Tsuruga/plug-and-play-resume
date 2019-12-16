@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # title           : models.py
 # description     :
-# author          : Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga 
+# author          : Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga
 # date            : 11/4/19
 # usage           : python models.py
 # ==============================================================================
@@ -20,13 +20,12 @@ class BasicInfo(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])
 
 
 class Experience(models.Model):
-    owner = models.ForeignKey(User,
-                              related_name='experience',
+    owner = models.ForeignKey(User, related_name='experience',
                               on_delete=models.CASCADE)
     title = models.CharField(max_length=25)
     description = models.TextField()
@@ -35,13 +34,12 @@ class Experience(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])
 
 
 class Education(models.Model):
-    owner = models.ForeignKey(User,
-                              related_name='education',
+    owner = models.ForeignKey(User, related_name='education',
                               on_delete=models.CASCADE)
     school_name = models.CharField(max_length=100)
     degree = models.CharField(max_length=100, default="")
@@ -52,13 +50,12 @@ class Education(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])
 
 
 class JobHistory(models.Model):
-    owner = models.ForeignKey(User,
-                              related_name='jobhistory',
+    owner = models.ForeignKey(User, related_name='jobhistory',
                               on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()
@@ -70,5 +67,5 @@ class JobHistory(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])

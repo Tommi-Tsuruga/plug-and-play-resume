@@ -7,7 +7,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth'
-import { Button, Container, Nav, Navbar, NavItem } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavItem, } from "react-bootstrap";
 import { capitalize, removeSlash } from "../lib";
 
 const privateRoutes = [ "/profile", "/listing", "/resume" ];
@@ -30,7 +30,7 @@ export const Header = ({ startLogout, isAuthenticated }) => {
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="ml-auto">
                         { routes.map((route, index) => (
-                            <Nav.Item
+                            <NavItem
                                key={ index }
                                className="mx-0 mx-lg-1">
                                <Link
@@ -39,15 +39,18 @@ export const Header = ({ startLogout, isAuthenticated }) => {
                                              nav-link px-lg-3 rounded">
                                   { capitalize(removeSlash(route)) }
                                </Link>
-                               </Nav.Item>
+                               </NavItem>
                             )) }
                         { isAuthenticated &&
-                            <Nav.Item
+                            <NavItem
                                 onClick={ startLogout }
-                                className="mx-0 mx-lg-1 py-3 px-0
-                                           nav-link px-lg-3 rounded">
+                                className="mx-0 mx-lg-1">
+                                <Button
+                                    onClick={ startLogout }
+                                        className="navbar navbar-button rounded">
                                 Logout
-                            </Nav.Item>
+                                </Button>
+                            </NavItem>
                         }
                     </Nav>
                 </Navbar.Collapse>

@@ -17,17 +17,6 @@ import { LinkContainer } from "react-router-bootstrap";
 
 
 class ProfilePage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(fetchBasicInfo());
-        dispatch(fetchExperiences());
-        dispatch(fetchEducations());
-        dispatch(fetchJobHistory())
-    };
 
     render() {
         return (

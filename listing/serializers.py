@@ -1,6 +1,7 @@
 import os.path
 import sys
 
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.http import HttpResponse
 from django.template import Context
@@ -20,6 +21,12 @@ stopwords = ['technology', 'workplace', 'software', 'job', 'google', 'ideas',
              'people', 'problem']
 
 
+def get_keywords(resume_stuff, parsed):
+    resume_stuff.analyze(parsed, window_size=4, lower=False,
+                         stopwords=stopwords)
+    return resume_stuff.get_keywords()
+
+
 class ListingInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListingInfo
@@ -30,10 +37,8 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         parsed_exp += " \n "
         parsed_exp += data.get("listing", instance.listing)
         listing_stuff = TextRank4Keyword()
-        listing_stuff.analyze(parsed_exp, window_size=4, lower=False,
-                              stopwords=stopwords)
-        keyword_list = listing_stuff.get_keywords()
-        instance.listingKeywords = keyword_list
+        keywords = get_keywords(listing_stuff, parsed_exp)
+        instance.listingKeywords = keywords
         return instance.save
 
     def create(self, data):
@@ -42,14 +47,8 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         parsed_exp += " \n "
         parsed_exp += data.get("listing", None)
         listing_stuff = TextRank4Keyword()
-        listing_stuff.analyze(parsed_exp, window_size=4, lower=False,
-                              stopwords=stopwords)
-        keyword_list = listing_stuff.get_keywords()
-
-        listing_obj = ListingInfo.objects.create(
-            listingKeywords=keyword_list, **data)
-
-        return listing_obj
+        keywords = get_keywords(listing_stuff, parsed_exp)
+        return ListingInfo.objects.create(listingKeywords=keywords, **data)
 
 # Might be good idea to generate skills from JobHistory and Experience?
 
@@ -66,15 +65,16 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
     # Many duplicated pieces. Probably splitting into smaller functions
     def create(self, data):
         call_key = data.get("listingID", None)
-        print("owner", data.get("owner"))
-        current_owner = data.get("owner")
-        basic_info = BasicInfo.objects.get(owner=data.get("owner"))
+        print("owner: ", data.get('owner'))
+
+        basic_info = BasicInfo.objects.get(owner=data.get('owner'))
         first_name = basic_info.first_name
         last_name = basic_info.last_name
         email = basic_info.email
         print('self listing data: ', data)
         education = {}
-        for ind, val in enumerate(Education.objects.select_related("owner")):
+        for ind, val in enumerate(Education.objects.filter(owner=data.get(
+                'owner'))):
             tmp = "{}  ({} - {})\n{} in {}" \
                 .format(val.school_name, val.start_date, val.end_date,
                         val.degree, val.major)
@@ -88,7 +88,8 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
         a = BasicInfo.objects.select_related('owner')
 
         exp_word_count = {}
-        for idx, val in enumerate(Experience.objects.select_related('owner')):
+        for idx, val in enumerate(Experience.objects.filter(owner=data.get(
+                'owner'))):
             temp_set = set()
             temp_set = set(val.experience_keywords.split(','))
             listing_words = wordsk
@@ -98,7 +99,8 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
             temp_set.clear()
 
         jh_word_count = {}
-        for idx, val in enumerate(JobHistory.objects.select_related('owner')):
+        for idx, val in enumerate(JobHistory.objects.filter(owner=data.get(
+                'owner'))):
             temp_set = set()
             temp_set = set(val.job_history_keywords.split(','))
             listing_words = wordsk

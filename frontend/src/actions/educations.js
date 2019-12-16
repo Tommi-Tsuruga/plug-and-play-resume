@@ -8,8 +8,8 @@ import "regenerator-runtime/runtime";
 import {
     ADD_EDUCATION, DELETE_EDUCATION, EDIT_EDUCATION, FETCH_EDUCATIONS
 } from "./types";
-import { requestConfig } from "./auth";
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 // Change timeOut here
 const TIMEOUT = 1000;
@@ -17,8 +17,9 @@ const TIMEOUT = 1000;
 // Fetch Educations
 export const fetchEducations = () => (dispatch, getState) => {
     axios.get("/api/education/", requestConfig(getState))
-        .then(res => setTimeout(() =>
-            dispatch({ type: FETCH_EDUCATIONS, payload: res.data}), TIMEOUT))
+        .then(res => setTimeout(() =>{
+            console.log(res.data);
+            dispatch({ type: FETCH_EDUCATIONS, payload: res.data})}, TIMEOUT))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };

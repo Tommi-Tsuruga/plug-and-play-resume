@@ -12,7 +12,6 @@
 
     .navbar-brand {
         color: $white;
-
         &:hover {
             color: $primary;
         }
@@ -42,6 +41,19 @@
             }
         }
     }
+    .navbar-button {
+        margin-top: 0.3rem;
+        font-size: 90%;
+        padding: 0.6rem;
+        color: $white;
+        font-weight: bold;
+        border-color: $secondary;
+        background-color: $danger;
+        &:hover {
+                color: $white;
+                background: $primary;
+            }
+    }
     .navbar-toggler {
         font-size: 80%;
         padding: 0.8rem;
@@ -49,20 +61,30 @@
         font-weight: bold;
     }
 
-    @media (max-width: length(lg)) {
+    @include media-breakpoint-up(lg) {
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
         transition: padding-top 0.3s, padding-bottom 0.3s;
 
         .navbar-brand {
-            font-size: 1.75em;
-            transition: font-size 0.3s;
+          font-size: 1.75em;
+          transition: font-size 0.3s;
         }
-        .navbar-nav {
-            margin-top: 0;
-        }
-        .navbar-nav > .nav-item > .navlink.active {
+        .navbar-button {
+            margin-top: 0.3rem;
+            margin-left: 1rem;
+            font-size: 90%;
+            margin-left: 1rem;
+            padding: 0.7rem;
             color: $white;
+            font-weight: bold;
+        }
+
+        .navbar-nav {
+            margin-top: 1rem;
+        }
+        .navbar-nav > .nav-item > .nav-link.active {
+            color: $warning;
             background: $primary;
 
             &:active,

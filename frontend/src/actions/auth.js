@@ -10,6 +10,7 @@ import {
     REGISTER_SUCCESS, USER_LOADED, USER_LOADING
 } from "./types";
 import { returnErrors } from "./messages";
+import { requestConfig } from "../lib";
 
 // Change timeOut here
 const TIMEOUT = 1000;
@@ -54,22 +55,6 @@ export const register = (username, email, password) => (dispatch, getState) => {
              dispatch(returnErrors(err.response.data, err.status));
              dispatch({ type: REGISTER_FAIL });
          });
-};
-
-export const requestConfig = (getState) => {
-    const headers = { 'Content-Type': 'application/json' };
-    const { token } = getState().auth;
-    if (token) {
-        headers['Authorization'] = `Token ${ token }`;
-    }
-    return {
-        headers,
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        redirect: 'follow',
-        referrer: 'no-referrer',
-    }
 };
 
 
