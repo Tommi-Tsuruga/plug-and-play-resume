@@ -37,6 +37,7 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         return instance.save
 
     def create(self, data):
+        print("listingifo data: ", data)
         parsed_exp = data.get("listingTitle", None)
         parsed_exp += " \n "
         parsed_exp += data.get("listing", None)
@@ -49,38 +50,6 @@ class ListingInfoSerializer(serializers.ModelSerializer):
             listingKeywords=keyword_list, **data)
 
         return listing_obj
-
-
-class PDFResumeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GeneratedResume
-        fields = ('id', 'first_name', 'last_name', 'email')
-
-    def entry_as_pdf(self):
-        entry = GeneratedResume.objects.get(owner=data.get('owner'))  # (1)
-        context = Context({  # (2)
-            'content': entry.content,
-        })
-        template = get_template('my_latex_template.tex')
-        rendered_tpl = template.render(context).encode('utf-8')  # (3)
-        with tempfile.TemporaryDirectory() as tempdir:  # (4)
-            for i in range(2):
-                process = Popen(
-                    ['pdflatex', '-output-directory', tempdir],
-                    stdin=PIPE,
-                    stdout=PIPE,
-                )
-                process.communicate(rendered_tpl)
-            with open(os.path.join(tempdir, 'texput.pdf'), 'rb') as f:
-                pdf = f.read()
-        r = HttpResponse(content_type='application/pdf')  # (5)
-        # r['Content-Disposition'] = 'attachment; filename=texput.pdf'
-        r.write(pdf)
-        return r
-
-    def create(self, data):
-        entry = entry_as_pdf()
-        return entry
 
 # Might be good idea to generate skills from JobHistory and Experience?
 
@@ -97,17 +66,19 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
     # Many duplicated pieces. Probably splitting into smaller functions
     def create(self, data):
         call_key = data.get("listingID", None)
-        print(data.get("owner"))
-        basic_info = BasicInfo.objects.get(owner=data.get('owner'))
+        print("owner", data.get("owner"))
+        current_owner = data.get("owner")
+        basic_info = BasicInfo.objects.get(owner=data.get("owner"))
         first_name = basic_info.first_name
         last_name = basic_info.last_name
         email = basic_info.email
         print('self listing data: ', data)
         education = {}
-        for ind, val in enumerate(Education.objects.select_related('owner')):
+        for ind, val in enumerate(Education.objects.select_related("owner")):
             tmp = "{}  ({} - {})\n{} in {}" \
                 .format(val.school_name, val.start_date, val.end_date,
                         val.degree, val.major)
+            print("education objects: ", Education.objects.select_related("owner"))
             education[ind] = tmp
             tmp = ""
 

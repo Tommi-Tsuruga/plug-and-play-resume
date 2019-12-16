@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGenerated } from '../../actions/generated';
+import { fetchGenerated, createPDF } from '../../actions/generated';
 import { Container, Button } from 'react-bootstrap';
 import GeneratedList from './GeneratedList';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -21,11 +21,15 @@ class ResumePage extends Component {
         <h2> Generated Resume </h2>
         <GeneratedList />
       </div>
-      <LinkContainer to={`/resumePDF`}>
-        <Button size='xl' className='btn-full' variant='info'>
-          Save as PDF
-        </Button>
-      </LinkContainer>
+
+      {/* <Button
+        size='xl'
+        className='btn-full'
+        variant='info'
+        onClick={id => this.props.dispatch(createPDF())}
+      >
+        Save as PDF
+      </Button> */}
     </Container>
   );
 }
@@ -34,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
-export default connect(null, mapDispatchToProps)(ResumePage);
+export default connect(mapDispatchToProps)(ResumePage);
