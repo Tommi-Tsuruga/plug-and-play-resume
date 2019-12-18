@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-
+# title           : models.py
+# description     :
+# author          : Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga
+# date            : 11/4/19
+# usage           : python models.py
+# ==============================================================================
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -15,7 +20,7 @@ class BasicInfo(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])
 
 
@@ -29,7 +34,7 @@ class Experience(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])
 
 
@@ -45,7 +50,7 @@ class Education(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])
 
 
@@ -62,5 +67,5 @@ class JobHistory(models.Model):
 
     def __str__(self):
         return ', '.join(['{key}={value}'
-                         .format(key=key, value=self.__dict__.get(key))
+                          .format(key=key, value=self.__dict__.get(key))
                           for key in self.__dict__])

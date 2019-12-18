@@ -1,7 +1,8 @@
-import { FETCH_GENERATED } from "../actions/types.js";
+import { FETCH_GENERATED, CREATE_PDF } from '../actions/types.js';
 
 const generatedDefaultState = {
   generatedInfo: [],
+  generatedPDF: [],
   isLoading: true
 };
 
@@ -13,7 +14,14 @@ export default (state = generatedDefaultState, action) => {
         generatedInfo: action.payload,
         isLoading: false
       };
+
+    case CREATE_PDF:
+      return {
+        ...state,
+        generatedPDF: action.payload,
+        isLoading: false
+      };
     default:
       return state;
   }
-}
+};

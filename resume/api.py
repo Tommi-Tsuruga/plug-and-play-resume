@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # title           : api.py
 # description     :
-# author          : Keisuke Suzuki
+# author          : Aisha Khoja, Keisuke Suzuki, Tommi Ann Tsuruga
 # date            : 11/4/19
 # usage           : python api.py
 # ==============================================================================

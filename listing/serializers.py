@@ -3,7 +3,11 @@ import sys
 
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
+from django.http import HttpResponse
+from django.template import Context
+from django.template.loader import get_template
+from subprocess import Popen, PIPE
+import tempfile
 from listing.models import ListingInfo, GeneratedResume
 from resume.models import BasicInfo, Experience, Education, JobHistory
 from resume.utils import TextRank4Keyword
@@ -38,6 +42,7 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         return instance.save
 
     def create(self, data):
+        print("listingifo data: ", data)
         parsed_exp = data.get("listingTitle", None)
         parsed_exp += " \n "
         parsed_exp += data.get("listing", None)
@@ -45,8 +50,9 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         keywords = get_keywords(listing_stuff, parsed_exp)
         return ListingInfo.objects.create(listingKeywords=keywords, **data)
 
-
 # Might be good idea to generate skills from JobHistory and Experience?
+
+
 class GeneratedResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneratedResume
@@ -65,13 +71,14 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
         first_name = basic_info.first_name
         last_name = basic_info.last_name
         email = basic_info.email
-
+        print('self listing data: ', data)
         education = {}
         for ind, val in enumerate(Education.objects.filter(owner=data.get(
                 'owner'))):
             tmp = "{}  ({} - {})\n{} in {}" \
                 .format(val.school_name, val.start_date, val.end_date,
                         val.degree, val.major)
+            print("education objects: ", Education.objects.select_related("owner"))
             education[ind] = tmp
             tmp = ""
 
