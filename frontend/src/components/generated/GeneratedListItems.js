@@ -1,5 +1,8 @@
 import React from "react"
-import { ListGroupItem } from "react-bootstrap";
+import { Button, ListGroupItem } from "react-bootstrap";
+import { Document, Page, PDFDownloadLink, StyleSheet, Text, View }
+    from '@react-pdf/renderer';
+import { GeneratedDocument } from "./GeneratedDocument";
 
 
 const GeneratedListItems = (generatedInfo) => (
@@ -19,9 +22,14 @@ const GeneratedListItems = (generatedInfo) => (
         <li>{ generatedInfo.relevantExperience1 }</li>
         <li>{ generatedInfo.relevantExperience2 }</li>
         <li>{ generatedInfo.relevantExperience3 }</li>
-
-        {/*<p> id : { generatedInfo.id }</p>*/ }
-        {/*<p> listing id : { generatedInfo.listingID }</p>*/ }
+        <div className="btn btn-full">
+             <PDFDownloadLink document={ <GeneratedDocument
+                                            generatedInfo={ generatedInfo }/> }
+                             fileName="resume.pdf">
+                { ({ blob, url, loading, error }) => (loading ? 'Loading' +
+                    ' document...' : 'Save as PDF') }
+            </PDFDownloadLink>
+        </div>
     </ListGroupItem>
 );
 

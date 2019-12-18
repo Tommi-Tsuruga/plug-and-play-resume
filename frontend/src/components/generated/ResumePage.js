@@ -21,15 +21,6 @@ class ResumePage extends Component {
         <h2> Generated Resume </h2>
         <GeneratedList />
       </div>
-
-      {/* <Button
-        size='xl'
-        className='btn-full'
-        variant='info'
-        onClick={id => this.props.dispatch(createPDF())}
-      >
-        Save as PDF
-      </Button> */}
     </Container>
   );
 }

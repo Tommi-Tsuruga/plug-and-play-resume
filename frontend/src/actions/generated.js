@@ -19,17 +19,3 @@ export const fetchGenerated = () => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
-
-export const createPDF = () => (dispatch, getState) => {
-  axios
-    .get('/api/resume/add_pdf/', requestConfig(getState))
-    .then(res =>
-      setTimeout(
-        () => dispatch({ type: CREATE_PDF, payload: res.data }),
-        TIMEOUT
-      )
-    )
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
-};

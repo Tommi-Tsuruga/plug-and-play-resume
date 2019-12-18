@@ -164,16 +164,3 @@ class TextRank4Keyword():
             node_weight[word] = pr[index]
 
         self.node_weight = node_weight
-
-
-# listingFile = open('tfidftext.txt', 'r')
-# listings = listingFile.read()
-# listings = listings.lower()
-
-# jobListing = TextRank4Keyword()
-# # experience needs years, be careful when parsing
-# jobListing.analyze(listings, window_size=4, lower=False,
-#                    stopwords=['technology', 'workplace', 'software', 'job', 'google', 'ideas', 'qualifications',
-#                               'status', 'world', 'opportunity', 'opportunities', 'products', 'engineering', 'engineers',
-#                               'information'])
-# jobListing.get_keywords(15)

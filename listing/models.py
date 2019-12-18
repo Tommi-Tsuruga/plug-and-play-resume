@@ -16,7 +16,6 @@ class GeneratedResume(models.Model):
     last_name = models.CharField(max_length=100, blank=True)
     email = models.EmailField(max_length=100, blank=True)
     education1 = models.TextField(blank=True)
-    education2 = models.TextField(blank=True, null=True)
     relevantJobHistory1 = models.TextField(blank=True, null=True)
     relevantJobHistory2 = models.TextField(blank=True, null=True)
     relevantJobHistory3 = models.TextField(blank=True, null=True)
