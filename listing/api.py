@@ -63,22 +63,15 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
 
-    # fields = ('id', 'first_name', 'last_name', 'email', 'education1',
-    #           'education2', 'relevantExperience1', 'relevantExperience2',
-    #           'relevantExperience3',
-    #           'relevantJobHistory1', 'relevantJobHistory2',
-    #           'relevantJobHistory3', 'listingID')
     def get_queryset(self):
         return self.request.user.generatedResume.all()
 
     @action(detail=False, methods=['GET'], name='Get PDF')
     def add_pdf(self, request):
-        print("addpdf user", self.request.user)
         basic_info = BasicInfo.objects.get(owner=(self.request.user))
 
         # a = self.request.user
-        a = GeneratedResume.objects.get(owner=(self.request.user))
-        print("aname", a.first_name)
+        a = GeneratedResume.objects.filter(owner=(self.request.user))[0]
 
         def generate_print_pdf(data, contact):
             pdf_buffer = io.BytesIO()
@@ -98,8 +91,8 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
                     7.2 * inch])
             tblStyle = TableStyle([
                 ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
-                ('FONT', (0, 0), (-1, -1), 'Courier'),
-                ('FONTSIZE', (0, 0), (-1, -1), 10),
+                ('FONT', (0, 0), (-1, -1), 'Helvetica'),
+                ('FONTSIZE', (0, 0), (-1, -1), 15),
                 ('VALIGN', (0, 0), (-1, -1), 'TOP'),
                 ('ALIGN', (0, 0), (-1, -1), 'LEFT')])
             contentTable.setStyle(tblStyle)
@@ -109,8 +102,6 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
                 onFirstPage=myPageWrapper(
                     contact)
             )
-            # pdf_value = pdf_buffer.getvalue()
-            # pdf_buffer.close()
             pdf_buffer.seek(0)
             return pdf_buffer
 
@@ -120,12 +111,12 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
             def myPage(canvas, doc):
                 canvas.saveState()  # save the current state
                 # set the font for the name
-                canvas.setFont('Courier', 18)
+                canvas.setFont('Helvetica', 18)
                 canvas.drawString(
                     .4 * inch,
                     HEIGHT - (.4 * inch),
                     contact['name'])  # draw the name on top left page 1
-                canvas.setFont('Courier', 10)  # sets the font for contact
+                canvas.setFont('Helvetica', 10)  # sets the font for contact
                 canvas.line(.4 * inch, HEIGHT - (.47 * inch),
                             WIDTH - (.4 * inch), HEIGHT - (.47 * inch))
                 canvas.drawRightString(
@@ -147,7 +138,6 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
         workHistory.append(a.relevantJobHistory1)
         workHistory.append(a.relevantJobHistory2)
         workHistory.append(a.relevantJobHistory3)
-        print(workHistory)
         data = {
             'education': a.education1,
             'experience': experienceList,
@@ -160,7 +150,7 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
                             for x in data['experience']]]
         ]
         pdf = generate_print_pdf(tblData, contact)
-        print("print_pdf", type(pdf))
+
         ############################################################
         # # Create a file-like buffer to receive PDF data.
         # buffer = io.BytesIO()
@@ -179,10 +169,9 @@ class GeneratedResumeViewSet(viewsets.ModelViewSet):
         # FileResponse sets the Content-Disposition header so that browsers
         # present the option to save the file.
         # buffer.seek(0)
+
         return FileResponse(pdf, as_attachment=True, filename='hello.pdf')
 
     def perform_create(self, serializer):
-        print("request data: ", self.request.data.get('i'))
-        print("owner: ", self.request.user)
         serializer.save(owner=self.request.user,
                         listingID=self.request.data.get('i'))

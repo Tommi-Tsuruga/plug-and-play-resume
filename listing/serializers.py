@@ -50,19 +50,17 @@ class ListingInfoSerializer(serializers.ModelSerializer):
         keywords = get_keywords(listing_stuff, parsed_exp)
         return ListingInfo.objects.create(listingKeywords=keywords, **data)
 
-# Might be good idea to generate skills from JobHistory and Experience?
-
 
 class GeneratedResumeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeneratedResume
         fields = ('id', 'first_name', 'last_name', 'email', 'education1',
-                  'education2', 'relevantExperience1', 'relevantExperience2',
+                  'relevantExperience1', 'relevantExperience2',
                   'relevantExperience3',
                   'relevantJobHistory1', 'relevantJobHistory2',
                   'relevantJobHistory3', 'listingID')
 
-    # Many duplicated pieces. Probably splitting into smaller functions
+
     def create(self, data):
         call_key = data.get("listingID", None)
         print("owner: ", data.get('owner'))
@@ -117,42 +115,42 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
         # TODO: refactor
         generated_exp1 = Experience.objects.select_related('owner').get(
             id=exp_key_order[0][0]).title
-        generated_exp1 += '\n-'
+        generated_exp1 += '\n - '
         generated_exp1 += Experience.objects.select_related(
             'owner').get(id=exp_key_order[0][0]).description
         relevant_experience1 = generated_exp1
 
         generated_exp2 = Experience.objects.select_related(
             'owner').get(id=exp_key_order[1][0]).title
-        generated_exp2 += '\n-'
+        generated_exp2 += '\n - '
         generated_exp2 += Experience.objects.select_related(
             'owner').get(id=exp_key_order[1][0]).description
         relevant_experience2 = generated_exp2
 
         generated_exp3 = Experience.objects.select_related(
             'owner').get(id=exp_key_order[2][0]).title
-        generated_exp3 += '\n-'
+        generated_exp3 += '\n - '
         generated_exp3 += Experience.objects.select_related(
             'owner').get(id=exp_key_order[2][0]).description
         relevant_experience3 = generated_exp3
 
         generated_job_history1 = JobHistory.objects.select_related(
             'owner').get(id=jh_key_order[0][0]).title
-        generated_job_history1 += '\n-'
+        generated_job_history1 += '\n - '
         generated_job_history1 += JobHistory.objects.select_related(
             'owner').get(id=jh_key_order[0][0]).description
         relevant_job_history1 = generated_job_history1
 
         generated_job_history2 = JobHistory.objects.select_related(
             'owner').get(id=jh_key_order[1][0]).title
-        generated_job_history2 += '\n-'
+        generated_job_history2 += '\n - '
         generated_job_history2 += JobHistory.objects.select_related(
             'owner').get(id=jh_key_order[1][0]).description
         relevant_job_history2 = generated_job_history2
 
         generated_job_history3 = JobHistory.objects.select_related(
             'owner').get(id=jh_key_order[2][0]).title
-        generated_job_history3 += '\n-'
+        generated_job_history3 += '\n - '
         generated_job_history3 += JobHistory.objects.select_related(
             'owner').get(id=jh_key_order[2][0]).description
         relevant_job_history3 = generated_job_history3
@@ -162,7 +160,6 @@ class GeneratedResumeSerializer(serializers.ModelSerializer):
             last_name=last_name,
             email=email,
             education1=education[0],
-            education2=education[1],
             relevantExperience1=relevant_experience1,
             relevantExperience2=relevant_experience2,
             relevantExperience3=relevant_experience3,

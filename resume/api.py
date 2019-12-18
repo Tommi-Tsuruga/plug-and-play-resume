@@ -26,7 +26,6 @@ class ExperienceViewSet(viewsets.ModelViewSet):
     serializer_class = ExperienceSerializer
 
     def get_queryset(self):
-        print(self.request.user.id)
         return self.request.user.experience.all()
 
     def perform_create(self, serializer):

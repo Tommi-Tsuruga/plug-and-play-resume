@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_GENERATED, CREATE_PDF } from './types';
+import { FETCH_GENERATED, CREATE_PDF, DELETE_EDUCATION } from './types';
 import { requestConfig } from '../lib';
 import { returnErrors } from './messages';
 
@@ -12,20 +12,6 @@ export const fetchGenerated = () => (dispatch, getState) => {
     .then(res =>
       setTimeout(
         () => dispatch({ type: FETCH_GENERATED, payload: res.data }),
-        TIMEOUT
-      )
-    )
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
-};
-
-export const createPDF = () => (dispatch, getState) => {
-  axios
-    .get('/api/resume/add_pdf/', requestConfig(getState))
-    .then(res =>
-      setTimeout(
-        () => dispatch({ type: CREATE_PDF, payload: res.data }),
         TIMEOUT
       )
     )

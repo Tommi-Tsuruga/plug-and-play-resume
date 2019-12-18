@@ -47,7 +47,6 @@ class ExperienceSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         parsed_exp = self.get_keyword_items(data)
-        print(parsed_exp)
         resume_stuff = TextRank4Keyword()
         keywords = get_keywords(resume_stuff, parsed_exp)
         return Experience.objects.create(experience_keywords=keywords, **data)
