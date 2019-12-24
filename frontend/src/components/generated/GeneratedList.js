@@ -4,9 +4,7 @@ import GeneratedListItems from './GeneratedListItems';
 import Loading from '../utils/Loading';
 import { Alert, ListGroup } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import {
-  fetchGenerated, createPDF, removeGenerated
-} from '../../actions/generated';
+import { fetchGenerated } from '../../actions/generated';
 import { LinkContainer } from 'react-router-bootstrap';
 import { save } from 'save-file';
 class GeneratedList extends Component {
@@ -21,7 +19,6 @@ class GeneratedList extends Component {
   render() {
     return (
       <Fragment>
-        {/* {console.log('props', this.props)} */}
         <ListGroup>
           {this.props.isLoading ? (
             <Loading className='listing-group' />
@@ -45,6 +42,4 @@ const mapStateToProps = state => ({
   isLoading: state.generated.isLoading
 });
 
-export default connect(mapStateToProps, { fetchGenerated, createPDF })(
-  GeneratedList
-);
+export default connect(mapStateToProps, { fetchGenerated })(GeneratedList);
