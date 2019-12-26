@@ -153,4 +153,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-fit''s/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'frontend', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'static')
