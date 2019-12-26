@@ -28,8 +28,7 @@ SECRET_KEY = '9q2u^(gott6!(b1g_14fe5ol4b7mp+jj38%h%*zh##1dedw7)t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['resume.h5jpmg4mbm.us-west-2.elasticbeanstalk.com',
-                 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [ "*" ]
 
 # Application definition
 INSTALLED_APPS = [
