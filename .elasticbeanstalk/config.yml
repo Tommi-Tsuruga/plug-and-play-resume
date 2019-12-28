@@ -1,13 +1,13 @@
 branch-defaults:
   master:
-    environment: venv
+    environment: null
     group_suffix: null
 environment-defaults:
   venv:
     branch: null
     repository: null
 global:
-  application_name: plug-and-play-resume
+  application_name: PPR
   branch: null
   default_ec2_keyname: aws-eb2
   default_platform: Python 3.6
