@@ -14,10 +14,6 @@ import os
 
 from dotenv import load_dotenv
 
-
-import nltk
-nltk.download('stopwords')
-
 load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
