@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: PPR-dev
+    environment: venv
     group_suffix: null
 environment-defaults:
   PPR-dev:
