@@ -3,6 +3,9 @@ branch-defaults:
     environment: PPR-dev
     group_suffix: null
 environment-defaults:
+  PPR-dev:
+    branch: null
+    repository: null
   venv:
     branch: null
     repository: null

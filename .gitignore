@@ -5,6 +5,7 @@
 .idea
 .vscode
 venv
+eb-virt
 
 ### Django ###
 *.log
