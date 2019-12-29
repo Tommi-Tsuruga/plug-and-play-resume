@@ -6,6 +6,7 @@ import en_core_web_sm
 from collections import OrderedDict
 from nltk import PorterStemmer, LancasterStemmer
 
+
 porter = LancasterStemmer()
 nlp = en_core_web_sm.load()
 stop_words = set(stopwords.words('english'))
