@@ -7,17 +7,15 @@
 venv
 eb-virt
 
-## webpack-stats
+## webpack
+bundles
 webpack-stats.json
-
-## python cache ##
-__pycache__/* 
 
 ### Django ###
 *.log
 *.pot
 *.pyc
-__pycache__/
+__pycache__/*
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
