@@ -6,6 +6,7 @@
 .vscode
 venv
 eb-virt
+webpack-stats.json
 
 ### Django ###
 *.log
