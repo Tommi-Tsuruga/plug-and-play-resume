@@ -10,7 +10,7 @@ from knox import views as knox_views
 from rest_framework import routers
 from .api import RegisterAPI, LoginAPI, UserAPI
 from resume.api import ExperienceViewSet, EducationViewSet, BasicInfoAPI
-from listing.api import ListingInfoViewSet, GeneratedResumeViewSet
+from listing.api import ListingInfoViewSet
 
 urlpatterns = [
     re_path(r'^auth/register/', RegisterAPI.as_view()),

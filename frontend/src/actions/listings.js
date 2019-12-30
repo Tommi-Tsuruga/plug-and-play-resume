@@ -43,7 +43,9 @@ export const editListing = (id, listingData) => (dispatch, getState) => {
              dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const addResume = (resumeData) => (dispatch, getState) => {
+export const addResume = (resume) => (dispatch, getState) => {
+    const resumeData = JSON.stringify(resume);
+    console.log(requestConfig(getState));
     console.log('logging resume', resumeData);
     axios.post('/api/resume/', resumeData, requestConfig(getState))
          .then(res => setTimeout(() =>

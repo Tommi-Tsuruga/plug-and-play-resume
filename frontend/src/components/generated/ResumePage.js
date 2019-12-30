@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGenerated, createPDF } from '../../actions/generated';
+import { fetchGenerated } from '../../actions/generated';
 import { Container, Button } from 'react-bootstrap';
 import GeneratedList from './GeneratedList';
 import { LinkContainer } from 'react-router-bootstrap';

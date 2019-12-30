@@ -17,8 +17,7 @@ module.exports = (env) => {
         ],
         output: {
             path: path.join(__dirname, 'static/bundles'),
-            filename: "main.js",
-            publicPath: 'http://localhost:3000/'
+            filename: "main.js"
         },
         module: {
             rules: [ {
