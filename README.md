@@ -130,23 +130,6 @@
     │   ├── tests.py
     │   └── urls.py
     ├── frontend
-    │   ├── admin.py
-    │   ├── apps.py
-    │   ├── models.py
-    │   ├── package.json
-    │   ├── static
-    │   │   ├── images
-    │   │   │   ├── favicon.png
-    │   │   │   └── loader.gif
-    │   │   └── index.html
-    │   ├── template
-    │   │   └── index.html
-    │   ├── tests.py
-    │   ├── urls.py
-    │   ├── views.py
-    │   ├── webpack-stats.json
-    │   ├── webpack.config.js
-    │   └── yarn.lock
     ├── listing
     │   ├── admin.py
     │   ├── api.py
@@ -196,21 +179,10 @@
     │   │   ├── Header.js
     │   │   ├── NotFoundPage.js
     │   │   ├── PlugResumePage.js
-    │   │   ├── ProfilePage.js
     │   │   ├── accounts
     │   │   │   ├── AccountFrom.js
     │   │   │   ├── LoginPage.js
     │   │   │   └── RegisterPage.js
-    │   │   ├── basic-info
-    │   │   │   └── BasicInfoForm.js
-    │   │   ├── education
-    │   │   │   ├── EducationForm.js
-    │   │   │   ├── EducationList.js
-    │   │   │   └── EducationListItem.js
-    │   │   ├── experience
-    │   │   │   ├── EditExperiencePage.js
-    │   │   │   ├── ExperienceList.js
-    │   │   │   └── ExperienceListItem.js
     │   │   ├── generated
     │   │   │   ├── GeneratedDocument.js
     │   │   │   ├── GeneratedList.js
@@ -241,14 +213,14 @@
     │   │   │   │   ├── ExperienceList.js
     │   │   │   │   └── ExperienceListItem.js
     │   │   │   └── job-history
-    │   │   │       ├── AddJobHistory.js
-    │   │   │       ├── EditJobHistoryPage.js
-    │   │   │       ├── JobHisotryListItems.js
-    │   │   │       ├── JobHistoryForm.js
-    │   │   │       └── JobHistoryList.js
+    │   │   │          ├── AddJobHistory.js
+    │   │   │          ├── EditJobHistoryPage.js
+    │   │   │          ├── JobHisotryListItems.js
+    │   │   │          ├── JobHistoryForm.js
+    │   │   │          └── JobHistoryList.js
     │   │   └── utils
-    │   │       ├── DateRangeSelector.js
-    │   │       └── Loading.js
+    │   │           ├── DateRangeSelector.js
+    │   │           └── Loading.js
     │   ├── lib.js
     │   ├── reducers
     │   │   ├── auth.js
