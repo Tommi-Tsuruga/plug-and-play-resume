@@ -6,7 +6,12 @@
 .vscode
 venv
 eb-virt
+
+## webpack-stats
 webpack-stats.json
+
+## python cache ##
+__pycache__/* 
 
 ### Django ###
 *.log
