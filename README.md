@@ -91,11 +91,11 @@
   > 7. We also need to create a .env file to configure Django with user and database
   >    we created on postgres.
   >    ```shell
-  >       cat  >>  .env <<  EOF
-  >       DB_NAME=plugandplay  
-  >       DB_USER=plugandplayuser  
-  >       DB_PASS=password  
-  >       EOF
+  >    cat  >>  .env <<  EOF
+  >    DB_NAME=plugandplay  
+  >    DB_USER=plugandplayuser  
+  >    DB_PASS=password  
+  >    EOF
   >    ```
   > 8. We are almost done with setting up.  
   >    Let's connect the database to Django by running:
