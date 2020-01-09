@@ -1,117 +1,126 @@
 [//]: # (README.md)
 
 [//]: # (Title)
-<h1 style="text-align: center"> PlugAndPlayResume </h1>
-<p style="text-align: center; font-weight:bold"> Description </p>
-<p style="text-align: center">
-    PlugAndPlayResume creates resumes optimized for specific job positions
+<h1 align="center"> PlugAndPlayResume </h1>
+<p align="center"><b> Description</b> </p>
+<p align="center">
+    PlugAndPlayResume creates resumes optimized for specific job postings.
 </p>
 
 
 [//]: # (Motivation)
 ## Motivation ##
-  In order to make getting your dream job easier, our product will solve the
-  job-hunter's problem of resume customization by giving them an adaptive webapp
-  to identify their most relevant experience.
+  <p align="center">In order to make getting your dream job easier, our product
+  will solve the job-hunter's problem of resume customization by giving them an
+  adaptive webapp to identify their most relevant experience.</p>
 
 
 [//]: # (Development)
 ## Development ##
 
 > #### Front-end ####
-  > - To get started, clone this repository:
+  > - To get started, open terminal and clone this repository:
   >     ```shell
-  >        git clone https://github.com/Tommi-Tsuruga/plug-and-play-resume.git
+  >     git clone https://github.com/Tommi-Tsuruga/plug-and-play-resume.git
   >      ```
-  > - Please install Yarn if you haven't. It can be done easily by following
-  >    [their documentation](https://yarnpkg.com/lang/en/docs/install).
-  > - Go to *plug-and-playresume/frontend* and install the dependencies by running:
+  > - If you do not have Yarn installed on your machine, it can be installed
+  >   easily by following the [official documentation](
+  >   https://yarnpkg.com/lang/en/docs/install).
+  > - Install the required dependencies by running:
   >     ```shell
-  >        yarn install
+  >     cd plug-and-play-resume/frontend && yarn install
   >     ```
-  > - Build webpack bundles.
+  > - Create webpack bundles to run servers.
   >   - Development - `yarn build:dev`
   >   - Production - `yarn build:prod`
-  > - Finally, run webpack-dev-server:
+  > - Finally, we can run webpack-dev-server:
   >     ```shell
-  >        yarn dev-server
+  >     yarn dev-server
   >     ```
-  > - It should now be serving the files to
-  >   [http://localhost:3000]  
-  >   **NOTE**: It does not show the interface because the dev-server's proxy is
-  >    set for port 8000
-  > - Leave this server running, and open another tab and go back to project
-  >   root directory for the operations below.
+  > - It should be serving the files to
+  >   [http://localhost:3000][http://localhost:3000] now.  
+  >   **NOTE**: The user interface is not rendered at this port because our
+  >             dev-server's proxy is set to port 8000. We need it because
+                everything will be served from Django's dev server which will be
+                running on 8000. You can change the proxy setting by modifying
+                `frontend/webpack.config.js`.
+  > - Leave dev-server running, and open another tab in your terminal. Then,
+  >   go back to project root with `cd ..` for the rest of operations.
 
 > #### Postgres ####
   > - Install postgres by following [this instruction](
       https://www.postgresql.org/docs/current/tutorial-install.html).
-  > - Open postgres shell as root user:
+  > - Open postgres program as root user:
   > - For macOS - `psql postgres`
-  > - Other - `sudo su - postgres` then `psql`
-  > - Once you are in the shell create a database:
+  > - Others - `sudo su - postgres` then `psql`
+  > - Once you are in the console, create a database called plugandplay by
+  >    running:
   >     ```postgresql
-  >        create database plugandplay;
+  >     create database plugandplay;
   >     ```
-  > - Create a user for this project
+  > - Also, create a user for this project with a password set to 'password'
   >   ```postgresql
-  >      create user plugandplayuser with password 'password';
+  >   create user plugandplayuser with password 'password';
   >   ```
-  > - Now, let's make the user accessible to the database:
+  > - Now, let's make the user accessible to the database we just created:
   >   ```postgresql
-  >      grant all privileges on database plugandplay to plugandplayuser;
+  >   grant all privileges on database plugandplay to plugandplayuser;
   >   ```
+  >   Exit the console by typing `\q`.
 
 > #### Python ####
   > 1. We need python3 to build our project. You can download it from [here](
        https://www.python.org/downloads/).
-  > 2. Install pip if not installed. You can follow [this instruction](
+  > 2. If pip is not installed on your machine, you can follow [this instruction](
        https://pip.pypa.io/en/stable/installing/).
-  > 3. Create virtual environment:
+  > 3. At this point you should still be in the root directory. Let's create a
+  >    python virtual environment by running:
   >    ```shell
-  >       python3 -m venv plug-and-play-resume/venv
+  >    python3 -m venv venv
   >    ```
-  > 4. To activate virtual environment:
+  > 4. To activate the environment, run:
   >    ```shell
-  >       cd plug-and-play-resume && source ./venv/bin/activate
+  >    source ./venv/bin/activate
   >    ```
-  > 5. Install requirements with virtual environment activated:
+  >    You can always deactivate the environment by `deactivate`.
+  > 5. Install required dependencies to the virtual environment using pip:
   >    ```shell
-  >       pip3 install -r requirements.txt
+  >    pip3 install -r requirements.txt
   >    ```
-  > 6. We need to download stopwords from nltk. Open python shell and run:
+  > 6. We also need a nltk data called stopwords. We can download it in python
+  >    console. Type `python3` in your shell and run:
   >    ```python
   >    >>>  import nltk
   >    >>>  nltk.download('stopwords')
   >    ```
-  >    Then, exit the shell by typing:
+  >    Exit the console by typing:
   >    ```python
   >    >>> exit()
   >    ```
-  > 7. We also need to create a .env file to configure Django with user and database
-  >    we created on postgres.
+  > 7. We also need to create a file called .env to configure Django with user and database
+  >    we created on postgres. Run:
   >    ```shell
-  >    cat  >>  .env <<  EOF
+  >    cat >> .env << EOF
   >    DB_NAME=plugandplay  
   >    DB_USER=plugandplayuser  
   >    DB_PASS=password  
   >    EOF
   >    ```
-  > 8. We are almost done with setting up.  
+  > 8. We are almost done with configuration.  
   >    Let's connect the database to Django by running:
   >    ```shell
-  >       python3 manage.py makemigrations && python3 manage.py migrate
+  >    python3 manage.py makemigrations && python3 manage.py migrate
   >    ```
   > 9. Finally, to start django dev-server, run:
   >    ```shell
-  >       python3 manage.py runserver
+  >    python3 manage.py runserver
   >    ```
-  >  The website should now be served at [http://localhost:8000]
+  >  The website should be running at [http://localhost:8000]
 
 
 [//]: # (Todo)
 ## Todo ##
- - Deploy to aws elastic beanstalk or lambda
+ - Deploy to Aws Elastic Beanstalk or AWS lambda
 
 
 [//]: # (Directory Structure)
@@ -130,23 +139,6 @@
     │   ├── tests.py
     │   └── urls.py
     ├── frontend
-    │   ├── admin.py
-    │   ├── apps.py
-    │   ├── models.py
-    │   ├── package.json
-    │   ├── static
-    │   │   ├── images
-    │   │   │   ├── favicon.png
-    │   │   │   └── loader.gif
-    │   │   └── index.html
-    │   ├── template
-    │   │   └── index.html
-    │   ├── tests.py
-    │   ├── urls.py
-    │   ├── views.py
-    │   ├── webpack-stats.json
-    │   ├── webpack.config.js
-    │   └── yarn.lock
     ├── listing
     │   ├── admin.py
     │   ├── api.py
@@ -196,21 +188,10 @@
     │   │   ├── Header.js
     │   │   ├── NotFoundPage.js
     │   │   ├── PlugResumePage.js
-    │   │   ├── ProfilePage.js
     │   │   ├── accounts
     │   │   │   ├── AccountFrom.js
     │   │   │   ├── LoginPage.js
     │   │   │   └── RegisterPage.js
-    │   │   ├── basic-info
-    │   │   │   └── BasicInfoForm.js
-    │   │   ├── education
-    │   │   │   ├── EducationForm.js
-    │   │   │   ├── EducationList.js
-    │   │   │   └── EducationListItem.js
-    │   │   ├── experience
-    │   │   │   ├── EditExperiencePage.js
-    │   │   │   ├── ExperienceList.js
-    │   │   │   └── ExperienceListItem.js
     │   │   ├── generated
     │   │   │   ├── GeneratedDocument.js
     │   │   │   ├── GeneratedList.js
